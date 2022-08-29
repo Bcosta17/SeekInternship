@@ -8,4 +8,10 @@
     color: var( --brand-beige);;
 
     font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color:  #1B223C;
+    transition: .5s;
 }

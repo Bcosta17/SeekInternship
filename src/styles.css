@@ -5,7 +5,7 @@
 
 html{
     font-family: 'Roboto', sans-serif;
-    background: var(--brand-light);
+    background: var(--background);
 } 
 
 main{

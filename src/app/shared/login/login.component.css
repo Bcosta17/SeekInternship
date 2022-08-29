@@ -1,92 +1,70 @@
-/* geral */  
-  textarea:focus, input:focus{
-    outline: none;
-  }
-  h1{
-    font-size: 2rem;
-  }
-  a {
-    font-size: 1.4rem;
-  }
-  
-  a:hover {
-    color: #08558B;
-  }
-  
-  /* container login */
-  #login-container {
-    background-color: #FFF;
-    margin-left: auto;
-    margin-right: auto;
-    width: 40rem;
-    padding:3rem 4rem;
-    margin-top: 12vh;
-    border-radius: 1rem;
-    text-align: center;
-  }
-  
-  /* formulário */
-  form {
-    margin-top: 3.5rem;
-    margin-bottom: 4rem;
-  }
-  
-  label, input {
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-  
-  label {
-    font-weight: bold;
-    font-size: 1.3rem;
-  }
-  
-  input {
-    border-bottom: 0.2rem solid #323232;
-    padding: 1rem;
-    font-size: 1.4rem;
-    margin-bottom: 2rem;
-  }
-  
-  input:focus {
-    border-bottom: .2rem solid #08558B;
-  }
-  
-  #forgot-pass {
-    display: block;
-    text-align: right;
-  }
-  
-  input[type="submit"] {
-    text-align: center;
-    text-transform: uppercase;
-    border: none;
-    height: 40px;
-    border-radius: 20px;
-    margin-top: 30px;
-    cursor: pointer;
-    color: #FFF;
-    background-color: #08558B;
-    font-weight: bold;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #1B223C;
-    transition: .5s;
-  }
-  
-  /* redes sociais */
-  #social-container {
-    margin-bottom: 20px;
-  }
-  
-  #social-container p {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-    color: var(--paragraph);
-  }
-  
-  #social-container i {
-    margin: 0 9px;
-  }
+#login-container {
+  background-color: #FFF;
+  width: 40rem;
+  padding:3rem 4rem;
+  margin: 17vh;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+form {
+  margin-top: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+label, input {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+label {
+  font-size: 1.3rem;
+  color: var(--paragraph);
+}
+
+h1{
+  font-size: 2rem;
+}
+a {
+  font-size: 1.4rem;
+}
+
+a:hover {
+  color: var(--dark-light);
+}
+
+input {
+  border-bottom: 0.2rem solid #323232;
+  padding: 1rem;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+input:focus {
+  border-bottom: .2rem solid #08558B;
+}
+
+#forgot-pass {
+  display: block;
+  text-align: right;
+}
+
+.button{
+  text-align: center;
+  margin-top: 30px;
+}
+
+#social-container {
+  margin-bottom: 20px;
+}
+
+#social-container p {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: var(--paragraph);
+}
+
+#social-container i {
+  margin: 0 9px;
+}
