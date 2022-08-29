@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("./config-css/reset.css");
+@import url("./config-css/btn.css");
+@import url("./config-css/variable.css");
+
+html{
+    font-family: 'Roboto', sans-serif;
+    background: var(--brand-light);
+} 
+
+main{
+    max-width: 90rem;
+    margin: 10rem auto;
+    box-sizing: border-box;
+}
+
+.card-vagas{
+    width: 40rem ;
+    height: 25rem;
+    
+    display: flex;
+    flex-direction: column;
+   
+   
+    margin-bottom: 2rem;
+    
+    padding: 1rem;
+
+    border-radius: 1rem;
+    text-decoration: none;
+
+    border: 0.1rem solid black;
+
+}

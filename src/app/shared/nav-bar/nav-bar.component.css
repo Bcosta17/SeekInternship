@@ -1,0 +1,37 @@
+
+nav {
+  display: flex;
+
+  height: 6.5rem;
+
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  background-color: var(--primary-color);
+
+}
+nav .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-inline: 3rem;
+}
+
+nav#navigation .menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.menu ul {
+  display: flex;
+  gap: 3.2rem;
+}
+.menu ul li a {
+  color: var( --brand-beige);
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 400;
+}

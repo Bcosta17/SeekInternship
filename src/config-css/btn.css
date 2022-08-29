@@ -1,0 +1,11 @@
+.button{
+    width: 100%;
+    height: 50px;
+    margin-top: auto;
+  
+    border-radius: 2rem;   
+    background-color: var(--primary-color);
+    color: var( --brand-beige);;
+
+    font-size: 1.8rem;
+}
