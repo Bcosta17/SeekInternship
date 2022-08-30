@@ -10,6 +10,7 @@ import { DetailsComponent } from './pages/details/details.component';
 import { RegisterLoginComponent } from './pages/register-login/register-login.component';
 import { LoginComponent } from './shared/login/login.component';
 import { RegisterAlunoComponent } from './shared/register-aluno/register-aluno.component';
+import { RegisterEmpresaComponent } from './shared/register-empresa/register-empresa.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RegisterAlunoComponent } from './shared/register-aluno/register-aluno.c
     DetailsComponent,
     RegisterLoginComponent,
     LoginComponent,
-    RegisterAlunoComponent
+    RegisterAlunoComponent,
+    RegisterEmpresaComponent
   ],
   imports: [
     BrowserModule,

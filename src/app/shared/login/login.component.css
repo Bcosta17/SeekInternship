@@ -1,4 +1,4 @@
-#login-container {
+.login-container {
   background-color: #FFF;
   width: 40rem;
   padding:3rem 4rem;
@@ -45,7 +45,7 @@ input:focus {
   border-bottom: .2rem solid #08558B;
 }
 
-#forgot-pass {
+.forgot-pass {
   display: block;
   text-align: right;
 }
@@ -55,11 +55,11 @@ input:focus {
   margin-top: 30px;
 }
 
-#social-container {
+.social-container {
   margin-bottom: 20px;
 }
 
-#social-container p {
+.social-container p {
   font-size: 1.4rem;
   margin-bottom: 20px;
   color: var(--paragraph);
