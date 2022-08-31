@@ -8,5 +8,9 @@ html{
     background: var(--background);
 } 
 
-
-
+main{
+    max-width: 100vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-block: 9rem;
+}

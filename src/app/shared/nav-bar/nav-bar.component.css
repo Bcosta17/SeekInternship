@@ -1,13 +1,13 @@
 
 nav {
   display: flex;
-
   height: 6.5rem;
-
   position: fixed;
   top: 0;
+
   width: 100vw;
   background-color: var(--primary-color);
+  margin-bottom: 10rem;
 
 }
 nav .wrapper {

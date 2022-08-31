@@ -1,8 +1,6 @@
 .login-container {
   background-color: #FFF;
-  width: 40rem;
   padding:3rem 4rem;
-  margin: 17vh;
   border-radius: 1rem;
   text-align: center;
 }
@@ -65,6 +63,6 @@ input:focus {
   color: var(--paragraph);
 }
 
-#social-container i {
-  margin: 0 9px;
+.social-container i {
+  margin: 0 .7rem;
 }
