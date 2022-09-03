@@ -1,5 +1,5 @@
 
-nav {
+.navigation  {
   display: flex;
   height: 6.5rem;
   position: fixed;
@@ -7,27 +7,26 @@ nav {
 
   width: 100vw;
   background-color: var(--primary-color);
-  margin-bottom: 10rem;
+
 
 }
-nav .wrapper {
+.wrapper {
+  display: flex;
+  width: 100%;
+  margin-inline: 3rem;
+
+}
+
+.menu {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-inline: 3rem;
-}
-
-nav#navigation .menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 60%;
 }
 
 .menu ul {
   display: flex;
-  gap: 3.2rem;
+  gap: 2.2rem;
 }
 .menu ul li a {
   color: var( --brand-beige);
