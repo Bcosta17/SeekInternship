@@ -1,0 +1,32 @@
+.perfil-container {
+    background-color: #FFF;
+    border-radius: 1rem;
+    text-align: center;
+    width: 40vh;
+}
+.user{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 1rem auto;
+
+    color: var( --brand-beige);
+    background-color: var(--primary-color);
+
+}  
+
+.user a{
+    padding: 3rem 2rem;
+}
+
+.user #text{
+    font-size: 1.4rem;  
+}
+
+.nav li{
+    font-size: 1.4rem;
+
+    padding: 2rem 1rem;
+
+    border-spacing: 0.5rem;
+}

@@ -12,6 +12,7 @@ import { LoginComponent } from './shared/login/login.component';
 import { RegisterAlunoComponent } from './shared/register-aluno/register-aluno.component';
 import { RegisterEmpresaComponent } from './shared/register-empresa/register-empresa.component';
 import { RegisterVacancyComponent } from './pages/register-vacancy/register-vacancy.component';
+import { PerfilComponent } from './shared/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterVacancyComponent } from './pages/register-vacancy/register-vaca
     LoginComponent,
     RegisterAlunoComponent,
     RegisterEmpresaComponent,
-    RegisterVacancyComponent
+    RegisterVacancyComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

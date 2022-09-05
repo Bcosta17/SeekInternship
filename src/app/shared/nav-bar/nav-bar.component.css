@@ -34,3 +34,21 @@
   font-size: 2rem;
   font-weight: 400;
 }
+
+.user-container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var( --brand-beige);
+}
+
+.perfil-text{
+  font-size: 1.2rem;
+  margin-left: .9rem;
+}
+
+.login-register{
+  margin-top: .6rem;
+}
+
+
