@@ -3,6 +3,7 @@
   padding:3rem 4rem;
   border-radius: 1rem;
   text-align: center;
+  color: var(--paragraph);
 }
 
 form {
@@ -18,7 +19,7 @@ label, input {
 
 label {
   font-size: 1.3rem;
-  color: var(--paragraph);
+  
 }
 
 h1{
@@ -29,8 +30,9 @@ a {
 }
 
 a:hover {
-  color: var(--dark-light);
+  color: var(--headline);
 }
+
 
 input {
   border-bottom: 0.2rem solid #323232;
@@ -60,9 +62,23 @@ input:focus {
 .social-container p {
   font-size: 1.4rem;
   margin-bottom: 20px;
-  color: var(--paragraph);
+
 }
 
 .social-container i {
   margin: 0 .7rem;
 }
+
+#register-container{
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+#register-container a{
+  margin-left: .5rem;
+  transition: .4s;
+}
+
+
+

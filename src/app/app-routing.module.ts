@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DetailsComponent } from './pages/details/details.component';
-import { HomeComponent } from './pages/home/home.component';
-import { RegisterLoginComponent } from './pages/register-login/register-login.component';
-import { RegisterVacancyComponent } from './pages/register-vacancy/register-vacancy.component';
+import { DetailsComponent } from './Components/pages/details/details.component';
+import { HomeComponent } from './Components/pages/home/home.component';
+import { LoginComponent } from './Components/pages/login/login.component';
+import { RegisterLoginComponent } from './Components/pages/register-login/register-login.component';
+import { RegisterAlunoComponent } from './Components/register/register-aluno/register-aluno.component';
+import { RegisterEmpresaComponent } from './Components/register/register-empresa/register-empresa.component';
+import { RegisterVacancyComponent } from './Components/register/register-vacancy/register-vacancy.component';
 
 const routes: Routes = [
   {
@@ -11,17 +14,17 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'details',
+    path: 'vaga/detalhes',
     component: DetailsComponent,
   },
   {
     path: 'login',
-    component: RegisterLoginComponent
+    component: LoginComponent
   },
   {
-    path: 'registerVacancy',
-    component: RegisterVacancyComponent
-  },
+    path: 'register-login',
+    component: RegisterLoginComponent
+  }
 
 ];
 
