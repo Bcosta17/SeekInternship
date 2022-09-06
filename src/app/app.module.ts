@@ -13,6 +13,7 @@ import { RegisterAlunoComponent } from './Components/register/register-aluno/reg
 import { RegisterEmpresaComponent } from './Components/register/register-empresa/register-empresa.component';
 import { RegisterVacancyComponent } from './Components/register/register-vacancy/register-vacancy.component';
 import { PerfilComponent } from './Components/perfil/perfil.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PerfilComponent } from './Components/perfil/perfil.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
