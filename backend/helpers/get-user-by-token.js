@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import Aluno from '../models/Aluno.js';
-// import Empresa from '../models/Empresa.js';
+import Empresa from '../models/Empresa.js';
 
 const getUserByToken = async (token) => {
     if (!token) {
@@ -11,12 +11,13 @@ const getUserByToken = async (token) => {
     const decoded = jwt.verify(token, 'qafsafvsdsfwe');
 
     const alunoId = decoded.id;
+    const empresaId = decoded.id;
 
     
-    const aluno = await Aluno.findOne({ _id: alunoId });
-    // const empresa = await User.findOne({ _id: alunoId });
+    const user = await Aluno.findOne({ _id: alunoId }) || await Empresa.findOne({ _id: empresaId });
+    
     
 
-    return aluno;
+    return user;
 }
 export default getUserByToken;

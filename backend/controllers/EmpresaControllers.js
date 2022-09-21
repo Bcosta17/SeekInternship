@@ -1,21 +1,21 @@
-import Aluno from '../models/Aluno.js';
+import Empresa from '../models/Empresa.js';
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 // helpers
-import validacpf from '../helpers/verifica-cpf.js';
+import validaCnpj from '../helpers/verifica-cnpj.js';
 import createUserToken from "../helpers/create-user-token.js";
 import getToken from "../helpers/get-token.js";
 import getUserByToken from "../helpers/get-user-by-token.js";
 
-export default class AlunoController{
+export default class EmpresaController{
     static async registro(req, res){
-       const { nome, email, telefone, cpf,interesses, senha, confirmeSenha } = req.body;
+       const { nomeEmpresa,nomeRepresentante, email, telefone, cnpj, senha, confirmeSenha } = req.body;
 
        // validations
-       if(!nome) {
-        res.status(422).json({ message: "O campo nome é obrigatório!"});
+       if(!nomeEmpresa) {
+        res.status(422).json({ message: "O campo nome da empresa é obrigatório!"});
         return;
        }
        if(!email) {
@@ -26,18 +26,18 @@ export default class AlunoController{
         res.status(422).json({ message: "O campo telefone é obrigatório!"});
         return;
        }
-       if(!interesses) {
-        res.status(422).json({ message: "O campo interesses é obrigatório!"});
+       if(!nomeRepresentante) {
+        res.status(422).json({ message: "O campo seu nome é obrigatório!"});
         return;
        }
        
-       if(!cpf) {
-        res.status(422).json({ message: "O campo CPF é obrigatório!"});
+       if(!cnpj) {
+        res.status(422).json({ message: "O campo CNPJ é obrigatório!"});
         return;
        }
     
-       if(!validacpf(cpf)){
-        res.status(422).json({ message: "O CPF não é valido!"});
+       if(!validaCnpj(cnpj)){
+        res.status(422).json({ message: "O CNPJ não é valido!"});
         return;
        }
 
@@ -56,17 +56,17 @@ export default class AlunoController{
        }
 
        // checa se email já está cadastrado
-       const emailExiste = await Aluno.findOne({ email: email});
+       const emailExiste = await Empresa.findOne({ email: email});
 
        if(emailExiste){
         res.status(422).json({ message: "Por favor, utilize outro e-mail!"});
         return;
        }
-       // checa se CPF já está cadastrado
-       const cpfExiste = await Aluno.findOne({ cpf: cpf});
+    
+       const cnpjExiste = await Empresa.findOne({ cnpj: cnpj});
 
-       if(cpfExiste){
-        res.status(422).json({ message: "Por favor, utilize outro CPF!"});
+       if(cnpjExiste){
+        res.status(422).json({ message: "Por favor, utilize outro CNPJ!"});
         return;
        }
 
@@ -74,20 +74,20 @@ export default class AlunoController{
        const salt = await bcrypt.genSalt(12);
        const senhaHash = await bcrypt.hash(senha, salt);
        
-       //create a aluno
-       const aluno = new Aluno({
-        nome,
+       //create a empresa
+       const empresa = new Empresa({
+        nomeEmpresa,
+        nomeRepresentante,
         email,
         telefone,
-        interesses,
-        cpf,
+        cnpj,
         senha: senhaHash,
        });
 
        try {
         
-        const newAluno = await aluno.save();
-        await createUserToken(newAluno, req, res);
+        const newEmpresa = await empresa.save();
+        await createUserToken(newEmpresa, req, res);
 
        } catch (error) {
 
@@ -109,80 +109,85 @@ export default class AlunoController{
             return;
         }
         
-        // checa se aluno já está cadastrado
-        const aluno = await Aluno.findOne({ email: email});
+        // 
+        const empresa = await Empresa.findOne({ email: email});
 
-        if(!aluno){
+        if(!empresa){
          res.status(422).json({ message: "Não há usuário cadastrado com este e-mail!"});
          return;
         }
 
        // checa se a senha está correta
-       const checaSenha = await bcrypt.compare(senha, aluno.senha);
+       const checaSenha = await bcrypt.compare(senha, empresa.senha);
 
        if(!checaSenha){
          res.status(422).json({ message: "Senha invalida!" });
          return;
        }
 
-       await createUserToken(aluno,req,res);
+       await createUserToken(empresa,req,res);
     }
 
-    static async checaAluno(req, res) {        
-        let alunoAtual;
+    static async checaEmpresa(req, res) {        
+        let empresaAtual;
 
         if(req.headers.authorization) {
             const token = getToken(req);
             const decoded = jwt.verify(token, 'qafsafvsdsfwe');
 
-            alunoAtual = await Aluno.findById(decoded.id);
+            empresaAtual = await Empresa.findById(decoded.id);
 
-            alunoAtual.senha = undefined;
+            empresaAtual.senha = undefined;
 
         }else {
-            alunoAtual = null;
+            empresaAtual = null;
         }
 
-        res.status(200).send(alunoAtual);
+        res.status(200).send(empresaAtual);
     }
 
-    static async getAlunoById(req, res){
+    static async getEmpresaById(req, res){
         const id = req.params.id
         
         // verificar se id exite e não quebra o programa mesmo que o id não seja hex ou tenha 24 caracteris
         
         if (!id.match(/^[0-9a-fA-F]{24}$/)){
-            res.status(422).json({"message":"Aluno não encontrado!"});
+            res.status(422).json({"message":"Empresa não encontrada!"});
             return;
         }
         
-        const aluno = await Aluno.findById(id).select('-senha'); // não exibe o campo senha
+        const empresa = await Empresa.findById(id).select('-senha'); // não exibe o campo senha
         
-        res.status(200).json({aluno});
+        res.status(200).json({empresa});
     }
 
-    static async editAluno(req, res) {
+    static async editEmpresa(req, res) {
         const id = req.params.id;
                 
         if (!id.match(/^[0-9a-fA-F]{24}$/)){
-            res.status(422).json({"message":"Aluno não encontrado!"})
-            return
+            res.status(422).json({"message":"Empresa não encontrada!"});
+            return;
         }
         
-        // checa se aluno existe
+        // 
         const token = getToken(req);
-        const aluno = await getUserByToken(token);
+        const empresa = await getUserByToken(token);
+        console.log(empresa);
         
-        console.log(aluno);
-        
-        const { nome, email, telefone, interesses, cpf, senha, confirmeSenha } = req.body;
+        const { nomeEmpresa, nomeRepresentante, email, telefone, cnpj, senha, confirmeSenha } = req.body;
 
         // validações
-        if (!nome){
+        if (!nomeEmpresa){
+            res.status(422).json({ message: 'O nome da empresa é obrigatório!'});
+            return;
+        }
+        empresa.nomeEmpresa = nomeEmpresa;
+
+        if (!nomeRepresentante){
             res.status(422).json({ message: 'O nome é obrigatório!'});
             return;
         }
-        aluno.nome = nome;
+        empresa.nomeRepresentante = nomeRepresentante;
 
         if (!email){
             res.status(422).json({ message: 'O e-mail é obrigatório!'});
@@ -190,36 +195,32 @@ export default class AlunoController{
         }
 
         // checa se email já foi ultilizado.
-        const emailExiste = await Aluno.findOne({email: email});
+        const emailExiste = await Empresa.findOne({email: email});
 
-        if( aluno.email !== email && emailExiste){
+        if( empresa.email !== email && emailExiste){
             res.status(422).json({ message: "O e-mail já foi usado!"});
             return;
         }
-        aluno.email = email;
+        empresa.email = email;
         
         if(!telefone) {
             res.status(422).json({ message: "O campo telefone é obrigatório!"});
             return;
         }
-        aluno.telefone = telefone;
+        empresa.telefone = telefone;
 
-        if(!interesses) {
-            res.status(422).json({ message: "O campo interesses é obrigatório!"});
-            return;
-        }
-        aluno.interesses = interesses;
+      
            
-        if(!cpf) {
-            res.status(422).json({ message: "O campo CPF é obrigatório!"});
+        if(!cnpj) {
+            res.status(422).json({ message: "O campo CNPJ é obrigatório!"});
             return;
         }
         
-        if(!validacpf(cpf)){
-            res.status(422).json({ message: "O CPF não é valido!"});
+        if(!validaCnpj(cnpj)){
+            res.status(422).json({ message: "O CNPJ não é valido!"});
             return;
         }
-        aluno.cpf= cpf;
+        empresa.cnpj= cnpj;
                    
         if (!senha) {
             res.status(422).json({ message: 'A senha é obrigatória!' });
@@ -242,18 +243,18 @@ export default class AlunoController{
   
         const senhaHash = await bcrypt.hash(reqSenha, salt);
   
-        aluno.senha = senhaHash;
+        empresa.senha = senhaHash;
         }
         
         try {
-            //Retorna os dados atualizado do aluno.
-           await Aluno.findOneAndUpdate(
-                {_id: aluno._id},
-                {$set: aluno},
+            //Retorna os dados atualizado.
+           await Empresa.findOneAndUpdate(
+                {_id: empresa._id},
+                {$set: empresa},
                 {new: true},
             );
 
-            res.status(200).json({message: 'Aluno atualizado com sucesso!'});
+            res.status(200).json({message: 'Empresa atualizada com sucesso!'});
            
         } catch (error) {
           

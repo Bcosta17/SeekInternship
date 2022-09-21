@@ -2,10 +2,14 @@ import mongoose from '../db/conn.js';
 
 const { Schema } = mongoose;
 
-const Aluno = mongoose.model(
-    'Alunos',
+const Empresa = mongoose.model(
+    'Empresas',
     new Schema({
-        nome: {
+        nomeEmpresa: {
+            type: String,
+            required: true,
+        },
+        nomeRepresentante: {
             type: String,
             required: true,
         },
@@ -17,25 +21,18 @@ const Aluno = mongoose.model(
             type: String,
             required: true,
         },
-        curso:{
-            type: String,
-        },
         telefone: {
             type: Number,
             required: true,
         },
-        cpf:{
+        cnpj:{
             type: String,
             required: true,
         },
-        interesses: {
-            type: String,
-            required: true,
-        }
       },
       { timestamps: true}
     ),
 )
 
 
-export default Aluno;
+export default Empresa;

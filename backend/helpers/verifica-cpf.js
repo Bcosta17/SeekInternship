@@ -1,22 +1,23 @@
-
 const verificaCpf = (numCpf) => {
     const cpf = numCpf.split('').map( (numCpf) => parseInt(numCpf));
 
     if (cpf.length != 11) {
         return false;
     }
-      
-    if (!verificaPrimeiroDigito(cpf)) {
+    if (!isRepetido(cpf)){
+        return false;
+    }
+    if (!primeiroDigito(cpf)) {
         return false;
     }
 
-    if (!verificaSegundoDigito(cpf)) {
+    if (!segundoDigito(cpf)) {
         return false;
     }
     return true;
 }
 
-function verificaPrimeiroDigito(cpf) { 
+function primeiroDigito(cpf) { 
     let soma =0;
     let resto;
 
@@ -27,12 +28,13 @@ function verificaPrimeiroDigito(cpf) {
     resto = (soma * 10) % 11;
 
     if ( resto < 10 ) {
-        return cpf[9] == resto; 
+
+        return true; 
     }
-    return cpf[9] == 0;
+    return false;
 }
 
-function verificaSegundoDigito(cpf) {
+function segundoDigito(cpf) {
     let soma =0;
     let resto;
 
@@ -43,9 +45,23 @@ function verificaSegundoDigito(cpf) {
     resto = (soma * 10) % 11;
 
     if ( resto < 10 ) {
-        return cpf[10] == resto; 
+        
+        return true; 
     }
-    return cpf[10] == 0;
+    return false;
 }
+
+function isRepetido(cpf) {
+    const primeiro = cpf[0];
+    let diferente = false;
+    for(let i = 1; i < cpf.length; i++) {
+      if(cpf[i] != primeiro) {
+        diferente = true;
+      }
+    }
+    return diferente;
+}
+  
+
 
 export default verificaCpf;
