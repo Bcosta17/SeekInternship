@@ -24,7 +24,8 @@ export class NewEmpresaComponent implements OnInit {
     this.empresaService.createEmpresa(empresa).subscribe({
       next(){},
       error(err: any) {
-      console.log(err); }
+      console.log(err); 
+    }
     });
     this.router.navigate(['/']);
   }

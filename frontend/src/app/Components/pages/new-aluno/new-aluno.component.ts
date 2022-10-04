@@ -20,7 +20,13 @@ export class NewAlunoComponent implements OnInit {
   }
 
   createAluno(aluno: Aluno){
-    
+    this.alunoService.createAluno(aluno).subscribe({
+      next(){},
+      error(err:any){
+        console.log(err);
+      },
+    });
+    this.router.navigate(['/']);
   }
 
 }

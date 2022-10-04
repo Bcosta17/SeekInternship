@@ -15,3 +15,8 @@
     background-color:  #1B223C;
     transition: .5s;
 }
+
+.button:disabled{
+    background-color: var(--graydisabled);
+    cursor: default;
+}

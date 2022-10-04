@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs';
-import { Empresa } from 'src/app/Interfaces/Empresa';
+
 import { EmpresaService } from 'src/app/Services/empresa.service';
+
+import { Empresa } from 'src/app/Interfaces/Empresa';
+
 import { Validacoes } from 'src/app/shared/validators/validators';
-
-
 
 @Component({
   selector: 'app-empresa-form',
@@ -18,7 +19,6 @@ export class EmpresaFormComponent implements OnInit {
 
   empresaForm!: FormGroup;
  
-   
   constructor(
     private fb: FormBuilder,
     private empresaService: EmpresaService,
@@ -50,7 +50,7 @@ export class EmpresaFormComponent implements OnInit {
         ])
       ],
       email: ['', Validators.compose([Validators.email]),this.emailExiste.bind(this)],
-      cnpj: ['', Validators.compose([Validators.required, Validacoes.VerificaCnpj]), this.cnpjExiste.bind(this)],
+      cnpj: ['', Validators.compose([Validators.required, Validacoes.VerificaCnpj,  Validators.pattern('[0-9]*')]), this.cnpjExiste.bind(this)],
       telefone: [
         '', 
         Validators.compose([

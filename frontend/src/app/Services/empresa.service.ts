@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { Empresa } from '../Interfaces/Empresa';
 import { map, Observable, tap } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
+
+import { Empresa } from '../Interfaces/Empresa';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +12,12 @@ import { map, Observable, tap } from 'rxjs';
 
 export class EmpresaService {
   private baseApiUrl = environment.baseApiUrl;
-  private apiUrl =  `${this.baseApiUrl}empresas`
+  private apiUrl =  `${this.baseApiUrl}empresas`;
   
   constructor(private http: HttpClient){ }
   
   createEmpresa(empresa: Empresa): Observable<Empresa>{
-    const url = this.apiUrl + '/registro'
+    const url = this.apiUrl + '/registro';
     return this.http.post<Empresa>(url, empresa);
   }
 
@@ -23,14 +25,14 @@ export class EmpresaService {
     return this.http.get(this.apiUrl)
     .pipe(
       map((dados: any) => dados.empresas),
-      // tap(console.log),
+      tap(console.log),
       map((dados: {email: string}[]) => dados.filter(d => d.email === email)),
       // tap(console.log),
       map((dados: any[]) => dados.length > 0 ),
-      // tap(console.log),
-         
+      // tap(console.log),      
     )
   }
+
   verificaCnpj(cnpj: string) {
     return this.http.get(this.apiUrl)
     .pipe(
@@ -39,11 +41,7 @@ export class EmpresaService {
       map((dados: {cnpj: string}[]) => dados.filter(d => d.cnpj === cnpj)),
       //  tap(console.log),
       map((dados: any[]) => dados.length > 0 ),
-      //  tap(console.log),
-         
-    )
+      //  tap(console.log),    
+    );
   }
 }
-
-
-

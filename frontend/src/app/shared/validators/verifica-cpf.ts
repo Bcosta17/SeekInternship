@@ -1,5 +1,5 @@
 const verificaCpf = (numCpf:string) => {
-    const cpf = numCpf.split('').map( (numCpf) => parseInt(numCpf));
+    const cpf = numCpf!.split('').map( (numCpf) => parseInt(numCpf));
 
     if (cpf.length != 11) {
         return false;

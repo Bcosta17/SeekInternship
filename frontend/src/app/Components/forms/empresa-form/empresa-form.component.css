@@ -57,8 +57,5 @@ input {
 .button{
   margin-top: 2rem;
 }
-.button:disabled{
-  background-color: var(--graydisabled);
-  cursor: default;
-}
+
   

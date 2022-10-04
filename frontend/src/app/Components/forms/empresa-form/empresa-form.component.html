@@ -1,9 +1,10 @@
 <div id="main-container">
   <h1>Crie o perfil da sua empresa</h1>
   <form (ngSubmit)="submit()" [formGroup]="empresaForm">
+   
     <div class="full-box">
       <label for="email">E-mail corporativo</label>
-      <input type="email" placeholder="Digite seu e-mail corporativo" formControlName="email" required>
+      <input type="email" placeholder="Digite seu e-mail corporativo" formControlName="email">
       <div *ngIf="!email.pristine && email.errors" class="validation-error">
         <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
         <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
@@ -20,6 +21,7 @@
         <p *ngIf="nomeEmpresa.errors?.['maxlength']">O nome da empresa deve ter no máximo 100 caracters!</p>
       </div>
     </div>
+    
     <div class="full-box">
       <label for="nomeRepresentante">Seu nome</label>
       <input type="text" placeholder="Digite seu nome" formControlName="nomeRepresentante">
@@ -29,14 +31,17 @@
         <p *ngIf="nomeRepresentante.errors?.['maxlength']">O seu nome deve ter no máximo 100 caracters!</p>
       </div>
     </div>
+    
     <div class="half-box">
       <label for="cnpj">CNPJ</label>
       <input type="text" placeholder="Digite seu CNPJ" formControlName="cnpj">
       <div *ngIf="!cnpj.pristine && cnpj.errors" class="validation-error">
         <p *ngIf="cnpj.errors?.['required']">O CNPJ da empresa é obrigatório!</p>
         <p *ngIf="cnpj.errors?.['cnpjInvalido']">O CNPJ não é válido!</p>
+        <p *ngIf="cnpj.errors?.['pattern']">Somente números!</p>
       </div>
     </div>
+   
     <div class="half-box">
       <label for="telefone">Telefone para contato</label>
       <input type="tel" placeholder="Digite seu telefone" formControlName="telefone">
@@ -55,6 +60,7 @@
         <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
       </div>
     </div>
+    
     <div class="half-box">
       <label for="confirmeSenha">Confirmação de senha</label>
       <input type="password" placeholder="Digite novamente sua senha" formControlName="confirmeSenha">
@@ -65,5 +71,6 @@
     </div>
 
     <input type="submit" class="button" value="{{btnText}}" [disabled]="!empresaForm.valid">
+ 
   </form>
 </div>

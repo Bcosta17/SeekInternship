@@ -7,6 +7,7 @@ export class Validacoes {
   
   static VerificaCnpj(controle: AbstractControl) {
     const cnpj = controle.value;
+
     let valido: boolean = verificaCnpj(cnpj);
     
     if (valido) return null;
@@ -16,6 +17,7 @@ export class Validacoes {
 
   static VerificaCpf(controle: AbstractControl){
     const cpf = controle.value;
+    
     let valido: boolean = verificaCpf(cpf);
 
     if (valido) return null;
