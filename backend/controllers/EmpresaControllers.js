@@ -11,7 +11,7 @@ import getUserByToken from "../helpers/get-user-by-token.js";
 
 export default class EmpresaController{
     static async registro(req, res){
-       const { nomeEmpresa,nomeRepresentante, email, telefone, cnpj, senha, confirmeSenha } = req.body;
+       const {  email,nomeEmpresa,nomeRepresentante, telefone, cnpj, senha, confirmeSenha } = req.body;
 
        // validations
        if(!nomeEmpresa) {
@@ -144,6 +144,12 @@ export default class EmpresaController{
         }
 
         res.status(200).send(empresaAtual);
+    }
+
+    static async getAll(req,res){
+        const empresas = await Empresa.find().sort('-createdAt').select('-senha');// (-) pegar ordem crescente
+        
+        res.status(200).json({empresas:empresas});
     }
 
     static async getEmpresaById(req, res){

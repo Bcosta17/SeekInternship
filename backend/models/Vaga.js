@@ -37,9 +37,9 @@ const Vaga = mongoose.model(
             type: Boolean,
         },
         empresa: Object,
-        aluno: Object,
+        aluno: Object
       },
-      { timestamps: true }    
+      {timestamps: [{ createdAt: new Date(new Date()) }, { updatedAt: new Date(new Date()) }]},
     ),
     
 )

@@ -1,0 +1,24 @@
+.registro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 9rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.button{
+    padding: 2rem;
+    border-radius: 1rem ;
+    font-size: 1.5rem;
+}
+.button:first-child{
+    margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}

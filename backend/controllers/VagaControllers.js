@@ -73,7 +73,7 @@ export default class VagaController {
     static async getAll(req,res){
         const vagas = await Vaga.find().sort('-createdAt');// (-) pegar ordem crescente
         
-        res.status(200).json({ vagas: vagas });
+        res.status(200).json({data:vagas});
     }
 
     static async getVagasPorEmpresa(req, res) {
@@ -270,38 +270,4 @@ export default class VagaController {
         res.status(200).json({message: 'Voce se candidatou com sucesso, agora aguarde o retorno da empresa!'});
     }
     
-    // static async concludeAdoption(req, res){
-        
-    //     const id = req.params.id;
-
-    //        // check if id is valid
-    //     if (!ObjectId.isValidObjectId(id)) {
-    //         res.status(422).json({ message: 'ID is invalid'});
-    //         return;
-    //     }
-        
-    //     // check if the pet exists
-    //     const pet = await Pet.findOne({ _id: id});
-
-    //     if (!pet) {
-    //         res.status(404).json({ message: 'Pet not found' });
-    //         return;
-    //     }
-
-    //     // check if logged in user registered the pet
-    //     const token = getToken(req);
-    //     const user = await getUserByToken(token);
-
-    //     if (pet.user._id.toString() !== user._id.toString()) {
-    //         res.status(404).json({message: 'Houve um problema em processar sua solicitação!'});
-    //         return;
-    //     }
-
-    //     pet.available = false;
-
-    //     await Pet.findByIdAndUpdate(id,pet);
-
-    //     res.status(200).json({message:'pet successfully adopted!'});
-
-    // }
 }

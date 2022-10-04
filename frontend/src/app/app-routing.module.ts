@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { DetailsComponent } from './Components/pages/details/details.component';
 import { HomeComponent } from './Components/pages/home/home.component';
 import { LoginComponent } from './Components/pages/login/login.component';
-import { RegisterLoginComponent } from './Components/pages/register-login/register-login.component';
-import { RegisterAlunoComponent } from './Components/register/register-aluno/register-aluno.component';
-import { RegisterEmpresaComponent } from './Components/register/register-empresa/register-empresa.component';
-import { RegisterVacancyComponent } from './Components/register/register-vacancy/register-vacancy.component';
+import { NewAlunoComponent } from './Components/pages/new-aluno/new-aluno.component';
+import { NewEmpresaComponent } from './Components/pages/new-empresa/new-empresa.component';
+import { RegistroComponent } from './Components/pages/registro/registro.component';
+
 
 const routes: Routes = [
   {
@@ -22,9 +22,18 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'register-login',
-    component: RegisterLoginComponent
-  }
+    path: 'registro',
+    component: RegistroComponent
+  },
+  {
+    path: 'registro_empresa',
+    component: NewEmpresaComponent
+  },
+  {
+    path: 'registro_aluno',
+    component: NewAlunoComponent
+  },
+ 
 
 ];
 

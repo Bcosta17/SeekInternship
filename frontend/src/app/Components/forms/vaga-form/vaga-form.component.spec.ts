@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterAlunoComponent } from './register-aluno.component';
+import { VagaFormComponent } from './vaga-form.component';
 
-describe('RegisterAlunoComponent', () => {
-  let component: RegisterAlunoComponent;
-  let fixture: ComponentFixture<RegisterAlunoComponent>;
+describe('VagaFormComponent', () => {
+  let component: VagaFormComponent;
+  let fixture: ComponentFixture<VagaFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterAlunoComponent ]
+      declarations: [ VagaFormComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RegisterAlunoComponent);
+    fixture = TestBed.createComponent(VagaFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -28,9 +28,9 @@ const Empresa = mongoose.model(
         cnpj:{
             type: String,
             required: true,
-        },
+        }
       },
-      { timestamps: true}
+      {timestamps: [{ createdAt: new Date(new Date()) }, { updatedAt: new Date(new Date()) }]},
     ),
 )
 

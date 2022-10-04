@@ -31,9 +31,9 @@ const Aluno = mongoose.model(
         interesses: {
             type: String,
             required: true,
-        }
+        },
       },
-      { timestamps: true}
+      {timestamps: [{ createdAt: new Date(new Date()) }, { updatedAt: new Date(new Date()) }]},
     ),
 )
 

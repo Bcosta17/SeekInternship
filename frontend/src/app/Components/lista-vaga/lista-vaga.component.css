@@ -1,15 +1,13 @@
 
-:host .listagem{
+.listagem{
     display: flex;
     flex-direction: column;
     align-items: center;    
 }
 
 .card-vagas{
-    display: flex; 
-    
+    display: flex;  
     width: 70vw ;
-    
     padding: 1rem;
     border-radius: 1rem;
     margin-bottom: 2rem;
@@ -26,8 +24,8 @@
 }
 
 .col-50:nth-child(2){
-    display: flex;
-    flex-direction: column;
+   
+   
     justify-content: space-between;
     text-align: end;
    

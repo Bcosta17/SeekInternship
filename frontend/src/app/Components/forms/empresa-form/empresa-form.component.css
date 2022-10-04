@@ -20,9 +20,11 @@ form {
 .full-box {
   flex: 1 1 100%;
   font-size: 1.4rem;
+  margin-bottom: 2rem;
 }
 
 .half-box {
+  margin-bottom: 2rem;
   width: 45%; 
   font-size: 1.2rem;
 }
@@ -41,8 +43,6 @@ label {
 input {
   border-bottom: 1px solid #323232;
   padding: 1rem;
-  margin-bottom: 4rem;
-  
 }
 
 #agreement {
@@ -52,5 +52,13 @@ input {
 #agreement, #agreement-label {
   display: inline-block;
   width: auto;
+}
+
+.button{
+  margin-top: 2rem;
+}
+.button:disabled{
+  background-color: var(--graydisabled);
+  cursor: default;
 }
   
