@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Vaga } from '../Interfaces/Vagas';
 import { Response } from '../Interfaces/Response';
 
@@ -17,6 +17,13 @@ export class VagasService {
   getVagas(){
     return this.http.get<Response<Vaga[]>>(this.apiUrl);
   }
+  getVaga(id: string){
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Response<Vaga>>(url).pipe(
+      tap(console.log)
+    );
+  }
+  
   
 }
 

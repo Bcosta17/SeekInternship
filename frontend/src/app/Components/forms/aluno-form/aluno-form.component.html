@@ -1,7 +1,7 @@
 <div id="main-container">
   <h1>Crie seu perfil</h1>
-  <form (ngSubmit)="submit()" [formGroup]="alunoForm">
-   
+  <form [formGroup]="alunoForm" (ngSubmit)="submit()" >
+    
     <div class="full-box">
       <label for="email">E-mail</label>
       <input type="email" placeholder="Digite seu e-mail" formControlName="email">

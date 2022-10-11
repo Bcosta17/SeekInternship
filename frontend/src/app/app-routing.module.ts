@@ -14,7 +14,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'vaga/detalhes',
+    path: 'vaga/:id',
     component: DetailsComponent,
   },
   {

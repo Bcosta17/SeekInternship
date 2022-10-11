@@ -5,6 +5,7 @@ import cors from 'cors';
 import AlunoRoutes from './routes/AlunoRoutes.js';
 import EmpresaRoutes from './routes/EmpresaRoutes.js';
 import VagaRoutes from './routes/VagaRoutes.js'; 
+import LoginRoutes from './routes/LoginRoutes.js'; 
 
 const app = express();
 
@@ -16,5 +17,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 app.use('/alunos', AlunoRoutes);
 app.use('/empresas', EmpresaRoutes);
 app.use('/vagas', VagaRoutes);
+app.use('/login', LoginRoutes);
+
 
 app.listen(5000);

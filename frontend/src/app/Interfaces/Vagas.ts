@@ -1,5 +1,5 @@
 export interface Vaga{
-    id: string;
+    _id: string;
     nome: string;
     descricao: string;
     requisitos: string;

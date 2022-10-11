@@ -1,5 +1,5 @@
 export interface Aluno{
-    id?: string;
+    _id?: string;
     nome: string;
     email: string;
     telefone: number;

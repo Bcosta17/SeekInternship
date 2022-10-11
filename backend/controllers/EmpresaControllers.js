@@ -81,6 +81,7 @@ export default class EmpresaController {
             email,
             telefone,
             cnpj,
+            role: 1,
             senha: senhaHash,
         });
 
@@ -94,38 +95,6 @@ export default class EmpresaController {
             res.status(500).json({ message: error });
 
         }
-    }
-
-    static async login(req, res) {
-        const { email, senha } = req.body;
-
-        if (!email) {
-            res.status(422).json({ message: "O e-mail é obrigatório!" });
-            return;
-        }
-
-        if (!senha) {
-            res.status(422).json({ message: "A senha é obrigatória!" });
-            return;
-        }
-
-        // 
-        const empresa = await Empresa.findOne({ email: email });
-
-        if (!empresa) {
-            res.status(422).json({ message: "Não há usuário cadastrado com este e-mail!" });
-            return;
-        }
-
-        // checa se a senha está correta
-        const checaSenha = await bcrypt.compare(senha, empresa.senha);
-
-        if (!checaSenha) {
-            res.status(422).json({ message: "Senha invalida!" });
-            return;
-        }
-
-        await createUserToken(empresa, req, res);
     }
 
     static async getAll(req, res) {

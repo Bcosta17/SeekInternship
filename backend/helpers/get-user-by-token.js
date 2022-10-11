@@ -5,7 +5,7 @@ import Empresa from '../models/Empresa.js';
 
 const getUserByToken = async (token) => {
     if (!token) {
-        return res.status(401).json({ message: 'access denied' });
+        return res.status(401).json({ message: 'acesso negado!' });
     }
 
     const decoded = jwt.verify(token, 'qafsafvsdsfwe');

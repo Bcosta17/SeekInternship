@@ -4,7 +4,7 @@
         <div class="col-50">
             <h1>{{ vaga.nome }}</h1>
             <p class="p1">{{ vaga.descricao }}</p>
-            <button class="button" [routerLink]="['vaga/detalhes']">Eu quero</button>      
+            <button class="button" routerLink="vaga/{{vaga._id}}">Eu quero</button>      
         </div>
         <div class="col-50">
             <div class="salario">
@@ -15,7 +15,6 @@
                 </ng-template>
             </div>
             <div class="foot">
-                
                 <p>{{vaga.createdAt}}</p>
             </div>
         </div>

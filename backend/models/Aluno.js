@@ -32,6 +32,10 @@ const Aluno = mongoose.model(
             type: String,
             required: true,
         },
+        role:{
+            type: Number,
+            required: true,
+        },
       },
       {timestamps: [{ createdAt: new Date(new Date()) }, { updatedAt: new Date(new Date()) }]},
     ),

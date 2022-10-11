@@ -31,7 +31,6 @@ export class ListaVagaComponent implements OnInit {
     
     this.allVagas = data;
     this.vagas = data;
-    console.log(typeof this.vagas[1].createdAt)
    });
    
   }

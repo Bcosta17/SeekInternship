@@ -6,10 +6,17 @@ import getUserByToken from '../helpers/get-user-by-token.js';
 import ObjectId  from 'mongoose';
 
 
-
-
 export default class VagaController {
     static async create(req,res){
+       
+        const token = getToken(req);
+        
+        const empresa = await getUserByToken(token); 
+       
+        if(empresa.role !== 1){
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+
         const {nome, descricao, requisitos, escolaridade, turno, remunerado, observacoes} = req.body;
 
         const ativa = true;
@@ -41,8 +48,7 @@ export default class VagaController {
            }
            
         //
-        const token = getToken(req);
-        const empresa = await getUserByToken(token); 
+        
 
         const vaga = new Vaga({
             nome, 
@@ -81,8 +87,11 @@ export default class VagaController {
         // 
         const token = getToken(req);
         const empresa = await getUserByToken(token);
-
-        const vagas = await Vaga.find({'empresa._id': empresa._id}).sort('-createdAt');
+         
+        if(empresa.role !== 1){
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+        const vagas = await Vaga.find({'empresa._id': empresa._id}).sort('-createdAt').select('-senha');
         
         res.status(200).json({ vagas})
  
@@ -92,11 +101,14 @@ export default class VagaController {
         // 
         const token = getToken(req);
         const aluno = await getUserByToken(token);
-
-        const vagas = await Vaga.find({'aluno._id': aluno._id}).sort('-createdAt');
+        
+        if(aluno.role !== 0){
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+        const vagas = await Vaga.find({'aluno._id': aluno._id}).sort('-createdAt').select('-senha');
         
         res.status(200).json({ vagas});
- 
+
     }
 
     static async getVagaById(req, res) {
@@ -128,17 +140,21 @@ export default class VagaController {
             return;
         }
 
-        // 
+        // check se o usuário logado foi o que registro a vaga
+        const token = getToken(req);
+        const user = await getUserByToken(token);
+        
+        if(user.role !== 1){
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+
         const vaga = await Vaga.findOne({_id: id});
+       
 
         if (!vaga) {
             res.status(404).json({ message: 'Vaga não encontrada' });
             return;
         }
-
-        // check se o usuário logado foi o que registro a vaga
-        const token = getToken(req);
-        const user = await getUserByToken(token);
 
         if (vaga.empresa._id.toString() !== user._id.toString()) {
             res.status(422).json({message: 'Houve um problema em processar sua solicitação!'});
@@ -152,6 +168,13 @@ export default class VagaController {
     }
     static async updateVaga(req, res) {
         const id = req.params.id;
+ 
+        const token = getToken(req);
+        const user = await getUserByToken(token);
+
+        if(user.role !== 1){
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
 
         const {nome, descricao, requisitos, escolaridade, turno, remunerado, observacoes} = req.body;
    
@@ -168,8 +191,7 @@ export default class VagaController {
             return;
         }
 
-        const token = getToken(req);
-        const user = await getUserByToken(token);
+      
 
         if (vaga.empresa._id.toString() !== user._id.toString()) {
             res.status(404).json({message: 'Houve um problema em processar sua solicitação!'});

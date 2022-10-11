@@ -81,6 +81,7 @@ export default class AlunoController {
             telefone,
             interesses,
             cpf,
+            role: 0,
             senha: senhaHash,
         });
 
@@ -96,37 +97,37 @@ export default class AlunoController {
         }
     }
 
-    static async login(req, res) {
-        const { email, senha } = req.body;
+    // static async login(req, res) {
+    //     const { email, senha } = req.body;
 
-        if (!email) {
-            res.status(422).json({ message: "O e-mail é obrigatório!" });
-            return;
-        }
+    //     if (!email) {
+    //         res.status(422).json({ message: "O e-mail é obrigatório!" });
+    //         return;
+    //     }
 
-        if (!senha) {
-            res.status(422).json({ message: "A senha é obrigatória!" });
-            return;
-        }
+    //     if (!senha) {
+    //         res.status(422).json({ message: "A senha é obrigatória!" });
+    //         return;
+    //     }
 
-        // checa se aluno já está cadastrado
-        const aluno = await Aluno.findOne({ email: email });
+    //     // checa se aluno já está cadastrado
+    //     const aluno = await Aluno.findOne({ email: email });
 
-        if (!aluno) {
-            res.status(422).json({ message: "Não há usuário cadastrado com este e-mail!" });
-            return;
-        }
+    //     if (!aluno) {
+    //         res.status(422).json({ message: "Não há usuário cadastrado com este e-mail!" });
+    //         return;
+    //     }
 
-        // checa se a senha está correta
-        const checaSenha = await bcrypt.compare(senha, aluno.senha);
+    //     // checa se a senha está correta
+    //     const checaSenha = await bcrypt.compare(senha, aluno.senha);
 
-        if (!checaSenha) {
-            res.status(422).json({ message: "Senha invalida!" });
-            return;
-        }
+    //     if (!checaSenha) {
+    //         res.status(422).json({ message: "Senha invalida!" });
+    //         return;
+    //     }
 
-        await createUserToken(aluno, req, res);
-    }
+    //     await createUserToken(aluno, req, res);
+    // }
 
     static async getAll(req, res) {
         const alunos = await Aluno.find().sort('-createdAt').select('-senha');

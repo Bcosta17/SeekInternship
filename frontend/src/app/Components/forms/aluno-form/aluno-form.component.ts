@@ -106,11 +106,9 @@ export class AlunoFormComponent implements OnInit {
   }
 
   submit(){
-    if(this.alunoForm.invalid){
-      return;
+    if(this.alunoForm.valid){
+      this.onSubmit.emit(this.alunoForm.value)
     }
-
-    this.onSubmit.emit(this.alunoForm.value)
   }
 
 }

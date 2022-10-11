@@ -1,14 +1,31 @@
 <main>
   <div class="login-container">
     <h1>Login</h1>
-    <form action="">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
       <label for="email">E-mail</label>
-      <input type="email" name="email" id="email" placeholder="Digite seu e-email" autocomplete="off">
-      <label for="password">Senha</label>
-      <input type="password" name="password" id="password" placeholder="Digite sua senha">
+      <input type="email" placeholder="Digite seu e-mail" formControlName="email">
+      <div *ngIf="!email.pristine && email.errors" class="validation-error">
+        <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
+        <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
+        <p *ngIf="email.errors?.['emailInvalido']">O e-mail já foi cadastrado</p>
+      </div>
+
+      <label for="senha">Senha</label>
+      <input type="password" placeholder="Digite sua senha" formControlName="senha">
+      <div *ngIf="!senha.pristine && senha.errors" class="validation-error">
+        <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
+        <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
+      </div>
+      
       <a href="#" class="forgot-pass">Esqueceu a senha?</a>
-      <button class="button">Login</button>
+
+      <div class="validation-error" *ngIf="msgError">
+       <p>{{msgError}}</p>
+      </div>
+      
+      <button class="button" [disabled]="loginForm.invalid">Login</button>
     </form>
+    
     <div class="social-container">
       <p>Ou entre pelas suas redes sociais</p>
       <i class="i">

@@ -7,14 +7,13 @@ import { environment } from 'src/environments/environment';
 import { Aluno } from '../Interfaces/Aluno';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class AlunoService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}alunos`;
-  
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {}
 
   createAluno(aluno: Aluno): Observable<Aluno> {
     const url = this.apiUrl + '/registro';
@@ -22,26 +21,27 @@ export class AlunoService {
   }
 
   verificaEmail(email: string) {
-    return this.http.get(this.apiUrl)
-    .pipe(
+    return this.http.get(this.apiUrl).pipe(
       map((dados: any) => dados.alunos),
       // tap(console.log),
-      map((dados: {email: string}[]) => dados.filter(d => d.email === email)),
+      map((dados: { email: string }[]) =>
+        dados.filter((d) => d.email === email)
+      ),
       // tap(console.log),
-      map((dados: any[]) => dados.length > 0 ),
-      // tap(console.log),      
+      map((dados: any[]) => dados.length > 0)
+      // tap(console.log),
     );
   }
-  
+
   verificaCpf(cpf: string) {
-    return this.http.get(this.apiUrl)
-    .pipe(
+    return this.http.get(this.apiUrl).pipe(
       map((dados: any) => dados.alunos),
       //  tap(console.log),
-      map((dados: {cpf: string}[]) => dados.filter(d => d.cpf === cpf)),
+      map((dados: { cpf: string }[]) => dados.filter((d) => d.cpf === cpf)),
       //  tap(console.log),
-      map((dados: any[]) => dados.length > 0 ),
-      //  tap(console.log),    
+      map((dados: any[]) => dados.length > 0)
+      //  tap(console.log),
     );
   }
 }
+
