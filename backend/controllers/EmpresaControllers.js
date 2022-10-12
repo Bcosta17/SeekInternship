@@ -78,7 +78,7 @@ export default class EmpresaController {
         const empresa = new Empresa({
             nomeEmpresa,
             nomeRepresentante,
-            email,
+            email: email.toString().toLowerCase(),
             telefone,
             cnpj,
             role: 1,

@@ -96,9 +96,9 @@ export class EmpresaFormComponent implements OnInit {
   }
   
   emailExiste(formControl: FormControl){
-    return this.empresaService.verificaEmail(formControl.value)
+    return this.empresaService.verificaEmail(formControl.value.toLowerCase())
     .pipe(
-      map(emailExiste => emailExiste ? {emailInvalido:true} : null));
+      map(emailExiste => emailExiste? {emailInvalido:true} : null));
   }
 
   cnpjExiste(formControl: FormControl){

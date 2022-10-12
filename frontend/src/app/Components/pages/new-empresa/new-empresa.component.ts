@@ -27,7 +27,7 @@ export class NewEmpresaComponent implements OnInit {
       console.log(err); 
     }
     });
-    this.router.navigate(['/']);
+    this.router.navigate(['login']);
   }
 
   

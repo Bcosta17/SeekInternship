@@ -77,7 +77,7 @@ export default class AlunoController {
         //create a aluno
         const aluno = new Aluno({
             nome,
-            email,
+            email:email.toString().toLowerCase(),
             telefone,
             interesses,
             cpf,

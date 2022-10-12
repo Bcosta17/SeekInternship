@@ -21,7 +21,7 @@ export default class LoginController{
         }
 
         // checa se email já está cadastrado
-        const user = await Aluno.findOne({ email: email }) || await Empresa.findOne({ email: email});
+        const user = await Aluno.findOne({ email: email.toString().toLowerCase() }) || await Empresa.findOne({ email: email.toString().toLowerCase()});
         
 
         if (!user) {

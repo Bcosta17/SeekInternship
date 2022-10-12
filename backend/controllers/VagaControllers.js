@@ -10,6 +10,8 @@ export default class VagaController {
     static async create(req,res){
        
         const token = getToken(req);
+        console.log(token);
+        console.log(req.body);
         
         const empresa = await getUserByToken(token); 
        

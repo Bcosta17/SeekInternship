@@ -25,7 +25,7 @@ export class EmpresaService {
     return this.http.get(this.apiUrl)
     .pipe(
       map((dados: any) => dados.empresas),
-      tap(console.log),
+      // tap(console.log),
       map((dados: {email: string}[]) => dados.filter(d => d.email === email)),
       // tap(console.log),
       map((dados: any[]) => dados.length > 0 ),

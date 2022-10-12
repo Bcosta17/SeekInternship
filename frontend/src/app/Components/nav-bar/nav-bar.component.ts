@@ -9,7 +9,6 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class NavBarComponent implements OnInit {
 
-  token = localStorage.getItem('access_token')!
   decode:any = []
 
   faUser = faUser;
@@ -20,11 +19,12 @@ export class NavBarComponent implements OnInit {
   }
   
   islogado():boolean{
-    if(this.token) {
-      this.decode = jwt_decode(this.token);
-      return true;
+    if(!this.loginService.logado()){ 
+      return false;
     }
-    return false;
+    this.decode = this.loginService.decode()
+   
+    return true;
   }
   public logout(){
     this.loginService.logout();

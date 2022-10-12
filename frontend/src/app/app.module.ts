@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,9 @@ import { AlunoFormComponent } from './Components/forms/aluno-form/aluno-form.com
 import { VagaFormComponent } from './Components/forms/vaga-form/vaga-form.component';
 import { RegistroComponent } from './Components/pages/registro/registro.component';
 import { NewAlunoComponent } from './Components/pages/new-aluno/new-aluno.component';
+import { NewVagaComponent } from './Components/pages/new-vaga/new-vaga.component';
+import { AuthTokenInterceptor } from './Interceptor/auth-token.interceptor';
+import { AutentificacaoGuard } from './guard/autentificacao.guard';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { NewAlunoComponent } from './Components/pages/new-aluno/new-aluno.compon
     AlunoFormComponent,
     VagaFormComponent,
     RegistroComponent,
-    NewAlunoComponent
+    NewAlunoComponent,
+    NewVagaComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,10 @@ import { NewAlunoComponent } from './Components/pages/new-aluno/new-aluno.compon
     ReactiveFormsModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [
+     AutentificacaoGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

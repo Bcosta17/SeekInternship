@@ -5,6 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { Vaga } from '../Interfaces/Vagas';
 import { Response } from '../Interfaces/Response';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +25,11 @@ export class VagasService {
     );
   }
   
+  createVaga(vaga: Vaga): Observable<Vaga> {
+    const url = this.apiUrl + '/cadastro';
+    console.log(vaga);
+    return this.http.post<Vaga>(url,vaga);
+  }
   
 }
 

@@ -4,6 +4,7 @@ import Aluno from '../models/Aluno.js';
 import Empresa from '../models/Empresa.js';
 
 const getUserByToken = async (token) => {
+    
     if (!token) {
         return res.status(401).json({ message: 'acesso negado!' });
     }

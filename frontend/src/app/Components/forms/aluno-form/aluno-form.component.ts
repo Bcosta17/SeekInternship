@@ -93,9 +93,9 @@ export class AlunoFormComponent implements OnInit {
   }
   
   emailExiste(formControl: FormControl){
-    return this.alunoService.verificaEmail(formControl.value)
+    return this.alunoService.verificaEmail(formControl.value.toLowerCase())
     .pipe(
-      map(emailExiste => emailExiste ? {emailInvalido:true} : null));
+      map(emailExiste => emailExiste.toString().toLowerCase() ? {emailInvalido:true} : null));
   }
 
   cpfExiste(formControl: FormControl){

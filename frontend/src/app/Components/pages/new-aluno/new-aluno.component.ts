@@ -26,7 +26,7 @@ export class NewAlunoComponent implements OnInit {
         console.log(err);
       },
     });
-    this.router.navigate(['/']);
+    this.router.navigate(['login']);
   }
 
 }
