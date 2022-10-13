@@ -10,6 +10,7 @@ import { NewAlunoComponent } from './Components/pages/new-aluno/new-aluno.compon
 import { NewEmpresaComponent } from './Components/pages/new-empresa/new-empresa.component';
 import { RegistroComponent } from './Components/pages/registro/registro.component';
 import { NewVagaComponent } from './Components/pages/new-vaga/new-vaga.component';
+import { EmpresaComponent } from './Components/pages/empresa/empresa.component';
 
 
 
@@ -43,6 +44,11 @@ const routes: Routes = [
     path: 'registro_vaga',
     canActivate: [AutentificacaoGuard],
     component: NewVagaComponent
+  },
+  {
+    path: 'empresa',
+    canActivate: [AutentificacaoGuard],
+    component: EmpresaComponent
   }
  
 

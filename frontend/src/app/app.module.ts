@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -11,9 +11,7 @@ import { ListaVagaComponent } from './Components/lista-vaga/lista-vaga.component
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { DetailsComponent } from './Components/pages/details/details.component';
 import { LoginComponent } from './Components/pages/login/login.component';
-
 import { PerfilComponent } from './Components/perfil/perfil.component';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NewEmpresaComponent } from './Components/pages/new-empresa/new-empresa.component';
 import { EmpresaFormComponent } from './Components/forms/empresa-form/empresa-form.component';
@@ -24,6 +22,7 @@ import { NewAlunoComponent } from './Components/pages/new-aluno/new-aluno.compon
 import { NewVagaComponent } from './Components/pages/new-vaga/new-vaga.component';
 import { AuthTokenInterceptor } from './Interceptor/auth-token.interceptor';
 import { AutentificacaoGuard } from './guard/autentificacao.guard';
+import { EmpresaComponent } from './Components/pages/empresa/empresa.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,8 @@ import { AutentificacaoGuard } from './guard/autentificacao.guard';
     VagaFormComponent,
     RegistroComponent,
     NewAlunoComponent,
-    NewVagaComponent
+    NewVagaComponent,
+    EmpresaComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +48,8 @@ import { AutentificacaoGuard } from './guard/autentificacao.guard';
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModule
   ],
   providers: [
      AutentificacaoGuard,

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import jwt_decode from 'jwt-decode';
 import { LoginService } from 'src/app/Services/login.service';
 @Component({
   selector: 'app-nav-bar',

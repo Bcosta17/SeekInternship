@@ -9,7 +9,7 @@
         <div class="col-50">
             <div class="salario">
                 <h2>Salário</h2>
-                <p *ngIf="vaga.remunerado==true;else naoremunerado">Remunerado</p>
+                <p *ngIf="vaga.remunerado;else naoremunerado">Remunerado</p>
                 <ng-template #naoremunerado>
                     <p>Não remunerado </p>
                 </ng-template>

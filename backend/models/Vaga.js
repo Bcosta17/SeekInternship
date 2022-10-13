@@ -27,7 +27,7 @@ const Vaga = mongoose.model(
             required:true,
         },
         remunerado:{
-            type: Boolean,
+            type: String,
             required:true,
         },
         observacoes: {

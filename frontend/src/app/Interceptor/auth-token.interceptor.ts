@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class AuthTokenInterceptor implements HttpInterceptor {
+export class AuthTokenInterceptor implements HttpInterceptor { //adicionar o token no header de toda requesição
 
   constructor() {}
 
@@ -18,7 +18,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
     const baseApiUrl = environment.baseApiUrl.split('/')[2];
     const token = localStorage.getItem('access_token');
 
-    if(token && requestUrl === baseApiUrl) {
+    if(token && requestUrl === baseApiUrl) { // verificar se a requisição é pra url do backend e não para outra API externa
       const newResquest = request.clone({ setHeaders: { 'Authorization': 'Bearer ' + token } });
       return next.handle(newResquest);
     }

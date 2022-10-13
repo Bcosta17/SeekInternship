@@ -12,11 +12,11 @@
 }
 
 .button:hover {
-    background-color:  #1B223C;
+    background-color: hsl(227, 38%, 17%);
     transition: .5s;
 }
 
 .button:disabled{
-    background-color: var(--graydisabled);
+    background-color: hsl(227, 38%, 17%);
     cursor: default;
 }
