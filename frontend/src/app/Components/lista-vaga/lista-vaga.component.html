@@ -1,6 +1,6 @@
 <section class="listagem">
-<div *ngIf="allVagas.length > 0; else noVagas">
-    <div class="card-vagas" *ngFor="let vaga of allVagas">
+<div *ngIf="vagas.length > 0; else noVagas">
+    <div class="card-vagas" *ngFor="let vaga of vagas">
         <div class="col-50">
             <h1>{{ vaga.nome }}</h1>
             <p class="p1">{{ vaga.descricao }}</p>
@@ -27,3 +27,4 @@
 
 
 </section>
+

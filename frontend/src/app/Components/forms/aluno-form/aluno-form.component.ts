@@ -41,7 +41,7 @@ export class AlunoFormComponent implements OnInit {
         Validators.minLength(3),
         ])
       ],
-      cpf: ['', Validators.compose([Validators.required, Validacoes.VerificaCpf,Validators.pattern('[0-9]*')]),this.cpfExiste.bind(this)],
+      cpf: ['', Validators.compose([Validators.required, Validacoes.VerificaCpf,Validators.pattern('[0-9]*')]), this.cpfExiste.bind(this)],
       email:['', Validators.compose([Validators.email]),this.emailExiste.bind(this)],
       curso: ['', Validators.compose([Validators.required,Validators.minLength(3)]) ],
       interesses: ['', Validators.compose([Validators.required,Validators.minLength(10)])],
@@ -95,13 +95,13 @@ export class AlunoFormComponent implements OnInit {
   emailExiste(formControl: FormControl){
     return this.alunoService.verificaEmail(formControl.value.toLowerCase())
     .pipe(
-      map(emailExiste => emailExiste.toString().toLowerCase() ? {emailInvalido:true} : null));
+      map(emailExiste => emailExiste? {emailInvalido:true} : null));
   }
 
   cpfExiste(formControl: FormControl){
     return this.alunoService.verificaCpf(formControl.value)
     .pipe(
-      map(cpfExiste => cpfExiste ? {cpfInvalido:true}: null)
+      map(cpfExiste => cpfExiste ? {cpfExiste:true}: null)
     )
   }
 

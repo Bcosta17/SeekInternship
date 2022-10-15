@@ -4,8 +4,8 @@
     
     <div class="full-box">
       <label for="email">E-mail</label>
-      <input type="email" placeholder="Digite seu e-mail" formControlName="email">
-      <div *ngIf="!email.pristine && email.errors" class="validation-error">
+      <input type="email" placeholder="Digite seu e-mail" formControlName="email" required>
+      <div *ngIf="!email.pristine && email.errors" class="alert alert-danger" role="alert">
         <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
         <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
         <p *ngIf="email.errors?.['emailInvalido']">O e-mail já foi cadastrado</p>
@@ -15,8 +15,8 @@
     <div class="full-box">
       <label for="nome">Nome</label>
       <input type="text" placeholder="Digite seu nome" formControlName="nome">
-      <div *ngIf="!nome.pristine && nome.errors " class="validation-error">
-        <p *ngIf="nome.errors?.['required']">Seu nome é obrigatório!</p>
+      <div *ngIf="!nome.pristine && nome.errors " class="alert alert-danger" role="alert">
+        <p *ngIf="nome.errors?.['required']">O nome é obrigatório!</p>
         <p *ngIf="nome.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
       </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="full-box">
       <label for="curso">Curso</label>
       <input type="text" placeholder="Digite seu curso" formControlName="curso">
-      <div *ngIf="!curso.pristine && curso.errors " class="validation-error">
+      <div *ngIf="!curso.pristine && curso.errors " class="alert alert-danger" role="alert">
         <p *ngIf="curso.errors?.['required']">O curso é obrigatório!</p>
         <p *ngIf="curso.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
       </div>
@@ -33,7 +33,7 @@
     <div class="full-box">
       <label for="interesses">Interesses</label>
       <input type="text" placeholder="Digite no que você tem interresse de trabalha" formControlName="interesses">
-      <div *ngIf="!interesses.pristine && interesses.errors " class="validation-error">
+      <div *ngIf="!interesses.pristine && interesses.errors" class="alert alert-danger" role="alert">
         <p *ngIf="interesses.errors?.['required']">Os interesses são obrigatório!</p>
         <p *ngIf="interesses.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
       </div>
@@ -41,19 +41,19 @@
 
     <div class="half-box">
       <label for="cpf">CPF</label>
-      <input type="text" placeholder="Digite seu CPF" formControlName="cpf">
-      <div *ngIf="!cpf.pristine && cpf.errors" class="validation-error">
+      <input type="text" placeholder="Digite seu CPF" formControlName="cpf" required>
+      <div *ngIf="!cpf.pristine && cpf.errors" class="alert alert-danger" role="alert">
         <p *ngIf="cpf.errors?.['required']">O CPF é obrigatório!</p>
         <p *ngIf="cpf.errors?.['cpfInvalido']">O CPF não é válido!</p>
         <p *ngIf="cpf.errors?.['pattern']">Somente números!</p>
-        <p *ngIf="cpf.errors?.['cpfInvalido']">O CPF já foi cadastrado!</p>
+        <p *ngIf="cpf.errors?.['cpfExiste']">O CPF já foi cadastrado!</p>
       </div>
     </div>
 
     <div class="half-box">
       <label for="telefone">Telefone para contato</label>
       <input type="tel" placeholder="Digite seu telefone" formControlName="telefone">
-      <div *ngIf="!telefone.pristine && telefone.errors" class="validation-error">
+      <div *ngIf="!telefone.pristine && telefone.errors" class="alert alert-danger" role="alert">
         <p *ngIf="telefone.errors?.['required']">O telefone é obrigatório!</p>
         <p *ngIf="telefone.errors?.['pattern']">Somente números!</p>
         <p *ngIf="telefone.errors?.['minlength'] || telefone.errors?.['maxlength']">O telefone precisa ter 11 digitos!
@@ -64,7 +64,7 @@
     <div class="half-box">
       <label for="senha">Senha</label>
       <input type="password" placeholder="Digite sua senha" formControlName="senha">
-      <div *ngIf="!senha.pristine && senha.errors" class="validation-error">
+      <div *ngIf="!senha.pristine && senha.errors" class="alert alert-danger" role="alert">
         <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
         <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
       </div>
@@ -73,7 +73,7 @@
     <div class="half-box">
       <label for="confirmeSenha">Confirmação de senha</label>
       <input type="password" placeholder="Digite novamente sua senha" formControlName="confirmeSenha">
-      <div *ngIf="!confirmeSenha.pristine && confirmeSenha.errors" class="validation-error">
+      <div *ngIf="!confirmeSenha.pristine && confirmeSenha.errors" class="alert alert-danger" role="alert">
         <p *ngIf="confirmeSenha.errors?.['required']">A Confirmação de senha é obrigatória!</p>
         <p *ngIf="confirmeSenha.errors?.['senhasNaoCombinam']">As senhas não coincidem!</p>
       </div>

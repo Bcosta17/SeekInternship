@@ -3,7 +3,7 @@ import mongoose from '../db/conn.js';
 const { Schema } = mongoose;
 
 const Aluno = mongoose.model(
-    'Alunos',
+    'Aluno',
     new Schema({
         nome: {
             type: String,

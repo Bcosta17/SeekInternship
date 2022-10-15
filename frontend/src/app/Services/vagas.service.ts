@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { Vaga } from '../Interfaces/Vagas';
 import { Response } from '../Interfaces/Response';
 
@@ -24,12 +24,31 @@ export class VagasService {
       tap(console.log)
     );
   }
-  
+  getVagasEmpresa(){
+    const url = this.apiUrl + '/minhasvagas'
+    return this.http.get<Response<Vaga[]>>(url).pipe(
+      tap(console.log)
+    )
+  }
+
   createVaga(vaga: Vaga): Observable<Vaga> {
     const url = this.apiUrl + '/cadastro';
-    console.log(vaga);
     return this.http.post<Vaga>(url,vaga);
   }
   
+  cadidatarVaga(id: string):Observable<any>{
+    const url = this.apiUrl + '/candidatar/'+id;
+    return this.http.post(url,id).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
+        
+  }
 }
 

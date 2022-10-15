@@ -4,7 +4,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
       <label for="email">E-mail</label>
       <input type="email" placeholder="Digite seu e-mail" formControlName="email">
-      <div *ngIf="!email.pristine && email.errors" class="validation-error">
+      <div *ngIf="!email.pristine && email.errors" class="alert alert-danger" role="alert">
         <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
         <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
         <p *ngIf="email.errors?.['emailInvalido']">O e-mail já foi cadastrado</p>
@@ -12,14 +12,14 @@
 
       <label for="senha">Senha</label>
       <input type="password" placeholder="Digite sua senha" formControlName="senha">
-      <div *ngIf="!senha.pristine && senha.errors" class="validation-error">
+      <div *ngIf="!senha.pristine && senha.errors" class="alert alert-danger" role="alert">
         <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
         <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
       </div>
       
       <a href="#" class="forgot-pass">Esqueceu a senha?</a>
 
-      <div class="validation-error" *ngIf="msgError">
+      <div class="alert alert-danger" role="alert" *ngIf="msgError">
        <p>{{msgError}}</p>
       </div>
       
@@ -37,7 +37,7 @@
     </div>
     <div id="register-container">
       <p>Ainda não tem uma conta?</p>
-      <a href="#">Registre-se</a>
+      <a routerLink="/registro">Registre-se</a>
     </div>
   </div>
 </main>

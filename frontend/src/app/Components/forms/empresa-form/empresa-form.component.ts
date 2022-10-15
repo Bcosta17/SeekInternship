@@ -104,7 +104,7 @@ export class EmpresaFormComponent implements OnInit {
   cnpjExiste(formControl: FormControl){
     return this.empresaService.verificaCnpj(formControl.value)
     .pipe(
-      map(cnpjExiste => cnpjExiste ? {cnpjInvalido:true} : null));
+      map(cnpjExiste => cnpjExiste ? {cnpjExiste:true} : null));
   }
 
   submit(): void{
@@ -113,5 +113,6 @@ export class EmpresaFormComponent implements OnInit {
    }
     this.onSubmit.emit(this.empresaForm.value);
   }
+
   
 }

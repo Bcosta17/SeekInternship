@@ -1,32 +1,37 @@
-<main>
-    <div class="container">
-        <a href="" alt="novo" class="btn btn-xs btn-success">
-            <fa-icon [icon]="faPlus"></fa-icon> Novo
-        </a>
-        <table class=" table table-striped table-bordered table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>   
-                <th scope="col">Data</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>nome</td>
-                <td>12/04</td>
-                <td class="text-center">
-                    <a routerLink=" " class="btn btn-xs btn-info">
-                        <fa-icon [icon]="faEdit"></fa-icon> Editar 
-                      </a>
-                      <button class="btn btn-xs btn-danger">
-                          <fa-icon [icon]="faTimes" ></fa-icon>Excluir
-                      </button>
-                </td>
-              </tr>
-              </tbody>
-        </table>
-    </div>
-</main>
+<div class="container" *ngIf="vagas.length > 0; else noVagas ">
+  <a routerLink="/registro_vaga" alt="novo" class="btn btn-success btn-lg">
+    <fa-icon [icon]="faPlus"></fa-icon> Novo
+  </a>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Data</th>
+        <th scope="col">Candidatos</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vaga of vagas; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ vaga.nome }}</td>
+        <td>{{ vaga.createdAt}}</td>
+        <td><button>
+          ver canditatos
+        </button></td>
+        <td>
+          <button routerLink=" " class="btn btn-xs btn-info">
+            <fa-icon [icon]="faEdit"></fa-icon> Editar
+          </button>
+          <button class="btn btn-xs btn-danger">
+            <fa-icon [icon]="faTimes"></fa-icon>Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noVagas>
+  <h1>Não há vagas cadastradas!</h1>
+</ng-template>

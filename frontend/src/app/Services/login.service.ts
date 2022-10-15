@@ -28,12 +28,12 @@ export class LoginService {
           localStorage.setItem('access_token', data.token);
           const decode:any = jwt_decode(localStorage.getItem('access_token')!);
           
-          if (decode.role === 1) return this.router.navigate(['registro_vaga']) 
+          if (decode.role === 1) return this.router.navigate(['empresa']) 
           return this.router.navigate(['']);
         }),
         catchError((err) => {
           if (err.error.message) return throwError(() => err.error.message);
-
+ 
           return throwError(
             () =>
               'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'

@@ -10,18 +10,27 @@ import { VagasService } from 'src/app/Services/vagas.service';
 })
 export class DetailsComponent implements OnInit {
   vaga?: Vaga;
-
+  msgError!: string;
+  
   constructor(
     private vagaService: VagasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+   
   ) { }
-
+  
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
-  
     this.vagaService.getVaga(id).subscribe((item) =>{
       this.vaga = item.vaga;
     });
+
   }
 
+  candidatar(id:string){
+    this.vagaService.cadidatarVaga(id).subscribe({
+      next: (res)=> res,
+      error: (e)=> (this.msgError = e),
+    });
+  }
+  
 }

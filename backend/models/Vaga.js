@@ -3,7 +3,7 @@ import mongoose from '../db/conn.js';
 const {Schema} = mongoose;
 
 const Vaga = mongoose.model(
-    'Vagas',
+    'Vaga',
     new Schema({
 
         nome:{
@@ -36,8 +36,15 @@ const Vaga = mongoose.model(
         ativa: {
             type: Boolean,
         },
-        empresa: Object,
-        aluno: Object
+        empresa: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Empresa',
+            required:true
+        },
+        alunos:[{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Aluno',
+            }]
       },
       {timestamps: [{ createdAt: new Date(new Date()) }, { updatedAt: new Date(new Date()) }]},
     ),

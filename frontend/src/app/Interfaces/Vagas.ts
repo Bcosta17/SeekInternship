@@ -6,6 +6,8 @@ export interface Vaga{
     escolaridade: string;
     ativa: boolean;
     turno: string;
+    aluno: [object];
+    empresa: object
     observacoes?: string;
     remunerado: boolean;
     createdAt?: string;

@@ -1,64 +1,29 @@
 
-.navigation  {
-  display: flex;
-  height: 6.5rem;
-  position: fixed;
-  top: 0;
-
-  width: 100vw;
-  background-color: var(--primary-color);
-
-
-}
-.wrapper {
-  display: flex;
-  width: 100%;
-  margin-inline: 3rem;
-
+*{
+  font-size: 1.6rem;
+  color: #fff;
 }
 
-.menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+#menu{
+  padding: .5rem 2rem;
 }
 
-.menu ul {
-  display: flex;
-  gap: 2.2rem;
-}
-.menu ul li a {
-  color: var( --brand-beige);
-  text-decoration: none;
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-.user-container{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  color: var( --brand-beige);
-}
 .icon{
   border: 2px solid #fff ;
   padding: .7rem;
   border-radius: 50%;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
+  margin-right: .4rem;
 }
 
-/* #per{
-  color: rgba(8, 8, 8, 0.808);
-} */
-
-.perfil-text{
-  font-size: 1.2rem;
-  margin-left: .9rem;
+.navbar{
+  background-color: var(--primary-color);
 }
 
-.login-register{
-  margin-top: 1rem;
+#dropdownBasic1{
+  cursor: pointer;
 }
 
-
+.menudrop button{
+  color: black; 
+}

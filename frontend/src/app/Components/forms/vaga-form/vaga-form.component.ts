@@ -15,7 +15,7 @@ import { Vaga } from 'src/app/Interfaces/Vagas';
 export class VagaFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Vaga>();
   @Input() btnText!: string;
-
+  
   vagaForm!: FormGroup;
   
   constructor(
@@ -33,41 +33,41 @@ export class VagaFormComponent implements OnInit {
       descricao:['',Validators.compose([Validators.required,Validators.minLength(20)])],
       requisitos:['',Validators.compose([Validators.required,Validators.minLength(10)])],
       escolaridade:['',Validators.compose([Validators.required,Validators.minLength(5)])],
-      area:[''],
-      remunerado:[''],
-      turno:['',Validators.compose([Validators.required])],
-      observacoes:[''],
+      area:['',Validators.compose([Validators.required,Validators.minLength(5)])],
+      remunerado:['',Validators.compose([Validators.required,Validators.minLength(5)])],
+      turno:['',Validators.compose([Validators.required,Validators.minLength(3)])],
+      observacoes:['',Validators.compose([Validators.minLength(5)])],
     })
   }
 
   get nome(){
-    return this.vagaForm.get('nome');
+    return this.vagaForm.get('nome')!;
   }
 
   get descricao(){
-    return this.vagaForm.get('descricao');
+    return this.vagaForm.get('descricao')!;
   }
 
   get requisitos(){
-    return this.vagaForm.get('requisitos');
+    return this.vagaForm.get('requisitos')!;
   }
 
   get escolaridade(){
-    return this.vagaForm.get('escolaridade');
+    return this.vagaForm.get('escolaridade')!;
   }
 
   get turno(){
-    return this.vagaForm.get('turno');
+    return this.vagaForm.get('turno')!;
   }
 
   get area(){
-    return this.vagaForm.get('area');
+    return this.vagaForm.get('area')!;
   }
   get remunerado(){
-    return this.vagaForm.get('remunerado');
+    return this.vagaForm.get('remunerado')!;
   }
   get observacoes(){
-    return this.vagaForm.get('observacoes');
+    return this.vagaForm.get('observacoes')!;
   }
 
   submit(){

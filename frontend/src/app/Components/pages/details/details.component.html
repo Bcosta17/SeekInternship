@@ -29,8 +29,12 @@
         <h2 *ngIf="vaga.observacoes">Obeservação</h2>
         <p>{{vaga.observacoes}}</p>
         </div>
+        <div *ngIf="msgError"  class="alert alert-danger">
+            <p>{{msgError}}</p>
+        </div>
+       
         <div class="btn-group">
-            <button class="button">inscreve-se</button>
+            <button class="button" (click)="candidatar(vaga._id)">inscreve-se</button>
             <button class="button" [routerLink]="['/']">Voltar</button>
         </div>
     </div>

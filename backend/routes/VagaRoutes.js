@@ -16,7 +16,7 @@ router.get('/minhasCandidaturas', verificatoken, VagaControllers.getVagasPorAlun
 router.get('/:id', VagaControllers.getVagaById);
 router.delete('/:id', verificatoken, VagaControllers.deleteVagaById);
 router.patch('/:id', verificatoken, VagaControllers.updateVaga);
-router.patch('/candidatar/:id', verificatoken, VagaControllers.candidatarVaga);
+router.post('/candidatar/:id', verificatoken, VagaControllers.candidatarVaga);
 
 
 export default router;

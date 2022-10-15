@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Vaga } from 'src/app/Interfaces/Vagas';
 import { VagasService } from 'src/app/Services/vagas.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lista-vaga',
@@ -11,13 +9,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ListaVagaComponent implements OnInit {
   
-  baseApiUrl = environment.baseApiUrl
-  
-  allVagas: Vaga[] = [];
+ 
   vagas: Vaga[] = [];
 
-  allVagas$: Observable<Vaga[]> = new Observable();
-
+ 
   constructor(private vagasService : VagasService) { }
   
   ngOnInit() {
@@ -29,7 +24,6 @@ export class ListaVagaComponent implements OnInit {
       );
     });
     
-    this.allVagas = data;
     this.vagas = data;
    });
    

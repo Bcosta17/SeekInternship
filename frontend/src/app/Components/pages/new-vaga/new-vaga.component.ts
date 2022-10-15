@@ -26,7 +26,7 @@ export class NewVagaComponent implements OnInit {
         console.log(err);
       },
     });
-    this.router.navigate(['login']);
+    this.router.navigate(['empresa']);
   }
 
 }
