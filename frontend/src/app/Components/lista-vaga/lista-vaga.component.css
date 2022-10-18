@@ -1,20 +1,10 @@
 
-.listagem{
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-}
-
-.card-vagas{
-    display: flex;  
-    width: 70vw ;
-    padding: 1rem;
-    border-radius: 1rem;
+.card{
     margin-bottom: 2rem;
-    background-color: #fff;
-    color: var(--paragraph);
+}
+.card-body{
+    display: flex;  
    
-
 }
 .col-50{
     margin: 2rem ;
@@ -24,8 +14,6 @@
 }
 
 .col-50:nth-child(2){
-   
-   
     justify-content: space-between;
     text-align: end;
    
@@ -36,10 +24,6 @@
     justify-content: end;
 }
 
-.foot p:nth-child(1){
-    position: relative;
-    right: 6rem;
-}
 
 h1{
     font-size: 3rem;
@@ -61,8 +45,6 @@ p{
 .col-50 .p1{
     text-align: justify;
 }
-
-
 
 button{
     margin-top: 1.5rem;

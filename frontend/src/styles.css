@@ -1,18 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import url("./config-css/reset.css");
+/* @import url("./config-css/reset.css"); */
 @import url("./config-css/btn.css");
 @import url("./config-css/variable.css");
 
-html{
-   
-    background: var(--background);
-} 
+html,
+body {
+  background: var(--background);
+}
 
-main{
-    max-width: 100vh;
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding-block: 9rem;
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: 9rem;
+}
+
+.card {
+  width: 60vw;
+  padding:3rem 4rem;
+  border-radius: 1rem;
+  text-align: center;
+  background: #fff;
+  color: var(--paragraph);
+}
+
+label, input {
+  width: 100%;
+  text-align: left;
+}
+
+label {
+  margin-top: 2rem;
+  margin-bottom:1rem;
+  font-size: 1.3rem;
+  
+}
+
+
+/* input:invalid {
+  border: #dc3545 solid 1px;
+} */
+
+.validation-error p {
+  display: flex;
+  text-align: start;
+  color: #dc3545;
+  margin-top: 0.4em;
+  border-left: 3px solid #dc3545;
+  padding-left: 0.2em;
+  font-size: 1.4rem;
 }

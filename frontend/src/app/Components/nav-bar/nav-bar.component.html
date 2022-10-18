@@ -1,4 +1,4 @@
-<div class="container" id="nav-container">
+<div class="container card-header" id="nav-container">
   <nav class="navbar navbar-expand-lg fixed-top" id="menu">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
        <div ngbDropdown class="d-flex flex-column">
         <p id="dropdownBasic1" ngbDropdownToggle>Olá, {{decode!.nome.split(' ')[0]}}</p>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menudrop">
-            <button ngbDropdownItem>Sair</button>
+            <button ngbDropdownItem (click)="logout()">Sair</button>
           </div>
        </div>
       </div>

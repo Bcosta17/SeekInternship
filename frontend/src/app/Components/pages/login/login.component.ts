@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
   get email(){
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
      })
     }
   }
-
+ 
   
 
 }

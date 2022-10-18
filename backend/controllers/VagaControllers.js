@@ -92,7 +92,7 @@ export default class VagaController {
             .sort('-createdAt').select('-senha')
             .populate({ path: 'alunos', select: '-senha' });
 
-        res.status(200).json({ vagas })
+        res.status(200).json({ data: vagas })
 
     }
     static async getVagasPorAluno(req, res) {
@@ -108,7 +108,7 @@ export default class VagaController {
             .sort('-createdAt').select('-senha')
             .populate({ path: 'empresa', select: '-senha' });
 
-        res.status(200).json({ vagas });
+        res.status(200).json({ data: vagas });
 
     }
 
@@ -129,7 +129,7 @@ export default class VagaController {
             return;
         }
 
-        res.status(200).json({ vaga: vaga });
+        res.status(200).json({ data: vaga });
     }
 
     static async deleteVagaById(req, res) {
@@ -274,7 +274,7 @@ export default class VagaController {
         const token = getToken(req);
         const user = await getUserByToken(token);
 
-        if (empresa.role !== 1) {
+        if (user.role !== 0) {
             return res.status(401).json({ message: 'acesso negado!' });
         }
 

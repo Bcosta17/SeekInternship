@@ -1,22 +1,25 @@
-.registro {
-  display: flex;
-  flex-direction: column;
+.card {
+  width: 60vw;
+  padding:3rem 3rem;
+  border-radius: 1rem;
   align-items: center;
+  text-align: center;
   background: #fff;
-  padding-block: 9rem;
+  color: var(--paragraph);
 }
 
-.container {
+.buttons {
   display: flex;
   flex-direction: column;
+  width: 50rem;
 }
-.button{
-    padding: 2rem;
-    border-radius: 1rem ;
-    font-size: 1.5rem;
+.btn {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
 }
-.button:first-child{
-    margin-bottom: 2rem;
+.btn:first-child {
+  margin-bottom: 2rem;
 }
 
 h1 {

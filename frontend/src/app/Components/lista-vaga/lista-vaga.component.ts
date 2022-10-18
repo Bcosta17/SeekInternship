@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCalendar, faDollar, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
 import { Vaga } from 'src/app/Interfaces/Vagas';
 import { VagasService } from 'src/app/Services/vagas.service';
 
@@ -8,11 +9,12 @@ import { VagasService } from 'src/app/Services/vagas.service';
   styleUrls: ['./lista-vaga.component.css']
 })
 export class ListaVagaComponent implements OnInit {
-  
- 
+
   vagas: Vaga[] = [];
 
- 
+  faCalendar = faCalendar;
+
+
   constructor(private vagasService : VagasService) { }
   
   ngOnInit() {

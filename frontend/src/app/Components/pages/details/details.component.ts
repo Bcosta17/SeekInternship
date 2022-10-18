@@ -11,6 +11,7 @@ import { VagasService } from 'src/app/Services/vagas.service';
 export class DetailsComponent implements OnInit {
   vaga?: Vaga;
   msgError!: string;
+  success = false;
   
   constructor(
     private vagaService: VagasService,
@@ -21,7 +22,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')!;
     this.vagaService.getVaga(id).subscribe((item) =>{
-      this.vaga = item.vaga;
+      this.vaga = item.data;
     });
 
   }
@@ -31,6 +32,7 @@ export class DetailsComponent implements OnInit {
       next: (res)=> res,
       error: (e)=> (this.msgError = e),
     });
+     this.success = true;
   }
   
 }

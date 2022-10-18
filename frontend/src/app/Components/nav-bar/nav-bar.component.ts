@@ -8,10 +8,10 @@ import { LoginService } from 'src/app/Services/login.service';
 })
 export class NavBarComponent implements OnInit {
 
-  decode:any = []
+  decode:any = [];
 
   faUser = faUser;
-
+  
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {

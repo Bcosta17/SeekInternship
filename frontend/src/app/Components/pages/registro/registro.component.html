@@ -1,9 +1,11 @@
 <main>
-    <div class="registro">
-        <h1>Registro</h1>
-        <div class="container">
-           <button class="button" [routerLink]="['/registro_aluno']">Aluno</button>
-           <button class="button" [routerLink]="['/registro_empresa']">Empresa</button>
+    <div class="card">
+        <div class="card-body">
+            <h1>Registro</h1>
+            <div class="buttons">
+                <button type="button" class="btn btn-lg btn-block" [routerLink]="['/registro_aluno']">Aluno</button>
+                <button class="btn btn-lg" [routerLink]="['/registro_empresa']">Empresa</button>
+            </div>
         </div>
     </div>
 </main>

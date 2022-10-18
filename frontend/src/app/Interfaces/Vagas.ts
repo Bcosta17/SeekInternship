@@ -1,3 +1,6 @@
+import { Aluno } from "./Aluno";
+import { Empresa } from "./Empresa";
+
 export interface Vaga{
     _id: string;
     nome: string;
@@ -6,8 +9,8 @@ export interface Vaga{
     escolaridade: string;
     ativa: boolean;
     turno: string;
-    aluno: [object];
-    empresa: object
+    alunos: [Aluno];
+    empresa: Empresa;
     observacoes?: string;
     remunerado: boolean;
     createdAt?: string;

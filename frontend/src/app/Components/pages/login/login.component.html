@@ -1,47 +1,41 @@
 <main>
-  <div class="login-container">
-    <h1>Login</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="submit()">
-      <label for="email">E-mail</label>
-      <input type="email" placeholder="Digite seu e-mail" formControlName="email">
-      <div *ngIf="!email.pristine && email.errors" class="alert alert-danger" role="alert">
-        <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
-        <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
-        <p *ngIf="email.errors?.['emailInvalido']">O e-mail já foi cadastrado</p>
-      </div>
+  <div class="card">
+    <div class="card-body">
+      <h1>Login</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Digite seu e-mail">
+          <div *ngIf="!email.pristine && email.errors" class="validation-error">
+            <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
+            <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
+            <p *ngIf="email.errors?.['emailInvalido']">O e-mail já foi cadastrado</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" class="form-control" id="senha" formControlName="senha" placeholder="Digite sua senha">
+          <div *ngIf="!senha.pristine && senha.errors" class="validation-error">
+            <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
+            <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
+          </div>
+        </div>
 
-      <label for="senha">Senha</label>
-      <input type="password" placeholder="Digite sua senha" formControlName="senha">
-      <div *ngIf="!senha.pristine && senha.errors" class="alert alert-danger" role="alert">
-        <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
-        <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
-      </div>
-      
-      <a href="#" class="forgot-pass">Esqueceu a senha?</a>
+        <div class="forgot">
+          <a routerLink="/" class="forgot-pass">Esqueceu a senha?</a>
+        </div>
+  
+        <div class="alert alert-danger" role="alert" *ngIf="msgError">
+         <p>{{msgError}}</p>
+        </div>
 
-      <div class="alert alert-danger" role="alert" *ngIf="msgError">
-       <p>{{msgError}}</p>
+        <button class="btn" [disabled]="loginForm.invalid">Login</button>
+      </form>
+      <div class="register-container">
+        <p>Ainda não tem uma conta?</p>
+        <a routerLink="/registro">Registre-se</a>
       </div>
-      
-      <button class="button" [disabled]="loginForm.invalid">Login</button>
-    </form>
-    
-    <div class="social-container">
-      <p>Ou entre pelas suas redes sociais</p>
-      <i class="i">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20" class="SocialLoginBox-button--FB"><g fill="none"><path fill="#FFF" d="M18.896 0h-17.8A1.104 1.104 0 000 1.104v17.8A1.104 1.104 0 001.104 20h9.58v-7.734h-2.6V9.238h2.6V7.01c0-2.582 1.578-3.99 3.882-3.99.778-.003 1.555.037 2.328.12v2.7h-1.588c-1.254 0-1.498.6-1.498 1.47v1.928H16.8l-.4 3.028h-2.6V20h5.096c.61 0 1.104-.494 1.104-1.104v-17.8A1.104 1.104 0 0018.896 0z"></path><path fill="#4267B2" d="M13.847 20v-7.743h2.657l.408-3.032h-3.065v-1.93c0-.875.25-1.472 1.53-1.472H17V3.12A21.796 21.796 0 0014.622 3c-2.354 0-3.966 1.402-3.966 3.995v2.23H8v3.032h2.656V20h3.191z"></path></g></svg>
-      </i>
-      <i class="i">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 18 18" class="SocialLoginBox-button--Google"><g fill="none" fill-rule="evenodd"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.48C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"></path><path fill="#4285F4" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"></path><path fill="#FBBC05" d="M3.88 10.78A5.54 5.54 0 013.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9.008 9.008 0 000 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"></path><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.97 13.04C2.45 15.98 5.48 18 9 18z"></path><path d="M0 0h18v18H0z"></path></g></svg>
-      </i>
-    </div>
-    <div id="register-container">
-      <p>Ainda não tem uma conta?</p>
-      <a routerLink="/registro">Registre-se</a>
     </div>
   </div>
 </main>
-
-  
-        
   

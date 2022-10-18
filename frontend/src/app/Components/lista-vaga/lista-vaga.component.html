@@ -1,30 +1,29 @@
-<section class="listagem">
 <div *ngIf="vagas.length > 0; else noVagas">
-    <div class="card-vagas" *ngFor="let vaga of vagas">
+    <div class="card" *ngFor="let vaga of vagas">
+      <div class="card-body container">
         <div class="col-50">
             <h1>{{ vaga.nome }}</h1>
             <p class="p1">{{ vaga.descricao }}</p>
-            <button class="button" routerLink="vaga/{{vaga._id}}">Eu quero</button>      
+            <button class="btn" routerLink="vaga/{{vaga._id}}">Eu quero</button>      
         </div>
         <div class="col-50">
             <div class="salario">
-                <h2>Salário</h2>
+                <h2>Salario</h2>
                 <p *ngIf="vaga.remunerado;else naoremunerado">Remunerado</p>
                 <ng-template #naoremunerado>
                     <p>Não remunerado </p>
                 </ng-template>
             </div>
             <div class="foot">
-                <p>{{vaga.createdAt}}</p>
+                <p> <fa-icon [icon]="faCalendar"></fa-icon> {{vaga.createdAt}}</p>
             </div>
         </div>
+      </div>
     </div>
 </div>
-<ng-template #noVagas>
-    <h1>Não há vagas cadastradas!</h1>
+<ng-template  #noVagas>
+    <div class="alert alert-primary" role="alert">
+       <h1>Não foi possivel carregar as vagas. Tente novamente mais tarde!</h1>
+      </div>
 </ng-template>
-
-
-
-</section>
 

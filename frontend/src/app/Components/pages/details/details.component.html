@@ -32,6 +32,9 @@
         <div *ngIf="msgError"  class="alert alert-danger">
             <p>{{msgError}}</p>
         </div>
+        <div *ngIf="success == true && !msgError" class="alert alert-success">
+            <p>Você se candidatou com sucesso</p>
+        </div>
        
         <div class="btn-group">
             <button class="button" (click)="candidatar(vaga._id)">inscreve-se</button>

@@ -20,9 +20,7 @@ export class VagasService {
   }
   getVaga(id: string){
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Response<Vaga>>(url).pipe(
-      tap(console.log)
-    );
+    return this.http.get<Response<Vaga>>(url)
   }
   getVagasEmpresa(){
     const url = this.apiUrl + '/minhasvagas'
@@ -39,6 +37,21 @@ export class VagasService {
   cadidatarVaga(id: string):Observable<any>{
     const url = this.apiUrl + '/candidatar/'+id;
     return this.http.post(url,id).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
+        
+  }
+
+  deletarVaga(id: string):Observable<any>{
+    const url = this.apiUrl + '/'+id;
+    return this.http.delete(url).pipe(
       catchError((err) => {
         if (err.error.message) return throwError(() => err.error.message);
 
