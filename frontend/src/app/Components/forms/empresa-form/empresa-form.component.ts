@@ -25,10 +25,13 @@ export class EmpresaFormComponent implements OnInit {
     ) { }
    
   ngOnInit(): void {
+   
     this.empresaService.verificaEmail('').subscribe();
     this.empresaService.verificaCnpj('').subscribe();
     this.criarEmpresaForm();
+
   }
+  
   
   criarEmpresaForm(){
     this.empresaForm = this.fb.group({

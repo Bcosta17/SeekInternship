@@ -47,6 +47,7 @@ p{
 }
 
 button{
+    background-color: var(--primary-color);
     margin-top: 1.5rem;
     width: 40%;
     font-size: 1.8rem;

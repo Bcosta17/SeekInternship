@@ -1,0 +1,12 @@
+.novagas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.novagas .btn{
+    margin-top: 1rem;
+    width: 30%;
+    font-size: 1.6rem;
+
+}

@@ -18,7 +18,7 @@ const Vaga = mongoose.model(
             type: String,
             required:true,
         },
-        escolaridade: {
+        curso: {
             type: String,
             required:true,
         },

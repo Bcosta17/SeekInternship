@@ -24,22 +24,11 @@ main {
   width: 60vw;
   padding:3rem 4rem;
   border-radius: 1rem;
-  text-align: center;
+ 
   background: #fff;
   color: var(--paragraph);
 }
 
-label, input {
-  width: 100%;
-  text-align: left;
-}
-
-label {
-  margin-top: 2rem;
-  margin-bottom:1rem;
-  font-size: 1.3rem;
-  
-}
 
 
 /* input:invalid {

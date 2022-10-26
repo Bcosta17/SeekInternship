@@ -17,7 +17,7 @@ export default class VagaController {
             return res.status(401).json({ message: 'acesso negado!' });
         }
 
-        const { nome, descricao, requisitos, escolaridade, turno, remunerado, observacoes } = req.body;
+        const { nome, descricao, requisitos, curso, turno, remunerado, observacoes } = req.body;
 
         const ativa = true;
 
@@ -34,8 +34,8 @@ export default class VagaController {
             res.status(422).json({ message: "O campo requisitos é obrigatório!" });
             return;
         }
-        if (!escolaridade) {
-            res.status(422).json({ message: "O campo escolaridade é obrigatório!" });
+        if (!curso) {
+            res.status(422).json({ message: "O campo curso é obrigatório!" });
             return;
         }
         if (!turno) {
@@ -54,7 +54,7 @@ export default class VagaController {
             nome,
             descricao,
             requisitos,
-            escolaridade,
+            curso,
             turno,
             remunerado,
             observacoes,
@@ -178,7 +178,7 @@ export default class VagaController {
             return res.status(401).json({ message: 'acesso negado!' });
         }
 
-        const { nome, descricao, requisitos, escolaridade, turno, remunerado, observacoes } = req.body;
+        const { nome, descricao, requisitos, curso, turno, remunerado, observacoes } = req.body;
 
         if (!ObjectId.isValidObjectId(id)) {
             res.status(422).json({ message: 'Id é invalido' });
@@ -219,11 +219,11 @@ export default class VagaController {
         }
         vaga.requisitos = requisitos;
 
-        if (!escolaridade) {
-            res.status(422).json({ message: "O campo escolaridade é obrigatório!" });
+        if (!curso) {
+            res.status(422).json({ message: "O campo curso é obrigatório!" });
             return;
         }
-        vaga.escolaridade = escolaridade;
+        vaga.curso = curso;
 
         if (!turno) {
             res.status(422).json({ message: "O campo turno é obrigatório!" });

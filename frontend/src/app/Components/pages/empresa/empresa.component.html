@@ -1,78 +1,87 @@
-<div class="containe" *ngIf="vagas.length > 0; else noVagas ">
-  <a routerLink="/registro_vaga" alt="novo" class="btn btn-success btn-lg">
-    <fa-icon [icon]="faAdd"></fa-icon> Novo
-  </a>
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Data</th>
-        <th scope="col">Candidatos</th>
-        <th scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let vaga of vagas; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td scope="row">{{ vaga.nome }}</td>
-        <td scope="row">{{ vaga.createdAt}}</td>
-        <td scope="row">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="candidatos(i)">
-           <fa-icon [icon]="faEye"></fa-icon> Ver Candidatos ({{vaga.alunos.length }})
-          </button>
-          <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">Candidatos</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<main>
+  <div class="card">
+      <div class="card-body" *ngIf="vagas.length > 0; else noVagas ">
+        <a routerLink="/registro_vaga" alt="novo" class="btn btn-success btn-lg">
+          <fa-icon [icon]="faAdd"></fa-icon> Novo
+        </a>
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Data</th>
+              <th scope="col">Candidatos</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vaga of vagas; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td scope="row">{{ vaga.nome }}</td>
+              <td scope="row">{{ vaga.createdAt}}</td>
+              <td scope="row">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="candidatos(i)">
+                 <fa-icon [icon]="faEye"></fa-icon> Ver Candidatos ({{vaga.alunos.length }})
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Candidatos</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <table class="table table-striped table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Nome</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Telefone</th>
+                              <th scope="col">Curriculo</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let aluno of alunos; index as i">
+                              <th scope="row">{{ i + 1 }}</th>
+                              <th scope="row">{{ aluno.nome }}</th>
+                              <th scope="row">{{ aluno.email }}</th>
+                              <th scope="row">{{ aluno.telefone | mask:'(00) 00000-0000' }}</th>
+                              <th scope="row">Curriculo</th>
+      
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <table class="table table-striped table-bordered table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Telefone</th>
-                        <th scope="col">Curriculo</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let aluno of alunos">
-                        <th scope="row">{{ i + 1 }}</th>
-                        <th scope="row">{{ aluno.nome }}</th>
-                        <th scope="row">{{ aluno.email }}</th>
-                        <th scope="row">{{ aluno.telefone }}</th>
-                        <th scope="row">Curriculo</th>
-
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            
-                </div>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <button routerLink=" " class="btn btn-xs btn-info">
-            <fa-icon [icon]="faEdit"></fa-icon> Editar
-          </button>
-          <button class="btn btn-xs btn-danger" (click)="deletarVaga(vaga._id)">
-            <fa-icon [icon]="faTimes"></fa-icon>Excluir
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<ng-template #noVagas>
-  <h1>Não há vagas cadastradas!</h1>
-</ng-template>
+              </td>
+              <td>
+                <button routerLink=" " class="btn btn-xs btn-info">
+                  <fa-icon [icon]="faEdit"></fa-icon> Editar
+                </button>
+                <button class="btn btn-xs btn-danger" (click)="deletarVaga(vaga._id)">
+                  <fa-icon [icon]="faTimes"></fa-icon>Excluir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noVagas>
+        <div class="novagas">
+          <h1>Não há vagas cadastradas!</h1>
+          <a routerLink="/registro_vaga" alt="novo" class="btn btn-success btn-lg">
+             Cadastrar nova vaga
+          </a>
+        </div>
+      </ng-template>
+    </div>
+</main>

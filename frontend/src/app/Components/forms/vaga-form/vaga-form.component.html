@@ -1,76 +1,99 @@
-<div id="main-container">
-    <h1>Cadastre uma vaga</h1>
-    <form [formGroup]="vagaForm" (ngSubmit)="submit()">
-        <div class="full-box form-group">
-            <label for="nome">Nome</label>
-            <input type="text" placeholder="Digite o nome da vaga" formControlName="nome" required >
-            <div *ngIf="!nome.pristine && nome.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="nome.errors?.['required']">O nome é obrigatório!</p>
-                <p *ngIf="nome.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
+<div class="card">
+    <div class="card-body">
+        <h1>Cadastre uma vaga</h1>
+        <form [formGroup]="vagaForm" (ngSubmit)="submit()">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" placeholder="Digite o nome da vaga" formControlName="nome" required >
+                <div *ngIf="!nome.pristine && nome.errors && nome.touched" class="alert alert-danger" role="alert">
+                    <p *ngIf="nome.errors?.['required']">O nome é obrigatório!</p>
+                    <p *ngIf="nome.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
+                </div>
             </div>
-        </div>
-
-        <div class="full-box">
-            <label for="descricao">Descriçaõ da vaga</label>
-            <input type="text" placeholder="Digite as responsabilidade da vaga" formControlName="descricao">
-            <div *ngIf="!descricao.pristine && descricao.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="descricao.errors?.['required']">A descriçaõé obrigatório!</p>
-                <p *ngIf="descricao.errors?.['minlength']">Deve ter no mínimo 20 caracters!</p>
+    
+            <div class="form-group">
+                <label for="descricao">Descrição da vaga</label>
+                <textarea class="form-control" placeholder="Digite as responsabilidade da vaga" formControlName="descricao" rows="2"></textarea>
+                <div *ngIf="!descricao.pristine && descricao.errors && descricao.touched" class="alert alert-danger" role="alert">
+                    <p *ngIf="descricao.errors?.['required']">A descriçaõ é obrigatório!</p>
+                    <p *ngIf="descricao.errors?.['minlength']">Deve ter no mínimo 20 caracters!</p>
+                </div>
             </div>
-        </div>
-        
-        <div class="full-box">
-            <label for="requisitos">Requisitos</label>
-            <input type="text" placeholder="Digite os requisitos da vaga" formControlName="requisitos">
-            <div *ngIf="!requisitos.pristine && requisitos.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="requisitos.errors?.['required']">Os requisitos são obrigatório!</p>
-                <p *ngIf="requisitos.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="curso">Curso</label>
+                    <input class="form-control" list="curso" name="curso" placeholder="Digite ou selecione o curso" formControlName="curso">
+                    <datalist id="curso">
+                    <option *ngFor="let item of cursos" value="{{item}}">
+                    </datalist>
+                    <div *ngIf="!curso.pristine && curso.errors && curso.touched" class="alert alert-danger" role="alert">
+                        <p *ngIf="curso.errors?.['required']">A curso é obrigatório!</p>
+                        <p *ngIf="curso.errors?.['minlength']">Deve ter no mínimo 5 caracters!</p>
+                    </div>
+                </div>
+                
+                <div class="form-group col-md-4">
+                    <label for="area">Area</label>
+                    <input class="form-control" list="area" name="area" placeholder="Digite ou selecione a area" formControlName="area">
+                    <datalist id="area">
+                    <option *ngFor="let item of areas" value="{{item}}">
+                    </datalist>
+                    <div *ngIf="!area.pristine && area.errors && area.touched" class="alert alert-danger" role="alert">
+                        <p *ngIf="area.errors?.['required']">A area é obrigatório!</p>
+                        <p *ngIf="area.errors?.['minlength']">Deve ter no mínimo 5 caracters!</p>
+                    </div>
+                </div>
+                
+                <div class="form-group col-md-4">
+                    <label for="turno">Turno</label>
+                    <select class="form-select"  name="turno" formControlName="turno">
+                      <option [ngValue]="null" disabled>Selecione o turno</option>
+                      <option *ngFor="let item of turnos">{{item}}</option>
+                    </select>
+                    <div *ngIf="!turno.pristine && turno.errors" class="alert alert-danger" role="alert">
+                        <p *ngIf="turno.errors?.['required']">O turno é obrigatório!</p>
+                    </div>
+                </div>
+                </div>
+            <div class="form-group">
+                <label for="requisitos">Requisitos</label>
+                <textarea class="form-control" placeholder="Digite os requisitos da vaga" formControlName="requisitos" rows="2"></textarea>
+                <div *ngIf="!requisitos.pristine && requisitos.errors && requisitos.touched" class="alert alert-danger" role="alert">
+                    <p *ngIf="requisitos.errors?.['required']">Os requisitos são obrigatório!</p>
+                    <p *ngIf="requisitos.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
+                </div>
             </div>
-        </div>
-        
-        <div class="full-box">
-            <label for="escolaridade">Escolaridade</label>
-            <input type="text" placeholder="Digite o(s) curso(s) ou a formação necessaria para ocupa a vaga" formControlName="escolaridade">
-            <div *ngIf="!escolaridade.pristine && escolaridade.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="escolaridade.errors?.['required']">A escolaridade é obrigatório!</p>
-                <p *ngIf="escolaridade.errors?.['minlength']">Deve ter no mínimo 5 caracters!</p>
+            <div class="form-group">
+                <label for="salario">Salario</label>
+                <div class="form-check" id="div-remunerado">
+                    <input class="form-check-input input1" type="radio" name="remunerado" id="remunerado">
+                    <label class="form-check-label" for="remunerado">
+                      remunerado
+                    </label>
+                    <div id="input2">
+                        <input type="number" class="form-control"  placeholder="Digite o valor da bolsa" formControlName="remunerado">
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input input1" type="radio" name="remunerado" id="naoRemunerado" formControlName="remunerado" value="0">
+                    <label class="form-check-label" for="naoRemunerado">
+                      Não Remunerado
+                    </label> 
+                </div>
+                <div *ngIf="!remunerado.pristine && remunerado.errors" class="alert alert-danger" role="alert">
+                    <p *ngIf="remunerado.errors?.['required']">O salario é obrigatório!</p>
+                </div>
+            </div>          
+            <div class="form-group">
+                <label for="oberservacao">Observação</label>
+                <input type="text" class="form-control" placeholder="digite alguma observação" formControlName="observacoes">
+                <div *ngIf="!observacoes.pristine && observacoes.errors" class="alert alert-danger" role="alert">
+                    <p *ngIf="observacoes.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
+                </div>
             </div>
-        </div>
-        
-        <div class="half-box">
-            <label for="area">Area</label>
-            <input type="text" name="area" placeholder="digite a area da vaga" formControlName="area">
-            <div *ngIf="!area.pristine && area.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="area.errors?.['required']">A area é obrigatório!</p>
-                <p *ngIf="area.errors?.['minlength']">Deve ter no mínimo 5 caracters!</p>
-            </div>
-        </div>
-        
-        <div class="half-box">
-            <label for="turno">Turno</label>
-            <input type="text" name="turno" placeholder="digite o turno da vaga" formControlName="turno">
-            <div *ngIf="!turno.pristine && turno.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="turno.errors?.['required']">O turno é obrigatório!</p>
-                <p *ngIf="turno.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
-            </div>
-        </div>
-        <div class="half-box">
-            <label for="salario">Salario</label>
-            <input type="text" name="salario" placeholder="digite o salario" formControlName="remunerado">
-            <div *ngIf="!remunerado.pristine && remunerado.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="remunerado.errors?.['required']">O salario é obrigatório!</p>
-                <p *ngIf="remunerado.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
-            </div>
-        </div>
-        
-        <div class="full-box">
-            <label for="oberservacao">Observação</label>
-            <input type="text" placeholder="digite alguma observação" formControlName="observacoes">
-            <div *ngIf="!observacoes.pristine && observacoes.errors" class="alert alert-danger" role="alert">
-                <p *ngIf="observacoes.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
-            </div>
-        </div>
-        
-        <input type="submit" class="button" value="{{btnText}}" [disabled]="!vagaForm.valid">
-    </form>
+            
+            <button type="submit" class="btn" [disabled]="!vagaForm.valid">{{btnText}}</button>
+        </form>
+    </div>
+    <div>{{vagaForm.value | json}}</div>
 </div>    

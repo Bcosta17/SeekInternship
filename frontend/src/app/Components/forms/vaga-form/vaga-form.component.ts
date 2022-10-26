@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { VagasService } from 'src/app/Services/vagas.service';
+import { JsonDadosService } from 'src/app/Services/json-dados.service';
 
 import { Vaga } from 'src/app/Interfaces/Vagas';
 
@@ -17,25 +17,45 @@ export class VagaFormComponent implements OnInit {
   @Input() btnText!: string;
   
   vagaForm!: FormGroup;
+  areas!:string[];
+  cursos!:string[];
   
+  turnos = [
+    "Matutino",
+    "Vespertino",
+    "noturno",
+    "A combinar",
+  ];
+
+  turnoInit!: string;
+  
+
   constructor(
     private fb: FormBuilder,
+    private dados: JsonDadosService
   ) { }
 
   ngOnInit(): void {
     this.criarVagaForm();
+    this.setDefaults();
+    this.dados.getArea().subscribe( dados => {this.areas= dados.sort();});
+    this.dados.getCursos().subscribe( dados => this.cursos=dados);
+  }
+
+  setDefaults(){
+    this.vagaForm.get("turno")?.patchValue(null);
   }
 
   criarVagaForm(){
     this.vagaForm = this.fb.group({
       id:[''],
-      nome:['',Validators.compose([Validators.required,Validators.minLength(5)])],
+      nome:['',Validators.compose([Validators.required,Validators.minLength(3)])],
       descricao:['',Validators.compose([Validators.required,Validators.minLength(20)])],
       requisitos:['',Validators.compose([Validators.required,Validators.minLength(10)])],
-      escolaridade:['',Validators.compose([Validators.required,Validators.minLength(5)])],
+      curso:['',Validators.compose([Validators.required,Validators.minLength(5)])],
       area:['',Validators.compose([Validators.required,Validators.minLength(5)])],
-      remunerado:['',Validators.compose([Validators.required,Validators.minLength(5)])],
-      turno:['',Validators.compose([Validators.required,Validators.minLength(3)])],
+      remunerado:['',Validators.compose([Validators.required])],
+      turno:[this.turnoInit,Validators.compose([Validators.required])],
       observacoes:['',Validators.compose([Validators.minLength(5)])],
     })
   }
@@ -52,8 +72,8 @@ export class VagaFormComponent implements OnInit {
     return this.vagaForm.get('requisitos')!;
   }
 
-  get escolaridade(){
-    return this.vagaForm.get('escolaridade')!;
+  get curso(){
+    return this.vagaForm.get('curso')!;
   }
 
   get turno(){

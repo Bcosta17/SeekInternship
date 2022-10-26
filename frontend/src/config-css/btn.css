@@ -1,5 +1,4 @@
 .btn{
-    background-color: var(--primary-color);
     color: var( --brand-beige);
     cursor: pointer;
 }

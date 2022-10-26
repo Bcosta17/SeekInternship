@@ -6,13 +6,13 @@ export interface Vaga{
     nome: string;
     descricao: string;
     requisitos: string;
-    escolaridade: string;
+    curso: string;
     ativa: boolean;
     turno: string;
     alunos: [Aluno];
     empresa: Empresa;
     observacoes?: string;
-    remunerado: boolean;
+    remunerado: number;
     createdAt?: string;
     updatedAt?: string;
 };
