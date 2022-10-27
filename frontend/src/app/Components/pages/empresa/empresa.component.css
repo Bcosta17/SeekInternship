@@ -12,6 +12,9 @@ table{
     font-size: 1.4rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+table .btn{
+    font-size: 1.2rem;
+}
 .modal th{
     font-weight:inherit;
 }
@@ -30,4 +33,9 @@ table{
     width: 25%;
     margin-top: 2rem;
     font-size: 1.6rem;
+}
+
+.modal-body p{
+   
+    font-size: 1.8rem;
 }

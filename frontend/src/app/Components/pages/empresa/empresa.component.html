@@ -69,7 +69,7 @@
                     <fa-icon [icon]="faEdit"></fa-icon> Editar
                   </button>
                   <button class="btn btn-xs btn-danger" (click)="openDelete(vaga._id)">
-                    <fa-icon [icon]="faTimes"></fa-icon>Excluir
+                    <fa-icon [icon]="faTimes"></fa-icon> Excluir
                   </button>
                 </div>
               </td>
@@ -89,14 +89,13 @@
 </main>
 
 <ng-template #modeldelete let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <p>Tem certeza que deseja remover essa vaga?</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="c(deletarVaga())">Sim</button>
-    <button type="button" class="btn btn-primary"(click)="d('Cross click')">Não</button>
+  <div class="modeldelete">
+    <div class="modal-body">
+      <p>Tem certeza que deseja remover essa vaga?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="c(deletarVaga())">Sim</button>
+      <button type="button" class="btn btn-primary" ngbAutofocus (click)="d('Cross click')">Não</button>
+    </div>
   </div>
 </ng-template>

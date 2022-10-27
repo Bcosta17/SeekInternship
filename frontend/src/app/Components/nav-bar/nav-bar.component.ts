@@ -17,6 +17,8 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  public isMenuCollapsed = true;
+  
   islogado():boolean{
     if(!this.loginService.logado()){ 
       return false;
