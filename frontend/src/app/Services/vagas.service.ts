@@ -24,9 +24,13 @@ export class VagasService {
   }
   getVagasEmpresa(){
     const url = this.apiUrl + '/minhasvagas'
-    return this.http.get<Response<Vaga[]>>(url).pipe(
-      tap(console.log)
-    )
+    return this.http.get<Response<Vaga[]>>(url)
+    
+  }
+  
+  getVagasAluno(){
+    const url = this.apiUrl + '/minhascandidaturas'
+    return this.http.get<Response<Vaga[]>>(url)
   }
 
   createVaga(vaga: Vaga): Observable<Vaga> {

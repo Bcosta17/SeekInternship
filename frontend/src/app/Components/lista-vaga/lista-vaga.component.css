@@ -47,8 +47,14 @@ p{
 }
 
 button{
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     margin-top: 1.5rem;
     width: 40%;
     font-size: 1.8rem;
+}
+
+.btn:hover {
+    background-color: hsl(220, 70%, 20%);
+    color: var( --brand-beige);
+    transition: 1s;
 }

@@ -6,7 +6,7 @@
         <div class="form-group">
           <label for="email">E-mail</label>
           <input type="email" class="form-control" id="email" formControlName="email" placeholder="Digite seu e-mail">
-          <div *ngIf="!email.pristine && email.errors" class="validation-error">
+          <div *ngIf="!email.pristine && email.errors && email.touched" class="validation-error">
             <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
             <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
             <p *ngIf="email.errors?.['emailInvalido']">O e-mail já foi cadastrado</p>
@@ -15,7 +15,7 @@
         <div class="form-group">
           <label for="senha">Senha</label>
           <input type="password" class="form-control" id="senha" formControlName="senha" placeholder="Digite sua senha">
-          <div *ngIf="!senha.pristine && senha.errors" class="validation-error">
+          <div *ngIf="!senha.pristine && senha.errors && senha.touched" class="validation-error">
             <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
             <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
           </div>

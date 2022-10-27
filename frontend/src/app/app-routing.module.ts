@@ -11,6 +11,7 @@ import { NewEmpresaComponent } from './Components/pages/new-empresa/new-empresa.
 import { RegistroComponent } from './Components/pages/registro/registro.component';
 import { NewVagaComponent } from './Components/pages/new-vaga/new-vaga.component';
 import { EmpresaComponent } from './Components/pages/empresa/empresa.component';
+import { AlunoCandidaturasComponent } from './Components/pages/aluno-candidaturas/aluno-candidaturas.component';
 
 
 
@@ -45,12 +46,18 @@ const routes: Routes = [
     canActivate: [AutentificacaoGuard],
     component: NewVagaComponent
   },
+  
   {
     path: 'empresa',
     canActivate: [AutentificacaoGuard],
     component: EmpresaComponent
+  },
+
+  {
+    path: 'minhas_Candidaturas',
+    canActivate: [AutentificacaoGuard],
+    component: AlunoCandidaturasComponent
   }
- 
 
 ];
 

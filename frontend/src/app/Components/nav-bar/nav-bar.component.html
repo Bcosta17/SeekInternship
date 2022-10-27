@@ -5,11 +5,25 @@
     </button> 
     <div class="collapse navbar-collapse" >
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Aluno</a>
+        <li class="nav-item" *ngIf="decode.role==0">
+          <div ngbDropdown class="d-flex flex-column">
+            <p id="dropdownBasic1" ngbDropdownToggle>Aluno</p>
+              <div  ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menudrop">
+                <button ngbDropdownItem >Meu perfil</button>
+                <button ngbDropdownItem >Notificações</button>
+                <button ngbDropdownItem routerLink="/minhas_Candidaturas">Minha candidaturas</button>
+              </div>
+           </div>
         </li>
         <li class="nav-item" *ngIf="!islogado() || decode.role==1">
-          <a class="nav-link" routerLink="empresa">Empresa</a>
+          <div ngbDropdown class="d-flex flex-column">
+            <p id="dropdownBasic1" ngbDropdownToggle>Empresa</p>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menudrop">
+                <button ngbDropdownItem >Meu perfil</button>
+                <button ngbDropdownItem >Notificações</button>
+                <button ngbDropdownItem >Minha vagas</button>
+              </div>
+           </div>
         </li>
       </ul>
     </div>

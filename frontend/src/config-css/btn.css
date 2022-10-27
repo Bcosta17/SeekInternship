@@ -3,18 +3,10 @@
     cursor: pointer;
 }
 
-.btn:hover {
-    background-color: hsl(220, 70%, 20%);
-    color: var( --brand-beige);
-    transition: 1s;
-}
 
 .btn:disabled{
     background-color: hsl(220, 100%, 26%);
     color: var( --brand-beige);
     cursor: default;
 }
-.btn:focus{
-    background-color: hsl(220, 100%, 26%);
-    color: var( --brand-beige);
-}
+

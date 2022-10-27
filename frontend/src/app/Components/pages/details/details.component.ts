@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Vaga } from 'src/app/Interfaces/Vagas';
+import { LoginService } from 'src/app/Services/login.service';
 import { VagasService } from 'src/app/Services/vagas.service';
 
 @Component({
@@ -12,10 +13,12 @@ export class DetailsComponent implements OnInit {
   vaga?: Vaga;
   msgError!: string;
   success = false;
-  
+  decode:any = [];
+
   constructor(
     private vagaService: VagasService,
     private route: ActivatedRoute,
+    private loginService: LoginService,
    
   ) { }
   
@@ -24,7 +27,7 @@ export class DetailsComponent implements OnInit {
     this.vagaService.getVaga(id).subscribe((item) =>{
       this.vaga = item.data;
     });
-
+    this.decode = this.loginService.decode();
   }
 
   candidatar(id:string){

@@ -64,7 +64,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="salario">Salario</label>
+                <label for="oberservacao">Observação</label>
+                <input type="text" class="form-control" placeholder="digite alguma observação" formControlName="observacoes">
+                <div *ngIf="!observacoes.pristine && observacoes.errors" class="alert alert-danger" role="alert">
+                    <p *ngIf="observacoes.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="remuneracao">Remuneração</label>
                 <div class="form-check" id="div-remunerado">
                     <input class="form-check-input input1" type="radio" name="remunerado" id="remunerado">
                     <label class="form-check-label" for="remunerado">
@@ -84,16 +91,10 @@
                     <p *ngIf="remunerado.errors?.['required']">O salario é obrigatório!</p>
                 </div>
             </div>          
-            <div class="form-group">
-                <label for="oberservacao">Observação</label>
-                <input type="text" class="form-control" placeholder="digite alguma observação" formControlName="observacoes">
-                <div *ngIf="!observacoes.pristine && observacoes.errors" class="alert alert-danger" role="alert">
-                    <p *ngIf="observacoes.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
-                </div>
-            </div>
-            
+            <div class="col-lg-12">     
             <button type="submit" class="btn" [disabled]="!vagaForm.valid">{{btnText}}</button>
+            </div>
         </form>
     </div>
-    <div>{{vagaForm.value | json}}</div>
+   
 </div>    

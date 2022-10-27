@@ -27,6 +27,7 @@ import { NewVagaComponent } from './Components/pages/new-vaga/new-vaga.component
 import { AuthTokenInterceptor } from './Interceptor/auth-token.interceptor';
 import { AutentificacaoGuard } from './guard/autentificacao.guard';
 import { EmpresaComponent } from './Components/pages/empresa/empresa.component';
+import { AlunoCandidaturasComponent } from './Components/pages/aluno-candidaturas/aluno-candidaturas.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EmpresaComponent } from './Components/pages/empresa/empresa.component';
     RegistroComponent,
     NewAlunoComponent,
     NewVagaComponent,
-    EmpresaComponent
+    EmpresaComponent,
+    AlunoCandidaturasComponent,
   ],
   imports: [
     BrowserModule,

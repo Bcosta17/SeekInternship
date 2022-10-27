@@ -1,54 +1,53 @@
-.card{
+.card {
   width: 70vw;
   text-align: left;
+  font-size: 1.4rem;
 }
 
-h1{
+h1 {
   text-align: center;
 }
-a,p {
+
+input,
+textarea,
+select {
+  padding: 1rem;
   font-size: 1.4rem;
 }
 
-input,textarea,select {
-  padding: 1rem;
-  font-size: 1.4rem;
-} 
-
-
-
-option{
+option {
   font-size: 1.6rem;
 }
 
-.item{
+.item {
   height: 30px;
   padding: 0 5px;
   box-sizing: border-box;
-  transition: .3s;
+  transition: 0.3s;
   cursor: pointer;
 }
 
-.item:hover{
+.item:hover {
   background-color: #121212;
   padding: 7px;
-  transition: .3s;
+  transition: 0.3s;
 }
 
-label:not([for="remunerado"],[for="naoRemunerado"]) {
+label:not([for="remunerado"], [for="naoRemunerado"]) {
   margin-top: 2rem;
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
+  text-align: left;
 }
-label{
+label {
   font-size: 1.6rem;
 }
 
-#div-remunerado{
+#div-remunerado {
   display: flex;
   flex-direction: row;
 }
 
-#input2{
+#input2 {
   width: 18rem;
   margin-left: 1rem;
   display: none;
@@ -56,24 +55,26 @@ label{
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
-input[type=number]{
+input[type="number"] {
   -moz-appearance: textfield;
 }
-
-.input1:checked + label + #input2{
+.input1{
+  margin-bottom: 1rem;
+}
+.input1:checked + label + #input2 {
   display: block;
 }
 
-.btn{
-  display: block;
-  width: 70%;
+.col-lg-12 {
   text-align: center;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--primary-color);
-  font-size: 1.8rem;
-  margin-top: 2rem;
+}
+
+.btn {
+  width: 30%;
+  font-size: 1.6rem;
+  padding: .8rem;
+  background: var(--primary-color);
 }

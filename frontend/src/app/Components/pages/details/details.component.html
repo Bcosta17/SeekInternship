@@ -1,44 +1,45 @@
 <main>
- <div class="card">
-    <div class="container">
-    <div class="detail" *ngIf="vaga">
-        <h1>{{vaga.nome}}</h1>
-        <div class="description">
-        <h2>Detalhes da vaga</h2>
-        <p>{{vaga.descricao}}</p>
+    <div class="card">
+        <div class="container">
+            <div class="detail" *ngIf="vaga">
+                <h1>{{vaga.nome}}</h1>
+                <div class="description">
+                    <h2>Detalhes da vaga</h2>
+                    <p>{{vaga.descricao}}</p>
+                </div>
+                <div class="requirement">
+                    <h2>requisitos</h2>
+                    <p>{{vaga.requisitos}}</p>
+                </div>
+                <div class="curso">
+                    <h2>Curso</h2>
+                    <p>{{vaga.curso}} </p>
+                </div>
+                <div class="turno">
+                    <h2>Turno</h2>
+                    <p>{{vaga.turno}}</p>
+                </div>
+                <div class="bolsa">
+                    <h2 *ngIf="vaga.remunerado>0">Remuneração</h2>
+                    <p *ngIf="vaga.remunerado>0">{{vaga.remunerado}}.00</p>
+                </div>
+                <div class="observacoes">
+                    <h2 *ngIf="vaga.observacoes">Obeservação</h2>
+                    <p>{{vaga.observacoes }}</p>
+                </div>
+                <div *ngIf="msgError" class="alert alert-danger">
+                    <p>{{msgError}}</p>
+                </div>
+                <div *ngIf="success == true && !msgError" class="alert alert-success">
+                    <p>Você se candidatou com sucesso</p>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button class="btn " (click)="candidatar(vaga._id)" *ngIf="this.decode.role==0">inscreve-se</button>
+                    <button class="btn btn-lg btn-primary" [routerLink]="['/']">Voltar</button>
+                </div>
+            </div>
         </div>
-        <div class="requirement">
-        <h2>requisitos</h2>
-        <p>{{vaga.requisitos}}</p>
-        </div>
-        <div class="curso">
-        <h2>Curso</h2>
-        <p>{{vaga.curso </p>
-        </div>
-        <div class="turno">
-        <h2>Turno</h2>
-        <p>{{vaga.turno}}</p>
-        </div>
-        <div class="salario">
-        <h2>Salario</h2>
-        <p>{{vaga.remunerado}}</p>
-        </div>
-        <div class="observacoes">
-        <h2 *ngIf="vaga.observacoes">Obeservação</h2>
-        <p>{{vaga.observacoes}}</p>
-        </div>
-        <div *ngIf="msgError"  class="alert alert-danger">
-            <p>{{msgError}}</p>
-        </div>
-        <div *ngIf="success == true && !msgError" class="alert alert-success">
-            <p>Você se candidatou com sucesso</p>
-        </div>
-       
-        <div class="btn-group">
-            <button class="button" (click)="candidatar(vaga._id)">inscreve-se</button>
-            <button class="button" [routerLink]="['/']">Voltar</button>
-        </div>
+
     </div>
-</div>
- </div>
+
 </main>

@@ -1,0 +1,38 @@
+<main>
+    <div class="card">
+        <div class="card-body" *ngIf="vagas.length > 0; else noVagas ">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let vaga of vagas; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td scope="row">{{ vaga.nome }}</td>
+                <td scope="row">{{ vaga.empresa.nomeEmpresa}}</td>
+                <td>
+                  <div class="d-grid gap-4 d-md-flex ">
+                    <button class="btn btn-xs btn-danger">
+                      <fa-icon [icon]="faTimes"></fa-icon>Cancelar
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ng-template #noVagas>
+          <div class="novagas">
+            <h1>Você ainda não se candidatou a nenhuma vaga</h1>
+            <a routerLink="/" alt="novo" class="btn btn-success btn-lg">
+                Candidate-se a uma vaga agora!
+            </a>
+          </div>
+        </ng-template>
+      </div>
+  </main>
