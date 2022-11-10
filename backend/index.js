@@ -10,6 +10,7 @@ import LoginRoutes from './routes/LoginRoutes.js';
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 

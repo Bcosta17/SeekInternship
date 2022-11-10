@@ -1,0 +1,6 @@
+<main>
+   <div *ngIf="empresa">
+    <h1>Edite seus Dados</h1>
+    <app-empresa-form (onSubmit)="editHandler($event)" [empresaData]="empresa" [btnText]="btnText"></app-empresa-form>
+   </div>
+</main>

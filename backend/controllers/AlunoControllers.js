@@ -11,7 +11,21 @@ import getUserByToken from "../helpers/get-user-by-token.js";
 
 export default class AlunoController {
     static async registro(req, res) {
-        const { nome, email, telefone, cpf, interesses, senha, confirmeSenha } = req.body;
+        const { nome, email, telefone, cpf, curso, senha, confirmeSenha } = req.body;
+        let curriculo= ''
+        
+        if(req.file){
+           if(req.file.mimetype !== 'application/pdf'){
+            res.status(422).json({ message: "Envie apenas arquivos pdf" });
+            return;
+           }else if(req.file.size > 5000000){
+            res.status(422).json({ message: "O tamanho do arquivo tem q ser menor q 5mb" });
+            return;
+           }
+           else{
+            curriculo = req.file.filename
+           }
+        }
 
         // validations
         if (!nome) {
@@ -26,10 +40,11 @@ export default class AlunoController {
             res.status(422).json({ message: "O campo telefone é obrigatório!" });
             return;
         }
-        if (!interesses) {
-            res.status(422).json({ message: "O campo interesses é obrigatório!" });
+        if (!curso) {
+            res.status(422).json({ message: "O campo curso é obrigatório!" });
             return;
         }
+        
 
         if (!cpf) {
             res.status(422).json({ message: "O campo CPF é obrigatório!" });
@@ -79,8 +94,9 @@ export default class AlunoController {
             nome,
             email:email.toString().toLowerCase(),
             telefone,
-            interesses,
+            curso,
             cpf,
+            curriculo,
             role: 0,
             senha: senhaHash,
         });
@@ -97,60 +113,11 @@ export default class AlunoController {
         }
     }
 
-    // static async login(req, res) {
-    //     const { email, senha } = req.body;
-
-    //     if (!email) {
-    //         res.status(422).json({ message: "O e-mail é obrigatório!" });
-    //         return;
-    //     }
-
-    //     if (!senha) {
-    //         res.status(422).json({ message: "A senha é obrigatória!" });
-    //         return;
-    //     }
-
-    //     // checa se aluno já está cadastrado
-    //     const aluno = await Aluno.findOne({ email: email });
-
-    //     if (!aluno) {
-    //         res.status(422).json({ message: "Não há usuário cadastrado com este e-mail!" });
-    //         return;
-    //     }
-
-    //     // checa se a senha está correta
-    //     const checaSenha = await bcrypt.compare(senha, aluno.senha);
-
-    //     if (!checaSenha) {
-    //         res.status(422).json({ message: "Senha invalida!" });
-    //         return;
-    //     }
-
-    //     await createUserToken(aluno, req, res);
-    // }
 
     static async getAll(req, res) {
         const alunos = await Aluno.find().sort('-createdAt').select('-senha');
 
         res.status(200).send({ alunos: alunos });
-    }
-
-    static async checaAluno(req, res) {
-        let alunoAtual;
-
-        if (req.headers.authorization) {
-            const token = getToken(req);
-            const decoded = jwt.verify(token, 'qafsafvsdsfwe');
-
-            alunoAtual = await Aluno.findById(decoded.id);
-
-            alunoAtual.senha = undefined;
-
-        } else {
-            alunoAtual = null;
-        }
-
-        res.status(200).send(alunoAtual);
     }
 
     static async getAlunoById(req, res) {
@@ -165,7 +132,7 @@ export default class AlunoController {
 
         const aluno = await Aluno.findById(id).select('-senha'); // não exibe o campo senha
 
-        res.status(200).json({ aluno });
+        res.status(200).json({ data: aluno });
     }
 
     static async editAluno(req, res) {
@@ -175,21 +142,20 @@ export default class AlunoController {
             res.status(422).json({ "message": "Aluno não encontrado!" })
             return
         }
+        
 
         // checa se aluno existe
         const token = getToken(req);
         const aluno = await getUserByToken(token);
 
-        console.log(aluno);
-
-        const { nome, email, telefone, interesses, cpf, senha, confirmeSenha } = req.body;
-
+        const { nome, email, telefone, curriculo, cpf, senha, confirmeSenha } = req.body;
+        console.log(req.body)
         // validações
         if (!nome) {
             res.status(422).json({ message: 'O nome é obrigatório!' });
             return;
         }
-        aluno.nome = nome;
+        aluno.nome = req.body().nome;
 
         if (!email) {
             res.status(422).json({ message: 'O e-mail é obrigatório!' });
@@ -211,19 +177,14 @@ export default class AlunoController {
         }
         aluno.telefone = telefone;
 
-        if (!interesses) {
-            res.status(422).json({ message: "O campo interesses é obrigatório!" });
+        if (!curriculo) {
+            res.status(422).json({ message: "O campo curriculo é obrigatório!" });
             return;
         }
-        aluno.interesses = interesses;
+        aluno.curriculo = curriculo;
 
         if (!cpf) {
             res.status(422).json({ message: "O campo CPF é obrigatório!" });
-            return;
-        }
-
-        if (!validacpf(cpf)) {
-            res.status(422).json({ message: "O CPF não é valido!" });
             return;
         }
         aluno.cpf = cpf;

@@ -1,0 +1,7 @@
+<main>
+    <div class="card" *ngIf="notificacao.getMessages().length">
+        <div *ngFor="let item of notificacao.getMessages()">
+            {{item}}
+        </div>
+    </div>
+</main>

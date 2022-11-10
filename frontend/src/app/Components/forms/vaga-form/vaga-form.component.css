@@ -2,10 +2,8 @@
   width: 70vw;
   text-align: left;
   font-size: 1.4rem;
-}
-
-h1 {
-  text-align: center;
+ 
+  
 }
 
 input,
@@ -77,4 +75,15 @@ input[type="number"] {
   font-size: 1.6rem;
   padding: .8rem;
   background: var(--primary-color);
+}
+
+.d-grid .btn{
+  width: 25%;
+  background-color: var(--primary-color);
+  font-size: 1.8rem;
+  margin: 2rem 1rem;
+ 
+}
+.d-grid .btn:nth-child(1){  
+    background-color:#0d6efd;
 }

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
+import { Response } from '../Interfaces/Response';
 import { Empresa } from '../Interfaces/Empresa';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +18,48 @@ export class EmpresaService {
   
   constructor(private http: HttpClient){ }
   
+
+
   createEmpresa(empresa: Empresa): Observable<Empresa>{
     const url = this.apiUrl + '/registro';
-    return this.http.post<Empresa>(url, empresa);
+    return this.http.post<Empresa>(url, empresa).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
+  }
+
+  getEmpresa(id: string){
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Response<Empresa>>(url).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
+  }
+
+  editarEmpresa(id:string, empresa: Empresa){
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.patch<Empresa>(url,empresa).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
   }
 
   verificaEmail(email: string) {

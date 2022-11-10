@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
+import { Response } from '../Interfaces/Response';
 import { Aluno } from '../Interfaces/Aluno';
 
 @Injectable({
@@ -15,9 +16,48 @@ export class AlunoService {
 
   constructor(private http: HttpClient) {}
 
-  createAluno(aluno: Aluno): Observable<Aluno> {
+  createAluno(formData: FormData): Observable<FormData> {
+    console.log(formData)
     const url = this.apiUrl + '/registro';
-    return this.http.post<Aluno>(url, aluno);
+    return this.http.post<FormData>(url, formData).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );;
+  }
+
+  getAluno(id: string){
+    const url = `${this.apiUrl}/${id}`;
+
+    return this.http.get<Response<Aluno>>(url).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
+  }
+
+  editarAluno(id:string, formData: FormData): Observable<FormData>{
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<FormData>(url, formData).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
   }
 
   verificaEmail(email: string) {

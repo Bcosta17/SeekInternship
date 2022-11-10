@@ -1,7 +1,8 @@
 <div class="card">
     <div class="card-body">
-        <h1>Cadastre uma vaga</h1>
+       
         <form [formGroup]="vagaForm" (ngSubmit)="submit()">
+            <input type="hidden" formControlName="id">
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input type="text" class="form-control" placeholder="Digite o nome da vaga" formControlName="nome" required >
@@ -47,7 +48,9 @@
                 <div class="form-group col-md-4">
                     <label for="turno">Turno</label>
                     <select class="form-select"  name="turno" formControlName="turno">
-                      <option [ngValue]="null" disabled>Selecione o turno</option>
+                      <option [ngValue]="null" disabled>Selecione ao turno</option>
+                      <option>{{vagaData?.turno}}</option>
+                      
                       <option *ngFor="let item of turnos">{{item}}</option>
                     </select>
                     <div *ngIf="!turno.pristine && turno.errors" class="alert alert-danger" role="alert">
@@ -92,8 +95,12 @@
                 </div>
             </div>          
             <div class="col-lg-12">     
-            <button type="submit" class="btn" [disabled]="!vagaForm.valid">{{btnText}}</button>
+            <button *ngIf="!vagaData" type="submit" class="btn" [disabled]="!vagaForm.valid">{{btnText}}</button>
             </div>
+            <div *ngIf="vagaData" class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button class="btn btn-lg btn-primary" [routerLink]="['/empresa']">Voltar</button>
+                <button   type="submit" class="btn"> {{btnText}} </button>
+              </div>
         </form>
     </div>
    

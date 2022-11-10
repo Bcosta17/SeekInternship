@@ -10,6 +10,7 @@ export interface Vaga{
     ativa: boolean;
     turno: string;
     alunos: [Aluno];
+    area:string
     empresa: Empresa;
     observacoes?: string;
     remunerado: number;

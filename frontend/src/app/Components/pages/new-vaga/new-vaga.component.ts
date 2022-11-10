@@ -9,7 +9,7 @@ import { VagasService } from 'src/app/Services/vagas.service';
   styleUrls: ['./new-vaga.component.css']
 })
 export class NewVagaComponent implements OnInit {
-  btnText = 'Cadastrar';
+  btnText:string = 'Cadastrar';
 
   constructor(
     private vagaService: VagasService,

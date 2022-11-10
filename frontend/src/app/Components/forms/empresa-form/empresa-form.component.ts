@@ -16,6 +16,7 @@ import { Validacoes } from 'src/app/shared/validators/validators';
 export class EmpresaFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Empresa>();
   @Input() btnText!: string;
+  @Input() empresaData: Empresa | null = null;
 
   empresaForm!: FormGroup;
  
@@ -26,18 +27,21 @@ export class EmpresaFormComponent implements OnInit {
    
   ngOnInit(): void {
    
-    this.empresaService.verificaEmail('').subscribe();
-    this.empresaService.verificaCnpj('').subscribe();
     this.criarEmpresaForm();
-
+    if(this.empresaData){
+      this.empresaForm.get('cnpj')!.disable();
+      this.empresaForm.get('email')!.disable();
+    }
   }
   
   
   criarEmpresaForm(){
+    this.empresaService.verificaEmail('').subscribe();
+    this.empresaService.verificaCnpj('').subscribe();
     this.empresaForm = this.fb.group({
-      id: [''],
+      id: [this.empresaData ? this.empresaData._id : ''],
       nomeEmpresa: [
-        '',
+        this.empresaData ? this.empresaData.nomeEmpresa : '',
         Validators.compose([
         Validators.required,
         Validators.minLength(3),
@@ -45,17 +49,17 @@ export class EmpresaFormComponent implements OnInit {
         ])
       ],
       nomeRepresentante: [
-        '',
+        this.empresaData ? this.empresaData.nomeRepresentante : '',
         Validators.compose([
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(100)
         ])
       ],
-      email: ['', Validators.compose([Validators.email]),this.emailExiste.bind(this)],
-      cnpj: ['', Validators.compose([Validators.required, Validacoes.VerificaCnpj,  Validators.pattern('[0-9]*')]), this.cnpjExiste.bind(this)],
+      email: [this.empresaData ? this.empresaData.email : '', Validators.compose([Validators.required, Validators.email]),this.emailExiste.bind(this)],
+      cnpj: [this.empresaData ? this.empresaData.cnpj : '',   Validators.compose([Validators.required, Validacoes.VerificaCnpj,  Validators.pattern('[0-9]*')]), this.cnpjExiste.bind(this)],
       telefone: [
-        '', 
+        this.empresaData ? this.empresaData.telefone : '', 
         Validators.compose([
           Validators.required,
           Validators.minLength(11),
@@ -63,8 +67,8 @@ export class EmpresaFormComponent implements OnInit {
           Validators.pattern('[0-9]*')
         ])
       ],
-      senha: ['', Validators.compose([Validators.required,Validators.minLength(6)])],
-      confirmeSenha: ['', Validators.compose([Validators.required,Validacoes.SenhasCombinam('senha')])]
+      senha: ['',this.empresaData ? Validators.compose([Validators.minLength(6), Validators.maxLength(20)]) : Validators.compose([Validators.required,Validators.minLength(6), Validators.maxLength(20)])],
+      confirmeSenha: ['', this.empresaData ? [Validacoes.SenhasCombinam('senha')]: Validators.compose([Validators.required,Validacoes.SenhasCombinam('senha')])]
     });
   }
   

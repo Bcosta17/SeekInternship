@@ -7,6 +7,7 @@ import { AlunoService } from 'src/app/Services/aluno.service';
 import { Aluno } from 'src/app/Interfaces/Aluno';
 
 import { Validacoes } from 'src/app/shared/validators/validators';
+import { JsonDadosService } from 'src/app/Services/json-dados.service';
 
 
 @Component({
@@ -17,36 +18,43 @@ import { Validacoes } from 'src/app/shared/validators/validators';
 export class AlunoFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Aluno>();
   @Input() btnText!: string;
+  @Input() alunoData: Aluno | null = null;
 
   alunoForm!: FormGroup;
+  cursos!:string[];
 
   constructor(
     private fb: FormBuilder,
     private alunoService: AlunoService,
+    private dados: JsonDadosService
   ) { }
 
   ngOnInit(): void {
     this.alunoService.verificaEmail('').subscribe();
     this.alunoService.verificaCpf('').subscribe();
     this.criarAlunoForm();
+    this.dados.getCursos().subscribe( dados => this.cursos=dados);
+
+   
   }
 
   criarAlunoForm() {
     this.alunoForm = this.fb.group({
-      id: [''],
+      id: [this.alunoData ? this.alunoData._id : ''],
       nome:[
-        '',
+        this.alunoData ? this.alunoData.nome : '',
         Validators.compose([
         Validators.required,
         Validators.minLength(3),
         ])
       ],
-      cpf: ['', Validators.compose([Validators.required, Validacoes.VerificaCpf,Validators.pattern('[0-9]*')]), this.cpfExiste.bind(this)],
-      email:['', Validators.compose([Validators.email]),this.emailExiste.bind(this)],
-      curso: ['', Validators.compose([Validators.required,Validators.minLength(3)]) ],
-      interesses: ['', Validators.compose([Validators.required,Validators.minLength(10)])],
+       
+      cpf: [this.alunoData ? this.alunoData.cpf : '', Validators.compose([Validators.required, Validacoes.VerificaCpf,Validators.pattern('[0-9]*')])],//this.cpfExiste.bind(this)
+      email:[this.alunoData ? this.alunoData.email : '', Validators.compose([Validators.email])],//this.emailExiste.bind(this)
+      curso: [this.alunoData ? this.alunoData.curso : '', Validators.compose([Validators.required,Validators.minLength(3)]) ],
+      curriculo: [this.alunoData ? this.alunoData.curriculo : '', Validators.compose([Validators.required])],
       telefone: [
-        '', 
+        this.alunoData ? this.alunoData.telefone : '', 
         Validators.compose([
           Validators.required,
           Validators.minLength(11),
@@ -54,7 +62,7 @@ export class AlunoFormComponent implements OnInit {
           Validators.pattern('[0-9]*')
         ])
       ],
-      senha: ['', Validators.compose([Validators.required,Validators.minLength(6)])],
+      senha: [this.alunoData ? this.alunoData.senha : '', Validators.compose([Validators.required,Validators.minLength(6)])],
       confirmeSenha: ['', Validators.compose([Validators.required,Validacoes.SenhasCombinam('senha')])],
 
     })
@@ -75,11 +83,7 @@ export class AlunoFormComponent implements OnInit {
   get curso(){
     return this.alunoForm.get('curso')!;
   }
-
-  get interesses(){
-    return this.alunoForm.get('interesses')!;
-  }
-
+  
   get telefone(){
     return this.alunoForm.get('telefone')!;
   }
@@ -91,7 +95,13 @@ export class AlunoFormComponent implements OnInit {
   get confirmeSenha(){
     return this.alunoForm.get('confirmeSenha')!;
   }
-  
+
+  onFileSelected(event: any){
+    const file: File = event.target.files[0];
+
+    this.alunoForm.patchValue({ curriculo: file});
+
+  }
   emailExiste(formControl: FormControl){
     return this.alunoService.verificaEmail(formControl.value.toLowerCase())
     .pipe(
@@ -108,6 +118,7 @@ export class AlunoFormComponent implements OnInit {
   submit(){
     if(this.alunoForm.valid){
       this.onSubmit.emit(this.alunoForm.value)
+      console.log(this.alunoForm.value);
     }
   }
 

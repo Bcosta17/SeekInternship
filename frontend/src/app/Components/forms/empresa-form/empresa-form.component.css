@@ -25,7 +25,7 @@ label {
 }
 
 
-.row:nth-child(4){
+.row:nth-child(5){
   margin-bottom: 4rem;
 }
 
@@ -33,4 +33,15 @@ label {
   background-color: var(--primary-color);
   font-size: 1.8rem;
   width: 40%;
+}
+
+.d-grid .btn{
+  width: 25%;
+  background-color: var(--primary-color);
+  font-size: 1.8rem;
+  margin: 2rem 1rem;
+ 
+}
+.d-grid .btn:nth-child(1){  
+    background-color:#0d6efd;
 }

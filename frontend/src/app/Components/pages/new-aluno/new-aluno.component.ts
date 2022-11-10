@@ -20,7 +20,18 @@ export class NewAlunoComponent implements OnInit {
   }
 
   createAluno(aluno: Aluno){
-    this.alunoService.createAluno(aluno).subscribe({
+    const formData = new FormData();
+
+    formData.append('nome',aluno.nome);
+    formData.append('email',aluno.email);
+    formData.append('cpf',aluno.cpf);
+    formData.append('telefone',aluno.telefone);
+    formData.append('curriculo',aluno.curriculo);
+    formData.append('curso',aluno.curso);
+    formData.append('senha',aluno.senha);
+    formData.append('confirmeSenha',aluno.confirmeSenha);
+
+    this.alunoService.createAluno(formData).subscribe({
       next(){},
       error(err:any){
         console.log(err);

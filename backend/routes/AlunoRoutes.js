@@ -3,14 +3,14 @@ import {Router} from 'express';
 import AlunoController from '../controllers/AlunoControllers.js';
 
 import verificaToken from '../helpers/verifica-token.js';
+import  fileUpload from '../helpers/curriculo-upload.js';
 
 const router = new Router();
 
-router.post('/registro', AlunoController.registro);
+router.post('/registro', fileUpload.single("curriculo"), AlunoController.registro);
 router.get('/', AlunoController.getAll);
-router.get('/checaAluno', AlunoController.checaAluno);
 router.get('/:id', AlunoController.getAlunoById);
-router.patch('/:id', verificaToken, AlunoController.editAluno);
+router.put('/:id', verificaToken, AlunoController.editAluno);
 
 
 

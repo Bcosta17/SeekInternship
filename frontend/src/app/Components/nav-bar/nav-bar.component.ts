@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from 'src/app/Services/login.service';
+import { NotificacoesService } from 'src/app/Services/notificacoes.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -12,9 +13,10 @@ export class NavBarComponent implements OnInit {
 
   faUser = faUser;
   
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, public notificacao: NotificacoesService) { }
 
   ngOnInit(): void {
+    
   }
   
   public isMenuCollapsed = true;

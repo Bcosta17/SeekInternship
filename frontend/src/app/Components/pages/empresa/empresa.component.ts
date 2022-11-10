@@ -8,6 +8,7 @@ import { Aluno } from 'src/app/Interfaces/Aluno';
 import { Vaga } from 'src/app/Interfaces/Vagas';
 
 import { VagasService } from 'src/app/Services/vagas.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-empresa',
@@ -19,7 +20,7 @@ export class EmpresaComponent implements OnInit {
   vagas: Vaga[] = [];
   vagaSelecionada!: string;
   alunos: Aluno[] = [];
-  
+  baseApiUrl= environment.baseApiUrl
   faTimes = faTimes;
   faEdit = faEdit;
   faAdd = faAdd;

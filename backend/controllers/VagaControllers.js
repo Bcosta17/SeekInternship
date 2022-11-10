@@ -17,9 +17,7 @@ export default class VagaController {
             return res.status(401).json({ message: 'acesso negado!' });
         }
 
-        const { nome, descricao, requisitos, curso, turno, remunerado, observacoes } = req.body;
-
-        const ativa = true;
+        const { nome, descricao, requisitos, curso, turno,area, remunerado, observacoes } = req.body;
 
         // validations
         if (!nome) {
@@ -36,6 +34,10 @@ export default class VagaController {
         }
         if (!curso) {
             res.status(422).json({ message: "O campo curso é obrigatório!" });
+            return;
+        }
+        if (!area) {
+            res.status(422).json({ message: "O campo area é obrigatório!" });
             return;
         }
         if (!turno) {
@@ -55,10 +57,10 @@ export default class VagaController {
             descricao,
             requisitos,
             curso,
+            area,
             turno,
-            remunerado,
+            remunerado, 
             observacoes,
-            ativa,
             empresa,
         });
 
@@ -178,7 +180,7 @@ export default class VagaController {
             return res.status(401).json({ message: 'acesso negado!' });
         }
 
-        const { nome, descricao, requisitos, curso, turno, remunerado, observacoes } = req.body;
+        const { nome, descricao, requisitos, curso,area, turno, remunerado, observacoes } = req.body;
 
         if (!ObjectId.isValidObjectId(id)) {
             res.status(422).json({ message: 'Id é invalido' });
@@ -224,6 +226,12 @@ export default class VagaController {
             return;
         }
         vaga.curso = curso;
+
+        if (!area) {
+            res.status(422).json({ message: "O campo area é obrigatório!" });
+            return;
+        }
+        vaga.area = area;
 
         if (!turno) {
             res.status(422).json({ message: "O campo turno é obrigatório!" });

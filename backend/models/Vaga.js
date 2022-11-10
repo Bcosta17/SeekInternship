@@ -18,6 +18,10 @@ const Vaga = mongoose.model(
             type: String,
             required:true,
         },
+        area:{
+            type: String,
+            required:true,
+        },
         curso: {
             type: String,
             required:true,
@@ -32,9 +36,6 @@ const Vaga = mongoose.model(
         },
         observacoes: {
             type: String,
-        },
-        ativa: {
-            type: Boolean,
         },
         empresa: {
             type: mongoose.Schema.Types.ObjectId,

@@ -2,9 +2,10 @@ export interface Aluno{
     _id?: string;
     nome: string;
     email: string;
-    telefone: number;
+    telefone: string;
     cpf: string;
-    interesses: string;
+    curriculo: string;
+    curso:string;
     senha: string;
     confirmeSenha: string;
     createdAt?: string;

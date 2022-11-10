@@ -1,0 +1,6 @@
+<main>
+    <div *ngIf="vaga">
+        <h1>Edite uma vaga</h1>
+        <app-vaga-form (onSubmit)="editHandler($event)" [vagaData]="vaga" [btnText]="btnText"></app-vaga-form>
+    </div>    
+</main>

@@ -28,6 +28,10 @@ import { AuthTokenInterceptor } from './Interceptor/auth-token.interceptor';
 import { AutentificacaoGuard } from './guard/autentificacao.guard';
 import { EmpresaComponent } from './Components/pages/empresa/empresa.component';
 import { AlunoCandidaturasComponent } from './Components/pages/aluno-candidaturas/aluno-candidaturas.component';
+import { EditVagaComponent } from './Components/pages/edit/edit-vaga/edit-vaga.component';
+import { NotificacoesComponent } from './Components/pages/notificacoes/notificacoes.component';
+import { EditEmpresaComponent } from './Components/pages/edit/edit-empresa/edit-empresa.component';
+import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-aluno.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,10 @@ import { AlunoCandidaturasComponent } from './Components/pages/aluno-candidatura
     NewVagaComponent,
     EmpresaComponent,
     AlunoCandidaturasComponent,
+    EditVagaComponent,
+    NotificacoesComponent,
+    EditEmpresaComponent,
+    EditAlunoComponent,
   ],
   imports: [
     BrowserModule,

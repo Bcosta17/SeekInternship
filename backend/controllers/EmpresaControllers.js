@@ -89,6 +89,7 @@ export default class EmpresaController {
 
             const newEmpresa = await empresa.save();
             await createUserToken(newEmpresa, req, res);
+            
 
         } catch (error) {
 
@@ -133,7 +134,7 @@ export default class EmpresaController {
 
         const empresa = await Empresa.findById(id).select('-senha'); // não exibe o campo senha
 
-        res.status(200).json({ empresa });
+        res.status(200).json({ data: empresa });
     }
 
     static async editEmpresa(req, res) {
@@ -147,10 +148,10 @@ export default class EmpresaController {
         // 
         const token = getToken(req);
         const empresa = await getUserByToken(token);
-        console.log(empresa);
+       
 
         const { nomeEmpresa, nomeRepresentante, email, telefone, cnpj, senha, confirmeSenha } = req.body;
-
+        console.log(req.body)
         // validações
         if (!nomeEmpresa) {
             res.status(422).json({ message: 'O nome da empresa é obrigatório!' });
@@ -197,16 +198,10 @@ export default class EmpresaController {
         }
         empresa.cnpj = cnpj;
 
-        if (!senha) {
-            res.status(422).json({ message: 'A senha é obrigatória!' });
-            return;
-        }
-
-        if (!confirmeSenha) {
-            res.status(422).json({ message: 'A confirmação de senha é obrigatória!' });
-            return;
-        }
         // checa se as senhas são iguais;
+       if(senha == '' ){
+        empresa.senha = empresa.senha
+       }else{
         if (senha != confirmeSenha) {
             res.status(422).json({ error: 'As senhas não conferem!' });
             return;
@@ -220,7 +215,7 @@ export default class EmpresaController {
 
             empresa.senha = senhaHash;
         }
-
+       }
         try {
             //Retorna os dados atualizado.
             await Empresa.findOneAndUpdate(

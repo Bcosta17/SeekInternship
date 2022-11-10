@@ -1,0 +1,6 @@
+<main>
+    <div *ngIf="aluno">
+     <h1>Edite seus Dados</h1>
+     <app-aluno-form (onSubmit)="editHandler($event)" [alunoData]="aluno" [btnText]="btnText"></app-aluno-form>
+    </div>
+ </main>

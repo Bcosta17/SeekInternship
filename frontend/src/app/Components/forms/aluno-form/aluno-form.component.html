@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-body">
-    <h1>Crie seu perfil</h1>
+
   <form [formGroup]="alunoForm" (ngSubmit)="submit()">
-    
+    <input type="hidden" formControlName="id">
     <div class="form-group">
       <label for="email">E-mail</label>
       <input type="email" class="form-control" placeholder="Digite seu e-mail" formControlName="email" required>
-      <div *ngIf="!email.pristine && email.errors" class="alert alert-danger" role="alert">
+      <div *ngIf="!email.pristine && email.errors && email.touched" class="alert alert-danger" role="alert">
         <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
         <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
         <p *ngIf="email.errors?.['emailInvalido']">O e-mail já foi cadastrado</p>
@@ -16,7 +16,7 @@
     <div class="form-group">
       <label for="nome">Nome</label>
       <input type="text" class="form-control" placeholder="Digite seu nome" formControlName="nome">
-      <div *ngIf="!nome.pristine && nome.errors " class="alert alert-danger" role="alert">
+      <div *ngIf="!nome.pristine && nome.errors && nome.touched " class="alert alert-danger" role="alert">
         <p *ngIf="nome.errors?.['required']">O nome é obrigatório!</p>
         <p *ngIf="nome.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
       </div>
@@ -26,8 +26,11 @@
          
     <div class="form-group col-md-4">
       <label for="curso">Curso</label>
-      <input type="text" class="form-control" placeholder="Digite seu curso" formControlName="curso">
-      <div *ngIf="!curso.pristine && curso.errors " class="alert alert-danger" role="alert">
+      <input type="text" class="form-control" list="curso" placeholder="Digite seu curso" formControlName="curso">
+      <datalist id="curso">
+        <option *ngFor="let item of cursos" value="{{item}}">
+        </datalist>
+      <div *ngIf="!curso.pristine && curso.errors  && curso.touched " class="alert alert-danger" role="alert">
         <p *ngIf="curso.errors?.['required']">O curso é obrigatório!</p>
         <p *ngIf="curso.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
       </div>
@@ -35,8 +38,8 @@
    
     <div class="form-group col-md-4">
       <label for="cpf">CPF</label>
-      <input type="text" class="form-control" placeholder="Digite seu CPF" formControlName="cpf" mask="000.000.000-00" required>
-      <div *ngIf="!cpf.pristine && cpf.errors" class="alert alert-danger" role="alert">
+      <input ng-class="" type="text" class="form-control" placeholder="Digite seu CPF" formControlName="cpf" mask="000.000.000-00" required>
+      <div *ngIf="!cpf.pristine && cpf.errors && cpf.touched" class="alert alert-danger" role="alert">
         <p *ngIf="cpf.errors?.['required']">O CPF é obrigatório!</p>
         <p *ngIf="cpf.errors?.['cpfInvalido']">O CPF não é válido!</p>
         <p *ngIf="cpf.errors?.['pattern']">Somente números!</p>
@@ -46,8 +49,8 @@
 
     <div class="form-group col-md-4">
       <label for="telefone">Telefone para contato</label>
-      <input type="tel" class="form-control" placeholder="Digite seu telefone" formControlName="telefone" mask="(99) 99999-9999">
-      <div *ngIf="!telefone.pristine && telefone.errors" class="alert alert-danger" role="alert">
+      <input type="tel" class="form-control" placeholder="Digite seu telefone" formControlName="telefone" mask="(00) 00000-0000">
+      <div *ngIf="!telefone.pristine && telefone.errors && telefone.touched" class="alert alert-danger" role="alert">
         <p *ngIf="telefone.errors?.['required']">O telefone é obrigatório!</p>
         <p *ngIf="telefone.errors?.['pattern']">Somente números!</p>
         <p *ngIf="telefone.errors?.['minlength'] || telefone.errors?.['maxlength']">O telefone precisa ter 11 digitos!
@@ -57,36 +60,46 @@
     </div>
 
     <div class="form-group">
-      <label for="interesses">Conhecimento</label>
-      <textarea type="text" class="form-control" placeholder="Digite seus conhecimento e habilidade na area que deseja atuar" formControlName="interesses" cols="15" rows="4"></textarea>
-      <div *ngIf="!interesses.pristine && interesses.errors" class="alert alert-danger" role="alert">
-        <p *ngIf="interesses.errors?.['required']">Os interesses são obrigatório!</p>
-        <p *ngIf="interesses.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
-      </div>
+      <label for="curriculo">Anexe seu currículo</label>
+      <input type="file" (change)="onFileSelected($event)">
     </div>
 
     <div class="row row-senha">
       <div class="form-group col-md-6">
         <label for="senha">Senha</label>
         <input type="password" class="form-control" placeholder="Digite sua senha" formControlName="senha">
-        <div *ngIf="!senha.pristine && senha.errors" class="alert alert-danger" role="alert">
+        <div id="senhaHelp" class="form-text d-flex " *ngIf="alunoData"><p>Só preencha o campo se deseja altera a senha</p></div>
+        <div id="senhaHelp" class="form-text d-flex " *ngIf="!alunoData"><p>A senha deve ter de 6-20 caracters</p></div>
+        <div *ngIf="!senha.pristine && senha.errors && senha.touched" class="validation-error" role="alert">
           <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
           <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
+          <p *ngIf="senha.errors?.['maxlength']">A senha deve ter no máximo 20 caracters!</p>
         </div>
       </div>
      
       <div class="form-group col-md-6">
         <label for="confirmeSenha">Confirmação de senha</label>
         <input type="password" class="form-control" placeholder="Digite novamente sua senha" formControlName="confirmeSenha">
-        <div *ngIf="!confirmeSenha.pristine && confirmeSenha.errors" class="alert alert-danger" role="alert">
+        <div *ngIf="!confirmeSenha.pristine && confirmeSenha.errors && confirmeSenha.touched" class="alert alert-danger" role="alert">
           <p *ngIf="confirmeSenha.errors?.['required']">A Confirmação de senha é obrigatória!</p>
           <p *ngIf="confirmeSenha.errors?.['senhasNaoCombinam']">As senhas não coincidem!</p>
         </div>
       </div>
     </div>
    
-    <button type="submit" class="btn" [disabled]="!alunoForm.valid"> {{btnText}} </button>
+
+    
+    <button  *ngIf="!alunoData" type="submit" class="btn" [disabled]="!alunoForm.valid"> {{btnText}} </button>
+    
+    <div *ngIf="alunoData" class="d-grid gap-2 d-md-flex justify-content-md-center">
+      <button class="btn btn-lg btn-primary" [routerLink]="['/']">Voltar</button>
+      <button   type="submit" class="btn"> {{btnText}} </button>
+    </div>
 
   </form>
+  </div>
+  <div>
+    {{ alunoForm.value | json }}
+    {{ alunoForm.valid | json }}
   </div>
 </div>

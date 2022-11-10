@@ -15,7 +15,7 @@ router.get('/minhasVagas', verificatoken, VagaControllers.getVagasPorEmpresa);
 router.get('/minhasCandidaturas', verificatoken, VagaControllers.getVagasPorAluno);
 router.get('/:id', VagaControllers.getVagaById);
 router.delete('/:id', verificatoken, VagaControllers.deleteVagaById);
-router.patch('/:id', verificatoken, VagaControllers.updateVaga);
+router.put('/:id', verificatoken, VagaControllers.updateVaga);
 router.post('/candidatar/:id', verificatoken, VagaControllers.candidatarVaga);
 
 
