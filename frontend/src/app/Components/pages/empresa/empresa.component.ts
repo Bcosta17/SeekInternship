@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { faAdd, faEdit, faEye, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Aluno } from 'src/app/Interfaces/Aluno';
+import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
+import { Aluno } from 'src/app/Interfaces/Aluno';
+import { Email } from 'src/app/Interfaces/email';
 import { Vaga } from 'src/app/Interfaces/Vagas';
 
 import { VagasService } from 'src/app/Services/vagas.service';
@@ -16,19 +17,24 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./empresa.component.css'],
 })
 export class EmpresaComponent implements OnInit {
+  @Output() onSubmit = new EventEmitter<Email>();
+  @ViewChild('modeldelete') modeldelete: any; 
   
+  alunos: Aluno[] = [];
   vagas: Vaga[] = [];
   vagaSelecionada!: string;
-  alunos: Aluno[] = [];
+  
+  emailForm!: FormGroup;
+
   baseApiUrl= environment.baseApiUrl
+  
   faTimes = faTimes;
   faEdit = faEdit;
   faAdd = faAdd;
   faEye = faEye;
-
-  @ViewChild('modeldelete') modeldelete: any; 
  
   constructor(
+    private fb: FormBuilder,
     private vagaService: VagasService,
     private modalService: NgbModal,
     
@@ -36,6 +42,25 @@ export class EmpresaComponent implements OnInit {
     
   ngOnInit(): void {
     this.atualizar();
+    this.emailForm = this.fb.group({
+      destino:[''],
+      assunto:[''],
+      mensagem:['']
+
+    })
+
+  }
+
+  get destino(){
+    return this.emailForm.get('destino')!;
+  }
+
+  get assunto(){
+    return this.emailForm.get('assunto')!;
+  }
+
+  get mensagem(){
+    return this.emailForm.get('mensagem')!;
   }
 
   atualizar(){
@@ -55,15 +80,26 @@ export class EmpresaComponent implements OnInit {
     this.alunos = this.vagas[id].alunos;
   }
 
-  openDelete(vaga_id:string) {
-    this.vagaSelecionada = vaga_id;
-		this.modalService.open(this.modeldelete);
-	}
-
   deletarVaga( ) {
     this.vagaService.deletarVaga(this.vagaSelecionada).subscribe(
       success => this.atualizar()
     );
   }
 
+  open(content: any) {
+    this.modalService.open(content)
+			
+	}
+
+  openDelete(vaga_id:string) {
+    this.vagaSelecionada = vaga_id;
+		this.modalService.open(this.modeldelete);
+	}
+
+  submit(){
+    this.onSubmit.emit(this.emailForm.value);
+    console.log(this.emailForm.value);
+  }
+ 
+   
 }

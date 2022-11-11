@@ -8,6 +8,7 @@ import validaCnpj from '../helpers/verifica-cnpj.js';
 import createUserToken from "../helpers/create-user-token.js";
 import getToken from "../helpers/get-token.js";
 import getUserByToken from "../helpers/get-user-by-token.js";
+import transporter from '../helpers/send-email-config.js';
 
 export default class EmpresaController {
     static async registro(req, res) {
@@ -233,5 +234,49 @@ export default class EmpresaController {
 
 
     }
+
+    static async sendMail(req,res){
+
+       
+        const { emailCandidato, candidato, titulo, mensagem } = req.body;
+
+        if (!emailCandidato) {
+            res.status(422).json({ message: "O campo de email é obrigatório!" });
+            return;
+        }
+        if (!titulo) {
+            res.status(422).json({ message: "O campo titulo é obrigatório!" });
+            return;
+        }
+        if (!candidato) {
+            res.status(422).json({ message: "O campo nome do candidato é obrigatório!" });
+            return;
+        }
+
+        if (!mensagem) {
+            res.status(422).json({ message: "O campo assunto é obrigatório!" });
+            return;
+        }
+        
+
+        try {
+            //Retorna os dados atualizado.
+            transporter.sendMail({
+                text: mensagem,
+                subject: titulo,
+                from: 'SeekInternship <seekinternship@gmail.com>',
+                to: emailCandidato,
+            })
+
+            res.status(200).json({ message: 'Email enviado com sucesso!' });
+
+        } catch (error) {
+
+            res.status(500).json({ message: error.message });
+        }
+
+    }
+
+
 
 }

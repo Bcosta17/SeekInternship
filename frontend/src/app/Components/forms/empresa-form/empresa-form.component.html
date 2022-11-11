@@ -60,8 +60,8 @@
             <div class="form-group col-md-6">
               <label for="senha">Senha</label>
               <input type="password" class="form-control" placeholder="Digite sua senha" formControlName="senha">
-              <div id="senhaHelp" class="form-text d-flex " *ngIf="empresaData"><p>Só preencha o campo se deseja altera a senha</p></div>
-              <div id="senhaHelp" class="form-text d-flex " *ngIf="!empresaData"><p>A senha deve ter de 6-20 caracters</p></div>
+              <div id="senhaHelp" class="form-text d-flex" *ngIf="empresaData"><p>Só preencha o campo se quer alterar a senha!</p></div>
+              <div id="senhaHelp" class="form-text d-flex " *ngIf="empresaData"><p>A senha deve ter de 6-20 caracters</p></div>
               <div *ngIf="!senha.pristine && senha.errors && senha.touched" class="validation-error" role="alert">
                 <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
                 <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>

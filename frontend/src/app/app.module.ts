@@ -32,6 +32,9 @@ import { EditVagaComponent } from './Components/pages/edit/edit-vaga/edit-vaga.c
 import { NotificacoesComponent } from './Components/pages/notificacoes/notificacoes.component';
 import { EditEmpresaComponent } from './Components/pages/edit/edit-empresa/edit-empresa.component';
 import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-aluno.component';
+import { EmailFormComponent } from './Components/forms/email-form/email-form.component';
+
+
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-alun
     NotificacoesComponent,
     EditEmpresaComponent,
     EditAlunoComponent,
+    EmailFormComponent,
   ],
   imports: [
     BrowserModule,

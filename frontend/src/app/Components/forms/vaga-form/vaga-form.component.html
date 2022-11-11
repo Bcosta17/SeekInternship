@@ -14,7 +14,7 @@
     
             <div class="form-group">
                 <label for="descricao">Descrição da vaga</label>
-                <textarea class="form-control" placeholder="Digite as responsabilidade da vaga" formControlName="descricao" rows="2"></textarea>
+                <textarea class="form-control" placeholder="Digite as responsabilidade da vaga" formControlName="descricao" rows="3"></textarea>
                 <div *ngIf="!descricao.pristine && descricao.errors && descricao.touched" class="alert alert-danger" role="alert">
                     <p *ngIf="descricao.errors?.['required']">A descriçaõ é obrigatório!</p>
                     <p *ngIf="descricao.errors?.['minlength']">Deve ter no mínimo 20 caracters!</p>
@@ -60,7 +60,7 @@
                 </div>
             <div class="form-group">
                 <label for="requisitos">Requisitos</label>
-                <textarea class="form-control" placeholder="Digite os requisitos da vaga" formControlName="requisitos" rows="2"></textarea>
+                <textarea class="form-control" placeholder="Digite os requisitos da vaga" formControlName="requisitos" rows="3"></textarea>
                 <div *ngIf="!requisitos.pristine && requisitos.errors && requisitos.touched" class="alert alert-danger" role="alert">
                     <p *ngIf="requisitos.errors?.['required']">Os requisitos são obrigatório!</p>
                     <p *ngIf="requisitos.errors?.['minlength']">Deve ter no mínimo 10 caracters!</p>
