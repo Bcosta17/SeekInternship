@@ -12,7 +12,7 @@
                     <p>{{vaga.requisitos}}</p>
                 </div>
                 <div class="curso">
-                    <h2>Curso</h2>
+                    <h2>Curso(s)</h2>
                     <p>{{vaga.curso}} </p>
                 </div>
                 <div class="turno">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="Empresa">
                     <h2>Empresa</h2>
-                    <p>{{vaga.empresa}}</p>
+                    <p>{{vaga.empresa.nomeEmpresa}}</p>
                 </div>
                 <div class="bolsa">
                     <h2 *ngIf="vaga.remunerado>0">Remuneração</h2>

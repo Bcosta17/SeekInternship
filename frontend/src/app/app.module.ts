@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -32,7 +32,7 @@ import { EditVagaComponent } from './Components/pages/edit/edit-vaga/edit-vaga.c
 import { NotificacoesComponent } from './Components/pages/notificacoes/notificacoes.component';
 import { EditEmpresaComponent } from './Components/pages/edit/edit-empresa/edit-empresa.component';
 import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-aluno.component';
-import { EmailFormComponent } from './Components/forms/email-form/email-form.component';
+
 
 
 
@@ -58,7 +58,6 @@ import { EmailFormComponent } from './Components/forms/email-form/email-form.com
     NotificacoesComponent,
     EditEmpresaComponent,
     EditAlunoComponent,
-    EmailFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +68,7 @@ import { EmailFormComponent } from './Components/forms/email-form/email-form.com
     FontAwesomeModule,
     NgbModule,
     NgxMaskModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
      AutentificacaoGuard,

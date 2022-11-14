@@ -36,6 +36,14 @@ table .btn{
 }
 
 .modal-body p{
-   
     font-size: 1.8rem;
+}
+
+label,h4{
+    font-size: 1.8rem;
+    margin-bottom: 2px;
+}
+
+input,textarea{
+    font-size: 1.5rem;
 }

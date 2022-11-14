@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 import { Response } from '../Interfaces/Response';
 import { Empresa } from '../Interfaces/Empresa';
+import { Email } from '../Interfaces/Email';
 
 
 @Injectable({
@@ -51,6 +52,20 @@ export class EmpresaService {
   editarEmpresa(id:string, empresa: Empresa){
     const url = `${this.apiUrl}/${id}`;
     return this.http.patch<Empresa>(url,empresa).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
+  }
+
+  enviarEmail(email: Email){
+    const url = `${this.apiUrl}/enviarEmail`;
+    return this.http.post(url,email).pipe(
       catchError((err) => {
         if (err.error.message) return throwError(() => err.error.message);
 

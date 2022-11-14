@@ -238,18 +238,14 @@ export default class EmpresaController {
     static async sendMail(req,res){
 
        
-        const { emailCandidato, candidato, titulo, mensagem } = req.body;
-
-        if (!emailCandidato) {
+        const { destino, assunto, mensagem } = req.body;
+        
+        if (!destino) {
             res.status(422).json({ message: "O campo de email é obrigatório!" });
             return;
         }
-        if (!titulo) {
+        if (!assunto) {
             res.status(422).json({ message: "O campo titulo é obrigatório!" });
-            return;
-        }
-        if (!candidato) {
-            res.status(422).json({ message: "O campo nome do candidato é obrigatório!" });
             return;
         }
 
@@ -258,14 +254,13 @@ export default class EmpresaController {
             return;
         }
         
-
         try {
-            //Retorna os dados atualizado.
+           
             transporter.sendMail({
                 text: mensagem,
-                subject: titulo,
+                subject: assunto,
                 from: 'SeekInternship <seekinternship@gmail.com>',
-                to: emailCandidato,
+                to: destino,
             })
 
             res.status(200).json({ message: 'Email enviado com sucesso!' });

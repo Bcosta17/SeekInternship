@@ -35,6 +35,11 @@ label {
   width: 40%;
 }
 
+#buttonHelp{
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
 .d-grid .btn{
   width: 25%;
   background-color: var(--primary-color);

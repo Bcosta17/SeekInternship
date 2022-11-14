@@ -38,16 +38,15 @@
                         <table class="table table-bordered">
                           <thead>
                             <tr>                     
-                              <th scope="col"></th>
                               <th scope="col">#</th>
                               <th scope="col">Nome</th>
                               <th scope="col">Email</th>
                               <th scope="col">Telefone</th>
                               <th scope="col">Curriculo</th>
-                              
                             </tr>
                           </thead>
                           <tbody>
+                            
                             <tr *ngFor="let aluno of alunos; index as i">  
                               <th scope="row">{{ i + 1 }}</th>
                               <th scope="row">{{ aluno.nome }}</th>
@@ -104,7 +103,7 @@
   </div>
 </ng-template>
 
-<ng-template  #content let-c="close"  let-d="dismiss">
+<ng-template class="modal-dialog modal-lg" #content let-c="close"  let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Marque uma entrevista!</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
@@ -112,19 +111,25 @@
   <div class="modal-body">
     <form [formGroup]="emailForm" (ngSubmit)="submit()">
       <div class="form-group">
-        <label for="destino" class="col-form-label">candidato(s):</label>
-        <input type="email" list="candidatos" class="form-control" id="assunto" formControlName="destino" multiple>
-        <datalist id="candidatos">
-          <option *ngFor="let item of alunos" value="{{item.email}}">
-          </datalist>
+        <label for="destino">Destino:</label>
+        <ng-multiselect-dropdown
+          formControlName="destino"
+          placeholder="Selecione o email dos candidatos"
+          [settings]="dropdownSettings"
+          [data]="emailNomeCandidatos"
+          [(ngModel)]="selectedItems"
+          (onSelect)="onItemSelect($event)"
+        >
+        </ng-multiselect-dropdown>
       </div>
+      
       <div class="form-group">
         <label for="assunto" class="col-form-label">Assunto:</label>
-        <input type="text" class="form-control" id="assunto" formControlName="assunto">
+        <input type="text" class="form-control" id="assunto" formControlName="assunto" placeholder="Digite o assunto do email">
       </div>
       <div class="form-group">
         <label for="message" class="col-form-label">Mensagem:</label>
-        <textarea class="form-control" id="message" formControlName="mensagem"></textarea>
+        <textarea class="form-control" id="message" formControlName="mensagem" rows="5" placeholder="Digite a mensagem do email"></textarea>
       </div>
     </form>
   </div>

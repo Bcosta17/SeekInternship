@@ -11,7 +11,7 @@ router.get('/', EmpresaController.getAll);
 router.get('/checaEmpresa',EmpresaController.checaEmpresa);
 router.get('/:id', EmpresaController.getEmpresaById);
 router.patch('/:id', verificaToken, EmpresaController.editEmpresa);
-router.post('/enviaEmail', EmpresaController.sendMail);
+router.post('/enviarEmail', EmpresaController.sendMail);
 
 
 

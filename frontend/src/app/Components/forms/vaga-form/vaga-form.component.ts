@@ -6,6 +6,7 @@ import { JsonDadosService } from 'src/app/Services/json-dados.service';
 import { Vaga } from 'src/app/Interfaces/Vagas';
 
 
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-vaga-form',
@@ -16,6 +17,10 @@ export class VagaFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Vaga>();
   @Input() btnText!: string;
   @Input() vagaData: Vaga | null = null;
+  
+  
+  selectedItems:any = [];
+  dropdownSettings:IDropdownSettings= {};
   
   vagaForm!: FormGroup;
   areas!:string[];
@@ -40,6 +45,19 @@ export class VagaFormComponent implements OnInit {
     this.setDefaults();
     this.dados.getArea().subscribe( dados => {this.areas= dados.sort();});
     this.dados.getCursos().subscribe( dados => this.cursos=dados);
+
+    this.dropdownSettings= {
+      singleSelection: false,
+      itemsShowLimit: 3,
+      limitSelection:3,
+      allowSearchFilter: true,
+      searchPlaceholderText:'Pesquise por um curso',
+      noDataAvailablePlaceholderText:'Curso não encontrado'
+    };
+  }
+  
+  onItemSelect(item: any) {
+   return item;
   }
 
   criarVagaForm(){
@@ -49,8 +67,7 @@ export class VagaFormComponent implements OnInit {
       nome:[this.vagaData ? this.vagaData.nome :'',Validators.compose([Validators.required,Validators.minLength(3)])],
       descricao:[this.vagaData ? this.vagaData.descricao :'',Validators.compose([Validators.required,Validators.minLength(20)])],
       requisitos:[this.vagaData ? this.vagaData.requisitos :'',Validators.compose([Validators.required,Validators.minLength(10)])],
-      curso:[this.vagaData ? this.vagaData.curso :'',Validators.compose([Validators.required,Validators.minLength(5)])],
-      area:[this.vagaData ? this.vagaData.area :'',Validators.compose([Validators.required,Validators.minLength(5)])],
+      curso:[this.vagaData ? this.vagaData.curso :'',Validators.compose([Validators.required])],
       remunerado:[this.vagaData ? this.vagaData.remunerado :'',Validators.compose([Validators.required])],
       turno:[this.vagaData ? this.vagaData.turno :'',Validators.compose([Validators.required])],
       observacoes:['',Validators.compose([Validators.minLength(5)])],
@@ -77,9 +94,6 @@ export class VagaFormComponent implements OnInit {
     return this.vagaForm.get('turno')!;
   }
 
-  get area(){
-    return this.vagaForm.get('area')!;
-  }
   get remunerado(){
     return this.vagaForm.get('remunerado')!;
   }
@@ -94,10 +108,9 @@ export class VagaFormComponent implements OnInit {
   }
   submit(): void{
     if(this.vagaForm.valid){
-      console.log(this.vagaForm.value);
-     
+      this.onSubmit.emit(this.vagaForm.value);
     }
-    this.onSubmit.emit(this.vagaForm.value);
+    
   }
 
 }

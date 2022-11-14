@@ -18,12 +18,8 @@ const Vaga = mongoose.model(
             type: String,
             required:true,
         },
-        area:{
-            type: String,
-            required:true,
-        },
         curso: {
-            type: String,
+            type: [String],
             required:true,
         },
         turno: {
