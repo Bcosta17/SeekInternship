@@ -148,14 +148,27 @@ export default class AlunoController {
         const token = getToken(req);
         const aluno = await getUserByToken(token);
 
-        const { nome, email, telefone, curriculo, cpf, senha, confirmeSenha } = req.body;
-        console.log(req.body)
+        const { nome, email, telefone, cpf, senha, confirmeSenha } = req.body;
+        let curriculo= ''
+        
+        if(req.file){
+            if(req.file.mimetype !== 'application/pdf'){
+             res.status(422).json({ message: "Envie apenas arquivos pdf" });
+             return;
+            }else if(req.file.size > 5000000){
+             res.status(422).json({ message: "O tamanho do arquivo tem q ser menor q 5mb" });
+             return;
+            }
+            else{
+             curriculo = req.file.filename
+            }
+         }
         // validações
         if (!nome) {
             res.status(422).json({ message: 'O nome é obrigatório!' });
             return;
         }
-        aluno.nome = req.body().nome;
+        aluno.nome = nome;
 
         if (!email) {
             res.status(422).json({ message: 'O e-mail é obrigatório!' });
@@ -169,7 +182,7 @@ export default class AlunoController {
             res.status(422).json({ message: "O e-mail já foi usado!" });
             return;
         }
-        aluno.email = email;
+        aluno.email = aluno.email;
 
         if (!telefone) {
             res.status(422).json({ message: "O campo telefone é obrigatório!" });
@@ -187,30 +200,25 @@ export default class AlunoController {
             res.status(422).json({ message: "O campo CPF é obrigatório!" });
             return;
         }
-        aluno.cpf = cpf;
+        aluno.cpf = aluno.cpf;
 
-        if (!senha) {
-            res.status(422).json({ message: 'A senha é obrigatória!' });
-            return;
-        }
-
-        if (!confirmeSenha) {
-            res.status(422).json({ message: 'A confirmação de senha é obrigatória!' });
-            return;
-        }
         // checa se as senhas são iguais;
-        if (senha != confirmeSenha) {
-            res.status(422).json({ error: 'As senhas não conferem!' });
-            return;
-            // Muda a senha
-        } else if (senha == confirmeSenha && senha != null) {
-
-            const salt = await bcrypt.genSalt(12);
-            const reqSenha = req.body.senha;
-
-            const senhaHash = await bcrypt.hash(reqSenha, salt);
-
-            aluno.senha = senhaHash;
+        if( senha == ''){
+            aluno.senha = aluno.senha
+        }else{
+            if (senha != confirmeSenha) {
+                res.status(422).json({ error: 'As senhas não conferem!' });
+                return;
+                // Muda a senha
+            } else if (senha == confirmeSenha && senha != null) {
+    
+                const salt = await bcrypt.genSalt(12);
+                const reqSenha = req.body.senha;
+    
+                const senhaHash = await bcrypt.hash(reqSenha, salt);
+    
+                aluno.senha = senhaHash;
+            }
         }
 
         try {
@@ -228,7 +236,7 @@ export default class AlunoController {
             res.status(500).json({ message: error.message });
         }
 
-
+ 
     }
 
 }

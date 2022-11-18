@@ -1,41 +1,60 @@
 
-.detail{
-    text-align:left;
-
-    border-radius: 1rem;   
-    padding:3rem 4rem;
-
-    background-color: #FFF;
-    color: var(--paragraph);
-}
 h1{
     font-weight: 700;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 2rem;
 }
 
 h2{
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 2rem 0;
 }
 
 p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     
 }
 .alert{
     margin-top: 1rem;
 }
-.btn-group{
+.button-group{
     display: flex;
-    justify-content:center;
+    flex-direction: row;
+    justify-content: center;
 }
 button{
-    width: 30%;
+    width: 25%;
     margin: 2rem 1rem;
     font-size: 1.6rem;
 }
 button:nth-child(1){  
 background-color: var(--primary-color);    
 }
+
+@media (max-width: 550px) {
+
+    .card{
+        text-align:left;
+    
+        border-radius: 1rem;   
+        padding:1rem;
+    
+        background-color: #FFF;
+        color: var(--paragraph);
+    }
+    h1{
+        font-size: 2.5rem;
+    }
+    h2{
+        font-size: 1.8rem;
+    }
+    p{
+        font-size: 1.5rem;
+    }
+    button{
+        width: 50%;
+    }
+
+} 
+  

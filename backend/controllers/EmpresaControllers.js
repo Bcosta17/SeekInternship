@@ -152,7 +152,7 @@ export default class EmpresaController {
        
 
         const { nomeEmpresa, nomeRepresentante, email, telefone, cnpj, senha, confirmeSenha } = req.body;
-        console.log(req.body)
+        
         // validações
         if (!nomeEmpresa) {
             res.status(422).json({ message: 'O nome da empresa é obrigatório!' });

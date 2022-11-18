@@ -17,6 +17,7 @@
     justify-content: space-between;
     text-align: end;
    
+   
 }
 .foot{
     display: flex;
@@ -57,4 +58,43 @@ button{
     background-color: hsl(220, 70%, 20%);
     color: var( --brand-beige);
     transition: 1s;
+}
+
+@media (max-width: 1080px) {
+    .col-50{
+        margin: .3rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1{
+        font-size: 2.1rem;
+    }
+
+    p{
+        font-size: 1.5rem;
+    }
+
+    button{
+        width: 50%;
+        font-size: 1.2rem;
+    }
+} 
+
+@media (max-width:500px) {
+    .card{
+        width: 99vw;
+        padding: 1rem;
+    }
+    h1{
+        font-size: 1.7rem;
+    }
+    p{
+        font-size: 1.3rem;
+    }
+    button{
+        width: 70%;
+        font-size: 1.2rem;
+    }
+    
 }

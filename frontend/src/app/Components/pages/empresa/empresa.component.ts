@@ -93,7 +93,7 @@ export class EmpresaComponent implements OnInit {
         );
       });
       this.vagas=data;
-      console.log(this.vagas)
+      
     });
   }
 
@@ -112,7 +112,7 @@ export class EmpresaComponent implements OnInit {
 
   deletarVaga( ) {
     this.vagaService.deletarVaga(this.vagaSelecionada).subscribe(
-      success => this.atualizar()
+      ( ) => this.atualizar()
     );
   }
 

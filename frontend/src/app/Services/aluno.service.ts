@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, observable, Observable, tap, throwError } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -17,7 +17,6 @@ export class AlunoService {
   constructor(private http: HttpClient) {}
 
   createAluno(formData: FormData): Observable<FormData> {
-    console.log(formData)
     const url = this.apiUrl + '/registro';
     return this.http.post<FormData>(url, formData).pipe(
       catchError((err) => {

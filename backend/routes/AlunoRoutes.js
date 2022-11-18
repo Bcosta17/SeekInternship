@@ -10,7 +10,7 @@ const router = new Router();
 router.post('/registro', fileUpload.single("curriculo"), AlunoController.registro);
 router.get('/', AlunoController.getAll);
 router.get('/:id', AlunoController.getAlunoById);
-router.put('/:id', verificaToken, AlunoController.editAluno);
+router.put('/:id',fileUpload.single("curriculo"), verificaToken, AlunoController.editAluno);
 
 
 

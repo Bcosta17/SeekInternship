@@ -26,7 +26,7 @@ export class EditAlunoComponent implements OnInit {
     })
   }
 
-  async editHandler(alunoData: Aluno){
+  editHandler(alunoData: Aluno){
     console.log(alunoData)
     const id = this.aluno._id
     const formData = new FormData();
@@ -40,7 +40,12 @@ export class EditAlunoComponent implements OnInit {
     formData.append('senha',alunoData.senha);
     formData.append('confirmeSenha',alunoData.confirmeSenha);
    
-    await this.alunoService.editarAluno(id!, formData).subscribe();
+    this.alunoService.editarAluno(id!, formData).subscribe({
+      next(){},
+      error(err:any){
+        console.log(err);
+      },
+    });
 
     this.router.navigate(['/'])
   }

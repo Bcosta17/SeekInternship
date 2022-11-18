@@ -34,7 +34,10 @@ export class AlunoFormComponent implements OnInit {
     this.alunoService.verificaCpf('').subscribe();
     this.criarAlunoForm();
     this.dados.getCursos().subscribe( dados => this.cursos=dados);
-
+    if(this.alunoData){
+      this.alunoForm.get('cpf')!.disable();
+      this.alunoForm.get('email')!.disable();
+    }
    
   }
 
@@ -62,8 +65,8 @@ export class AlunoFormComponent implements OnInit {
           Validators.pattern('[0-9]*')
         ])
       ],
-      senha: [this.alunoData ? this.alunoData.senha : '', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(20)])],
-      confirmeSenha: ['', Validators.compose([Validators.required,Validacoes.SenhasCombinam('senha')])],
+      senha: ['',this.alunoData ? Validators.compose([Validators.minLength(6), Validators.maxLength(20)]) : Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(20)])],
+      confirmeSenha: ['',this.alunoData ? [Validacoes.SenhasCombinam('senha')] : Validators.compose([Validators.required,Validacoes.SenhasCombinam('senha')])],
 
     })
   }
@@ -118,7 +121,7 @@ export class AlunoFormComponent implements OnInit {
   submit(){
     if(this.alunoForm.valid){
       this.onSubmit.emit(this.alunoForm.value)
-      console.log(this.alunoForm.value);
+      
     }
   }
 

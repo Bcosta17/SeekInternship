@@ -26,7 +26,8 @@ export class EmpresaFormComponent implements OnInit {
     ) { }
    
   ngOnInit(): void {
-   
+    this.empresaService.verificaEmail('').subscribe();
+    this.empresaService.verificaCnpj('').subscribe();
     this.criarEmpresaForm();
     if(this.empresaData){
       this.empresaForm.get('cnpj')!.disable();
@@ -36,8 +37,7 @@ export class EmpresaFormComponent implements OnInit {
   
   
   criarEmpresaForm(){
-    this.empresaService.verificaEmail('').subscribe();
-    this.empresaService.verificaCnpj('').subscribe();
+   
     this.empresaForm = this.fb.group({
       id: [this.empresaData ? this.empresaData._id : ''],
       nomeEmpresa: [
@@ -68,7 +68,7 @@ export class EmpresaFormComponent implements OnInit {
         ])
       ],
       senha: ['',this.empresaData ? Validators.compose([Validators.minLength(6), Validators.maxLength(20)]) : Validators.compose([Validators.required,Validators.minLength(6), Validators.maxLength(20)])],
-      confirmeSenha: ['', this.empresaData ? [Validacoes.SenhasCombinam('senha')]: Validators.compose([Validators.required,Validacoes.SenhasCombinam('senha')])]
+      confirmeSenha: ['', this.empresaData ? [Validacoes.SenhasCombinam('senha')] : Validators.compose([Validators.required,Validacoes.SenhasCombinam('senha')])]
     });
   }
   

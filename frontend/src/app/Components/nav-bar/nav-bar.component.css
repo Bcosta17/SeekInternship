@@ -7,11 +7,12 @@
 
 #menu{
   padding: .9rem 2rem 1rem 5rem;
+
 }
 
 .navbar ul:nth-child(1) {
-  margin-left: 2rem;
-
+  margin-left: 3rem;
+  gap: 1rem;
 }
 
 .icon{
@@ -30,6 +31,9 @@
   cursor: pointer;
 }
 
-.menudrop button{
-  color: black; 
-}
+
+@media (min-width: 991px) {
+  .item-collapse{
+    display:none;
+  }
+ } 
