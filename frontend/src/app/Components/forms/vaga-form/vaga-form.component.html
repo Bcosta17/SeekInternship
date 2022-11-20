@@ -105,8 +105,8 @@
             <div class="col-lg-12">     
             </div>
             <div id="buttonHelp" class="form-text">Preencha todos os campos para liberar o botão!</div>
-            <div  class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button class="btn btn-lg btn-primary" [routerLink]="['/empresa']">Voltar</button>
+            <div  class="button-group">
+                <button class="btn btn-voltar" [routerLink]="['/empresa']">Voltar</button>
                 <button type="submit" class="btn"  [disabled]="!vagaForm.valid"> {{btnText}} </button>
                 
               </div>

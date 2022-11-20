@@ -20,7 +20,7 @@
         <li class="nav-item active">
           <a class="nav-link" routerLink="/">Home</a>
         </li>
-        <li class="nav-item active item-collapse">
+        <li *ngIf="islogado()" class="nav-item active item-collapse">
           <button ngbDropdownItem (click)="logout()">Sair</button>
         </li>
 
@@ -64,7 +64,7 @@
        <div ngbDropdown class="d-flex flex-column">
         <p id="dropdownBasic1" ngbDropdownToggle>Olá, {{decode!.nome.split(' ')[0]}}</p>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="menudrop">
-            <button ngbDropdownItem (click)="logout()">Sair</button>
+            <button ngbDropdownItem id="sair" (click)="logout()">Sair</button>
           </div>
        </div>
       </div>

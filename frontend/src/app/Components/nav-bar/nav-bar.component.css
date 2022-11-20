@@ -26,6 +26,9 @@
 .navbar{
   background-color: var(--primary-color);
 }
+#sair{
+  color: black;
+}
 
 #dropdownBasic1{
   cursor: pointer;
@@ -36,4 +39,4 @@
   .item-collapse{
     display:none;
   }
- } 
+} 

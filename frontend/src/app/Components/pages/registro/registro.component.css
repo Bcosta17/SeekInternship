@@ -1,7 +1,5 @@
 .card {
-  width: 60vw;
-  padding:3rem 3rem;
-  border-radius: 1rem;
+ 
   align-items: center;
   text-align: center;
   background: #fff;
@@ -26,4 +24,14 @@
 h1 {
   font-size: 3rem;
   margin-bottom: 4rem;
+}
+
+
+@media (max-width: 590px) {
+  .card{
+    margin-top: 100px;
+  }
+  .buttons{
+    width: 30rem;
+  }
 }

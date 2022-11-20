@@ -1,26 +1,30 @@
 
-.col-lg-12{
+.btn-novo{
     text-align: right;
     margin-bottom: 1rem;
 }
 
-.d-grid button{
-    width: 50%;
-}
-
 table{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 table .btn{
     font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .modal th{
     font-weight:inherit;
 }
 .modal-footer .btn{
     width: 20%;
     font-size: 1.2rem;    
+}
+
+.sendemail .modal-body textarea{
+  padding: 1rem;
 }
 
 .novagas{
@@ -47,3 +51,127 @@ label,h4{
 input,textarea{
     font-size: 1.5rem;
 }
+
+#buttonHelp{
+    font-size: 1.4rem;
+   margin-left: 1rem;
+}
+
+
+
+@media (max-width: 1270px) {
+    .card{
+        width: 90vw;
+    }
+} 
+
+@media (max-width: 880px) {
+    .novagas .btn{
+        width: 60%;  
+    }
+} 
+
+@media (max-width: 800px) {
+    .card{
+        width: 100vw;
+        
+    }
+    
+    .table-vagas{
+        width: 99vw;
+    }
+
+    .novagas .btn{
+        width: 60%;
+        
+    }
+} 
+
+@media (max-width: 480px) {
+    *{
+        margin: 0px;
+        padding: 0px;
+
+    }
+
+    .card{
+        padding-top: 1rem;
+        margin-top: 10rem;
+    }
+    .card-body{
+        padding: 0;
+        
+    }    
+
+    .btn-novo{
+        margin-right:.8rem;
+    }
+
+    .btn{
+        padding: .5rem;
+    }
+    
+    
+    table,.modal-content .modal-header{
+        margin: .2rem;
+        font-size: 1rem;
+    }
+
+    .button-group{
+        display: flex;
+        flex-direction: column;
+        gap: .6rem; 
+    }
+    table .btn{
+        font-size: 1rem;
+    }
+
+    .modeldelete, .sendemail{
+        padding: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .modeldelete .modal-body,.sendemail .modal-body, .modal-content .modal-header{
+        margin-bottom: 1rem;
+    }
+
+    .modal-content .modal-header{
+        padding: .5rem;
+    }
+
+    .modal-content .modal-body{
+        padding-bottom: 1rem;
+    }
+
+    .sendemail .modal-body label {
+        margin-top: 1rem;
+        margin-bottom: .8rem;
+    }
+    .sendemail .modal-body input {
+        padding: 1rem;
+    }
+
+    .modeldelete .modal-footer,.sendemail .modal-footer,.modal-content .modal-footer {
+     padding: 1rem;
+     gap: 1rem;
+    }
+    .modal-content .modal-footer .btn-send {
+       width: 30%;
+    }
+
+    .sendemail .modal-footer .btn{
+        padding: .8rem;
+        font-size: 1.4rem;
+    }
+    
+
+    .novagas h1{
+        font-size: 2rem;
+    }
+    
+    .novagas .btn{
+        width: 90%;
+        font-size: 1.5rem;
+    }
+
+} 

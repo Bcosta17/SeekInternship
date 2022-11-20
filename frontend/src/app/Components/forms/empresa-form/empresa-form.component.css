@@ -40,13 +40,28 @@ label {
   margin-bottom: 4px;
 }
 
-.d-grid .btn{
-  width: 25%;
+.btn{
   background-color: var(--primary-color);
   font-size: 1.8rem;
   margin: 2rem 1rem;
- 
+  width: 25%;
 }
-.d-grid .btn:nth-child(1){  
+.btn-voltar{  
     background-color:#0d6efd;
 }
+
+@media (max-width: 600px) {
+  .card{
+    width: 95vw;
+  }
+  .btn{
+    width: 50%;
+  }
+  #senhaHelp p{
+    font-size: 1.2rem;
+    text-align: left;
+  }
+  #buttonHelp{
+    font-size: 1.2rem;
+  }
+} 

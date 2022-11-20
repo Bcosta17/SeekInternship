@@ -4,7 +4,7 @@ import VagaControllers from "../controllers/VagaControllers.js";
 
 //middleware
 import verificatoken from "../helpers/verifica-token.js";
-
+  
 
 const router = new Router();
 
@@ -17,6 +17,6 @@ router.get('/:id', VagaControllers.getVagaById);
 router.delete('/:id', verificatoken, VagaControllers.deleteVagaById);
 router.put('/:id', verificatoken, VagaControllers.updateVaga);
 router.post('/candidatar/:id', verificatoken, VagaControllers.candidatarVaga);
-
-
+router.put('/removerCandidatura/:id',verificatoken,VagaControllers.removerCandidatar);
+ 
 export default router;

@@ -104,7 +104,7 @@ export default class VagaController {
         const vagas = await Vaga.find({ 'aluno._id': aluno._id })
             .sort('-createdAt').select('-senha')
             .populate({ path: 'empresa', select: '-senha' });
-
+        
         res.status(200).json({ data: vagas });
 
     }
@@ -285,6 +285,42 @@ export default class VagaController {
         await vaga.save();
 
         res.status(200).json({ message: 'Voce se candidatou com sucesso, agora aguarde o retorno da empresa!' });
+        return;
+
+    }
+
+    static async removerCandidatar(req, res) {
+        const id = req.params.id;
+
+        if (!ObjectId.isValidObjectId(id)) {
+            res.status(422).json({ message: 'Id é invalido' });
+            return;
+        }
+
+        const vaga = await Vaga.findOne({ _id: id });
+        const alunos = vaga.alunos;
+
+        if (!vaga) {
+            res.status(404).json({ message: 'Vaga não encontrada' });
+            return;
+        }
+
+        const token = getToken(req);
+        const user = await getUserByToken(token);
+
+        if (user.role !== 0) {
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+
+    
+        alunos.remove(user._id);
+        await Vaga.findOneAndUpdate(
+            { _id: vaga._id },
+            { $set: vaga },
+            { new: true },
+        );
+       
+        res.status(200).json({ message: 'Vaga cancelada com sucesso!' });
         return;
 
     }

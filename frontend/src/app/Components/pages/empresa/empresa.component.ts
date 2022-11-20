@@ -104,10 +104,8 @@ export class EmpresaComponent implements OnInit {
     this.nomeCandidatos = this.vagas[id].alunos.map(aluno => aluno.nome);
     
     for (let i in this.emailCandidatos) {
-      this.emailNomeCandidatos.push(this.nomeCandidatos[i]+'-'+this.emailCandidatos[i])
+      this.emailNomeCandidatos.push(this.nomeCandidatos[i]+' - '+this.emailCandidatos[i])
     }
-
-    
   }
 
   deletarVaga( ) {
@@ -129,6 +127,11 @@ export class EmpresaComponent implements OnInit {
 			
 	}
 
+  close(){
+    this.emailNomeCandidatos = [];
+    this.emailForm.reset();
+  }
+
   openDelete(vaga_id:string) {
     this.vagaSelecionada = vaga_id;
 		this.modalService.open(this.modeldelete);
@@ -141,7 +144,8 @@ export class EmpresaComponent implements OnInit {
       console.log(err); 
     }
     });
-    
+    this.emailNomeCandidatos = [];
+    this.emailForm.reset();
   }
  
    

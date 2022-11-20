@@ -1,19 +1,19 @@
 <main>
   <div class="card">
       <div class="card-body" *ngIf="vagas.length > 0; else noVagas ">
-        <div class="col-lg-12">
+        <div class="btn-novo">
           <button routerLink="/registro_vaga" alt="novo" class="btn btn-success btn-lg float-rigth">
             <fa-icon [icon]="faAdd"></fa-icon> Novo
           </button>
         </div>
-        <table class="table table-bordered">
+        <table class="table table-vagas table-bordered">
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nome</th>
               <th scope="col">Data</th>
               <th scope="col">Candidatos</th>
-              <th scope="col">Ações</th>
+              <th scope="col" class="acoes"> Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -21,7 +21,7 @@
               <th scope="row">{{ i + 1 }}</th>
               <td scope="row">{{ vaga.nome }}</td>
               <td scope="row">{{ vaga.createdAt}}</td>
-              <td scope="row">
+              <td scope="row" class="acoes">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="candidatos(i)">
                  <fa-icon [icon]="faEye"></fa-icon> Ver Candidatos ({{vaga.alunos.length }})
                 </button>
@@ -39,7 +39,7 @@
                           <thead>
                             <tr>                     
                               <th scope="col">#</th>
-                              <th scope="col">Nome</th>
+                              <th scope="col" class="nome">Nome</th>
                               <th scope="col">Email</th>
                               <th scope="col">Telefone</th>
                               <th scope="col">Curriculo</th>
@@ -49,7 +49,7 @@
                             
                             <tr *ngFor="let aluno of alunos; index as i">  
                               <th scope="row">{{ i + 1 }}</th>
-                              <th scope="row">{{ aluno.nome }}</th>
+                              <th scope="row" >{{ aluno.nome }}</th>
                               <th scope="row">{{ aluno.email }}</th>
                               <th scope="row">{{ aluno.telefone | mask:'(00) 00000-0000' }}</th>
                               <th scope="row">Curriculo</th>
@@ -59,7 +59,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button class="btn btn-primary"  data-bs-dismiss="modal" (click)="open(content)">Enviar email</button>
+                        <button class="btn btn-send btn-primary"  data-bs-dismiss="modal" (click)="open(content)">Enviar email</button>
                         
                       </div>
                     </div>
@@ -67,7 +67,7 @@
                 </div>
               </td>
               <td>
-                <div class="d-grid gap-4 d-md-flex ">
+                <div class="button-group">
                   <button class="btn btn-xs btn-info" routerLink="editar/vaga/{{vaga._id}}">
                     <fa-icon [icon]="faEdit"></fa-icon> Editar
                   </button>
@@ -80,19 +80,20 @@
           </tbody>
         </table>
       </div>
-      <ng-template #noVagas>
-        <div class="novagas">
-          <h1>Não há vagas cadastradas!</h1>
-          <a routerLink="/registro_vaga" alt="novo" class="btn btn-success btn-lg">
-             Cadastrar nova vaga
-          </a>
-        </div>
-      </ng-template>
     </div>
 </main>
 
+<ng-template #noVagas>
+  <div class="card-body novagas">
+    <h1>Não há vagas cadastradas!</h1>
+    <a routerLink="/registro_vaga" alt="novo" class="btn btn-success btn-lg">
+       Cadastrar nova vaga
+    </a>
+  </div>
+</ng-template>
+
 <ng-template #modeldelete let-c="close" let-d="dismiss">
-  <div class="modeldelete">
+  <div class="modeldelete ">
     <div class="modal-body">
       <p>Tem certeza que deseja remover essa vaga?</p>
     </div>
@@ -104,12 +105,13 @@
 </ng-template>
 
 <ng-template class="modal-dialog modal-lg" #content let-c="close"  let-d="dismiss">
+ <div class="sendemail">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Marque uma entrevista!</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d(close())"></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="emailForm" (ngSubmit)="submit()">
+    <form [formGroup]="emailForm" (ngSubmit)="submit()" autocomplete="off">
       <div class="form-group">
         <label for="destino">Destino:</label>
         <ng-multiselect-dropdown
@@ -121,19 +123,30 @@
           (onSelect)="onItemSelect($event)"
         >
         </ng-multiselect-dropdown>
+        <div *ngIf="!destino.pristine && destino.errors && destino.touched" class="validation-error" role="alert">
+          <p *ngIf="destino.errors?.['required']">Escolha pelo menos um candidato!</p>
+        </div>
       </div>
       
       <div class="form-group">
         <label for="assunto" class="col-form-label">Assunto:</label>
         <input type="text" class="form-control" id="assunto" formControlName="assunto" placeholder="Digite o assunto do email">
+        <div *ngIf="!assunto.pristine && assunto.errors && assunto.touched" class="validation-error" role="alert">
+          <p *ngIf="assunto.errors?.['required']">O assunto é obrigatória!</p>
+        </div>
       </div>
       <div class="form-group">
         <label for="message" class="col-form-label">Mensagem:</label>
         <textarea class="form-control" id="message" formControlName="mensagem" rows="5" placeholder="Digite a mensagem do email"></textarea>
+        <div *ngIf="!mensagem.pristine && mensagem.errors && assunto.touched" class="validation-error" role="alert">
+          <p *ngIf="mensagem.errors?.['required']">A mensagem é obrigatória!</p>
+        </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary" (click)="d(submit())">Enviar</button>
+    <div id="buttonHelp" class="form-text">Preencha todos os campos para liberar o botão!</div>
+    <button type="submit" class="btn btn-primary" (click)="d(submit())" [disabled]="!emailForm.valid">Enviar</button>
   </div>
+ </div>
 </ng-template>

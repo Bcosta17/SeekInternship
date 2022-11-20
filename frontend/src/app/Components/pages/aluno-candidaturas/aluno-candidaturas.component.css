@@ -1,5 +1,10 @@
 
+.card-body{
+width: 100%;
+}
+
 table{
+   
     font-size: 1.4rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -16,3 +21,32 @@ table{
     font-size: 1.6rem;
 
 }
+
+@media (max-width: 1080px) {
+    .card{
+        width: 90vw;
+    }
+} 
+
+@media (max-width: 700px) {
+
+    .novagas .btn{
+        width: 60%;
+        
+    }
+} 
+
+@media (max-width: 500px) {
+    .card{
+        width: 100vw;
+    }
+
+    .novagas h1{
+        font-size: 1.7rem;
+    }
+    
+    .novagas .btn{
+        width: 90%;
+        font-size: 1.2rem;
+    }
+} 

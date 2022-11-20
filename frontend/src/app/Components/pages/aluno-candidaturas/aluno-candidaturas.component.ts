@@ -24,7 +24,6 @@ export class AlunoCandidaturasComponent implements OnInit {
   ngOnInit(): void {
     this.vagaService.getVagasAluno().subscribe( (vagas)=>{
       this.vagas = vagas.data;
-      console.log(this.vagas[1].empresa);
     })
   }
   

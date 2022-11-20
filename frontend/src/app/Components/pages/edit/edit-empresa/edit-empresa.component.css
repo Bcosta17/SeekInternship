@@ -3,3 +3,9 @@ h1{
     margin-bottom: 1rem;
     font-size: 2.7rem;
 }
+
+@media (max-width: 1270px) {
+    .card{
+        width: 90vw;
+    }
+} 

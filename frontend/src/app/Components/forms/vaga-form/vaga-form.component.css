@@ -84,13 +84,28 @@ input[type="number"] {
   text-align: center;
 }
 
-.d-grid .btn{
+.btn{
   width: 25%;
   background-color: var(--primary-color);
   font-size: 1.8rem;
   margin: 2rem 1rem;
- 
 }
-.d-grid .btn:nth-child(1){  
-    background-color:#0d6efd;
+
+.btn-voltar{  
+  background-color:#0d6efd;
 }
+
+
+@media (max-width: 1270px) {
+  .card{
+      width: 90vw;
+  }
+
+  #senhaHelp p{
+    font-size: 1.2rem;
+    text-align: left;
+  }
+  #buttonHelp{
+    font-size: 1.2rem;
+  }
+} 
