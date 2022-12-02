@@ -2,14 +2,16 @@
 .card{
   width: 80vw;
   text-align: center;
+  
 }
 a,p {
-  font-size: 1.4rem;
+  font-size: 2rem;
 }
 
 input {
   padding: 1rem;
-  font-size: 1.4rem;
+  font-size: 2rem;
+  color: var(--primary-color);
 }
 
 label, input {
@@ -20,7 +22,7 @@ label, input {
 label {
   margin-top: 2rem;
   margin-bottom:1rem;
-  font-size: 1.3rem;
+  font-size: 2rem;
   
 }
 
@@ -35,20 +37,38 @@ label {
   width: 40%;
 }
 
-#buttonHelp{
-  font-size: 1.5rem;
-  margin-bottom: 4px;
-}
 
 .btn{
   background-color: var(--primary-color);
-  font-size: 1.8rem;
-  margin: 2rem 1rem;
+  font-size: 2.5rem;
+  margin: 1rem;
   width: 25%;
 }
 .btn-voltar{  
     background-color:#0d6efd;
 }
+
+
+@media (max-width: 900px) {
+
+  a,p {
+    font-size: 1.5rem;
+  }
+  
+  input {
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-size: 1.5rem;
+    
+  }
+
+  .btn{
+    font-size: 2rem;
+  }
+
+} 
 
 @media (max-width: 600px) {
   .card{
@@ -57,11 +77,6 @@ label {
   .btn{
     width: 50%;
   }
-  #senhaHelp p{
-    font-size: 1.2rem;
-    text-align: left;
-  }
-  #buttonHelp{
-    font-size: 1.2rem;
-  }
+
+ 
 } 

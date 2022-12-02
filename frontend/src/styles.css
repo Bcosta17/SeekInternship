@@ -10,6 +10,10 @@ body {
   background: var(--background);
 }
 
+h1{
+  color: var(--primary-color);
+}
+
 main {
   display: flex;
   justify-content: center;
@@ -28,8 +32,14 @@ main {
  
   background: #fff;
   color: var(--paragraph);
+  
+  border-color: var(--primary-color);
+  box-shadow: 0.2rem 0.4rem 0.4rem var(--primary-color);
 }
 
+.form-control, .table,.form-select{
+  border: 0.1rem solid var(--primary-color);
+}
 
 
 /* input:invalid {

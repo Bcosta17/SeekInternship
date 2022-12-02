@@ -6,6 +6,16 @@
   color: var(--paragraph);
 }
 
+a{
+  color: var(--primary-color);
+  font-size: 4rem;
+  text-align: left;
+  text-decoration: none;
+  padding-bottom: 2rem
+}
+fa-icon{
+  padding: 2rem;
+}
 .buttons {
   display: flex;
   flex-direction: column;
@@ -17,12 +27,16 @@
   border-radius: 1rem;
   font-size: 1.5rem;
 }
+
+.btn{
+  background-color: var(--primary-color);
+}
 .btn:first-child {
   margin-bottom: 2rem;
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 4rem;
 }
 

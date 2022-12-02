@@ -3,16 +3,32 @@
     text-align: right;
     margin-bottom: 1rem;
 }
+.btn-novo .btn{
+    font-size: 1.8rem;
+}
 
+.card{
+    width: 90vw;
+}
 table{
-    font-size: 1.2rem;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
 }
 table .btn{
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal-content1{
+    min-width: 75%;
+    
+    
+}
+
+.modal-content1 .table,h5{
+    font-size: 1.8rem;
+
 }
 
 .modal th{
@@ -20,7 +36,7 @@ table .btn{
 }
 .modal-footer .btn{
     width: 20%;
-    font-size: 1.2rem;    
+    font-size: 1.5rem;    
 }
 
 .sendemail .modal-body textarea{
@@ -57,17 +73,43 @@ input,textarea{
    margin-left: 1rem;
 }
 
+.sendemail .modal-body,.sendemail input,.sendemail label, .sendemail textarea {
+    font-size: 1.8rem;
+}
 
 
-@media (max-width: 1270px) {
-    .card{
-        width: 90vw;
-    }
+
+
+
+@media (max-width: 1100px) {
+   .btn-novo .btn, .table .btn{
+    font-size: 1.5rem;
+   }
+  .table{
+    font-size: 1.7rem;
+  }
+  
+.modal-content1 .table,h5{
+    font-size: 1.6rem;
+
+}
+
 } 
 
 @media (max-width: 880px) {
     .novagas .btn{
         width: 60%;  
+    }
+
+    .modal-content1{
+        min-width: 90%;
+        
+        
+    }
+    
+    .modal-content1 .table,h5{
+        font-size: 1.4rem;
+    
     }
 } 
 
@@ -76,18 +118,20 @@ input,textarea{
         width: 100vw;
         
     }
-    
-    .table-vagas{
-        width: 99vw;
+    .btn-novo .btn, .table .btn{
+        font-size: 1.3rem;
+       }
+    .table{
+        font-size: 1.3rem;
     }
 
-    .novagas .btn{
-        width: 60%;
-        
+    .sendemail .modal-body,.sendemail input,.sendemail label, .sendemail textarea {
+        font-size: 1.5rem;
     }
+    
 } 
 
-@media (max-width: 480px) {
+@media (max-width: 680px) {
     *{
         margin: 0px;
         padding: 0px;
@@ -112,9 +156,9 @@ input,textarea{
     }
     
     
-    table,.modal-content .modal-header{
+    .table,.modal-content .modal-header{
         margin: .2rem;
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
 
     .button-group{
@@ -122,8 +166,8 @@ input,textarea{
         flex-direction: column;
         gap: .6rem; 
     }
-    table .btn{
-        font-size: 1rem;
+    .table .btn{
+        font-size: 1.4rem;
     }
 
     .modeldelete, .sendemail{
@@ -173,5 +217,25 @@ input,textarea{
         width: 90%;
         font-size: 1.5rem;
     }
+
+} 
+
+@media (max-width: 480px) {
+    .btn-novo .btn, .table .btn{
+        font-size: 1.2rem;
+       }
+    .table{
+        font-size: 1.2rem;
+    }
+    .col-hidden{
+        display: none;
+    }
+    
+        
+    .modal-content1 .table,h5{
+        font-size: 1.2rem;
+    
+    }
+ 
 
 } 

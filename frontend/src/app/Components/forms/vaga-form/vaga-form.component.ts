@@ -29,7 +29,7 @@ export class VagaFormComponent implements OnInit {
   turnos = [
     "Matutino",
     "Vespertino",
-    "noturno",
+    "Noturno",
     "A combinar",
   ];
 
@@ -61,16 +61,15 @@ export class VagaFormComponent implements OnInit {
   }
 
   criarVagaForm(){
-    console.log(this.vagaData)
     this.vagaForm = this.fb.group({
       id:[this.vagaData ? this.vagaData._id :''],
-      nome:[this.vagaData ? this.vagaData.nome :'',Validators.compose([Validators.required,Validators.minLength(3)])],
+      nome:[this.vagaData ? this.vagaData.nome :'',Validators.compose([Validators.required,Validators.minLength(15), Validators.maxLength(65)])],
       descricao:[this.vagaData ? this.vagaData.descricao :'',Validators.compose([Validators.required,Validators.minLength(20)])],
       requisitos:[this.vagaData ? this.vagaData.requisitos :'',Validators.compose([Validators.required,Validators.minLength(10)])],
       curso:[this.vagaData ? this.vagaData.curso :'',Validators.compose([Validators.required])],
       remunerado:[this.vagaData ? this.vagaData.remunerado :'',Validators.compose([Validators.required])],
       turno:[this.vagaData ? this.vagaData.turno :'',Validators.compose([Validators.required])],
-      observacoes:['',Validators.compose([Validators.minLength(5)])],
+      observacoes:[this.vagaData ? this.vagaData!.observacoes :'',Validators.compose([Validators.minLength(5)])],
     })
   }
 

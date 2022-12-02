@@ -7,10 +7,16 @@
 }
 
 input,
-textarea,
-select {
+textarea{
   padding: 1rem;
   font-size: 1.4rem;
+}
+
+select{
+  padding: .65rem;
+  font-size: 1.4rem;
+  border: 1px solid #adadad;
+  color: #484F56;
 }
 
 option {

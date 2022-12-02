@@ -102,27 +102,9 @@ export default class EmpresaController {
     static async getAll(req, res) {
         const empresas = await Empresa.find().sort('-createdAt').select('-senha');// (-) pegar ordem crescente
 
-        res.status(200).json({ empresas: empresas });
+        res.status(200).json({ data: empresas });
     }
     
-    static async checaEmpresa(req, res) {
-        let empresaAtual;
-
-        if (req.headers.authorization) {
-            const token = getToken(req);
-            const decoded = jwt.verify(token, 'qafsafvsdsfwe');
-
-            empresaAtual = await Empresa.findById(decoded.id);
-
-            empresaAtual.senha = undefined;
-
-        } else {
-            empresaAtual = null;
-        }
-
-        res.status(200).send(empresaAtual);
-    }
-
     static async getEmpresaById(req, res) {
         const id = req.params.id
 
@@ -145,13 +127,14 @@ export default class EmpresaController {
             res.status(422).json({ "message": "Empresa não encontrada!" });
             return;
         }
+        console.log(req.body);
 
         // 
         const token = getToken(req);
         const empresa = await getUserByToken(token);
        
 
-        const { nomeEmpresa, nomeRepresentante, email, telefone, cnpj, senha, confirmeSenha } = req.body;
+        const { nomeEmpresa, nomeRepresentante,  telefone, senha, confirmeSenha } = req.body;
         
         // validações
         if (!nomeEmpresa) {
@@ -164,40 +147,20 @@ export default class EmpresaController {
             res.status(422).json({ message: 'O nome é obrigatório!' });
             return;
         }
-        empresa.nomeRepresentante = nomeRepresentante;
 
-        if (!email) {
-            res.status(422).json({ message: 'O e-mail é obrigatório!' });
-            return;
-        }
+        empresa.nomeEmpresa = nomeRepresentante
+      
+        empresa.email = empresa.email
+        empresa.cnpj = empresa.cnpj
 
-        // checa se email já foi ultilizado.
-        const emailExiste = await Empresa.findOne({ email: email });
-
-        if (empresa.email !== email && emailExiste) {
-            res.status(422).json({ message: "O e-mail já foi usado!" });
-            return;
-        }
-        empresa.email = email;
-
+      
         if (!telefone) {
             res.status(422).json({ message: "O campo telefone é obrigatório!" });
             return;
         }
         empresa.telefone = telefone;
 
-
-
-        if (!cnpj) {
-            res.status(422).json({ message: "O campo CNPJ é obrigatório!" });
-            return;
-        }
-
-        if (!validaCnpj(cnpj)) {
-            res.status(422).json({ message: "O CNPJ não é valido!" });
-            return;
-        }
-        empresa.cnpj = cnpj;
+       
 
         // checa se as senhas são iguais;
        if(senha == '' ){
@@ -232,6 +195,23 @@ export default class EmpresaController {
             res.status(500).json({ message: error.message });
         }
 
+
+    }
+
+    static async getVagasPorEmpresa(req, res) {
+
+        // 
+        const token = getToken(req);
+        const empresa = await getUserByToken(token);
+
+        if (empresa.role !== 1) {
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+        const vagas = await Vaga.find({ 'empresa': empresa._id })
+            .sort('-createdAt').select('-senha')
+            .populate({ path: 'alunos', select: '-senha' }); 
+
+        res.status(200).json({ data: vagas }) 
 
     }
 
@@ -271,6 +251,9 @@ export default class EmpresaController {
         }
 
     }
+
+    
+
 
 
 

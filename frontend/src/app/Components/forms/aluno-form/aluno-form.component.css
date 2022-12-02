@@ -1,14 +1,17 @@
 .card{
   width: 80vw;
   text-align: center;
+  
 }
 a,p {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
-input,textarea {
+
+input,textarea,select {
   padding: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
+  
 }
 
 
@@ -20,7 +23,7 @@ label, input {
 label {
   margin-top: 2rem;
   margin-bottom:1rem;
-  font-size: 1.6rem;
+  font-size: 2rem;
   
 }
 
@@ -29,35 +32,75 @@ label {
 }
 
 
-#buttonHelp{
-  font-size: 1.5rem;
-  margin-bottom: 4px;
-}
+
 .btn{
   width: 25%;
   background-color: var(--primary-color);
-  font-size: 1.8rem;
-  margin: 2rem 1rem;
+  font-size: 2.4rem;
+  margin: 1rem;
  
 }
 .btn-voltar{  
   background-color:#0d6efd;
 }
 
-@media (max-width: 600px) {
+
+@media (max-width: 950px) {
+
+  a,p {
+    font-size: 1.5rem;
+  }
+  
+  input,select,textarea {
+    font-size: 1.5rem;
+  }
+
+  label {
+    font-size: 1.5rem;
+    
+  }
+
+  .btn{
+    font-size: 2rem;
+  }
+
+} 
+@media (max-width: 700px) {
 
   .card{
     width: 95vw;
   }
-  .btn{
-    width: 60%;
+
+  a,p {
+    font-size: 1.5rem;
+  }
+  
+  
+  input,textarea,select {
+    padding: 1rem;
+    font-size: 1.5rem;
+    
   }
 
-  #senhaHelp p{
-    font-size: 1.2rem;
-    text-align: left;
+  label{
+    font-size: 1.5rem;
   }
-  #buttonHelp{
-    font-size: 1.2rem;
+
+  .btn{
+    width: 60%;
+    font-size: 2rem;
   }
+
+ 
+} 
+
+@media (max-width: 700px) {
+
+  a,p {
+    font-size: 1.3rem;
+  }
+  
+
+
+ 
 } 

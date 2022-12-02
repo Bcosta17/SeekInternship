@@ -1,5 +1,4 @@
 import mongoose from '../db/conn.js';
-import fileUpload from '../helpers/curriculo-upload.js';
 
 const { Schema } = mongoose;
 
@@ -22,6 +21,14 @@ const Aluno = mongoose.model(
             type: String,
             required:true,
         },
+        periodo:{
+            type: Number,
+            required:true,
+        },
+        turno:{
+            type: String,
+            required:true,
+        },
         telefone: {
             type: Number,
             required: true,
@@ -29,10 +36,6 @@ const Aluno = mongoose.model(
         cpf:{
             type: String,
             required: true,
-        },
-        curriculo:{
-            type:String,
-            required: true
         },
         role:{
             type: Number,

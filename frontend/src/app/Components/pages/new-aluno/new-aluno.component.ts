@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Aluno } from 'src/app/Interfaces/Aluno';
 import { AlunoService } from 'src/app/Services/aluno.service';
 
@@ -10,7 +11,7 @@ import { AlunoService } from 'src/app/Services/aluno.service';
 })
 export class NewAlunoComponent implements OnInit {
   btnText = 'Cadastrar';
-
+  faUser = faUser;
   constructor(
     private alunoService: AlunoService,
     private router: Router
@@ -20,18 +21,8 @@ export class NewAlunoComponent implements OnInit {
   }
 
   createAluno(aluno: Aluno){
-    const formData = new FormData();
-
-    formData.append('nome',aluno.nome);
-    formData.append('email',aluno.email);
-    formData.append('cpf',aluno.cpf);
-    formData.append('telefone',aluno.telefone);
-    formData.append('curriculo',aluno.curriculo);
-    formData.append('curso',aluno.curso);
-    formData.append('senha',aluno.senha);
-    formData.append('confirmeSenha',aluno.confirmeSenha);
-
-    this.alunoService.createAluno(formData).subscribe({
+    
+    this.alunoService.createAluno(aluno).subscribe({
       next(){},
       error(err:any){
         console.log(err);

@@ -17,20 +17,20 @@ label, input {
 label {
   margin-top: 2rem;
   margin-bottom:1rem;
-  font-size: 1.3rem;
+  font-size: 2rem;
   
 }
 
 h1{
-  font-size: 2rem;
+  font-size: 3rem;
 }
-a,p {
-  font-size: 1.4rem;
+a,p, .form-text p{
+  font-size: 2rem;
 }
 
 input {
   padding: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 .forgot{
   display: flex;
@@ -70,7 +70,27 @@ input {
  .card{
   width: 90vw;
  }
+ label,a,p, .form-text p{
+  font-size: 1.6rem;
+ }
  .card-body{
   width: 100%;
+ }
+} 
+
+@media (max-width: 400px) {
+ .card{
+  width: 98vw;
+ }
+ label,a,p, .form-text p{
+  font-size: 1.4rem;
+ }
+
+ input{
+  font-size: 1.4rem;
+ }
+
+ .btn{
+  font-size: 2rem;
  }
 } 

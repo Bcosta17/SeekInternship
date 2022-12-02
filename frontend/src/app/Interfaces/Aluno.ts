@@ -4,8 +4,9 @@ export interface Aluno{
     email: string;
     telefone: string;
     cpf: string;
-    curriculo: string;
     curso:string;
+    periodo:string;
+    turno:string
     senha: string;
     confirmeSenha: string;
     createdAt?: string;

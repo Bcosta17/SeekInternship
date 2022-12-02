@@ -80,7 +80,7 @@ export class EmpresaService {
   verificaEmail(email: string) {
     return this.http.get(this.apiUrl)
     .pipe(
-      map((dados: any) => dados.empresas),
+      map((dados: any) => dados.data),
       // tap(console.log),
       map((dados: {email: string}[]) => dados.filter(d => d.email === email)),
       // tap(console.log),
@@ -92,7 +92,7 @@ export class EmpresaService {
   verificaCnpj(cnpj: string) {
     return this.http.get(this.apiUrl)
     .pipe(
-      map((dados: any) => dados.empresas),
+      map((dados: any) => dados.data),
       //  tap(console.log),
       map((dados: {cnpj: string}[]) => dados.filter(d => d.cnpj === cnpj)),
       //  tap(console.log),

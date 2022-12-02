@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Vaga } from 'src/app/Interfaces/Vagas';
 import { LoginService } from 'src/app/Services/login.service';
 import { VagasService } from 'src/app/Services/vagas.service';
@@ -19,6 +19,7 @@ export class DetailsComponent implements OnInit {
     private vagaService: VagasService,
     private route: ActivatedRoute,
     private loginService: LoginService,
+    private router: Router
    
   ) { }
   
@@ -29,7 +30,13 @@ export class DetailsComponent implements OnInit {
     });
     this.decode = this.loginService.decode();
   }
-
+  vaiPara(){
+    if(this.decode.role == 1){
+      this.router.navigate(['/empresa']);
+    }else{
+      this.router.navigate(['/'])
+    }
+  }
   candidatar(id:string){
     this.vagaService.cadidatarVaga(id).subscribe({
       next: (res)=> res,

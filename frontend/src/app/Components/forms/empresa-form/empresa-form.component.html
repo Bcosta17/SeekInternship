@@ -61,7 +61,7 @@
               <label for="senha">Senha</label>
               <input type="password" class="form-control" placeholder="Digite sua senha" formControlName="senha">
               <div id="senhaHelp" class="form-text d-flex" *ngIf="empresaData"><p>Só preencha o campo se quer alterar a senha!</p></div>
-              <div id="senhaHelp" class="form-text d-flex " *ngIf="empresaData"><p>A senha deve ter de 6-20 caracters</p></div>
+              <div id="senhaHelp" class="form-text d-flex "><p>A senha deve ter de 6-20 caracters</p></div>
               <div *ngIf="!senha.pristine && senha.errors && senha.touched" class="validation-error" role="alert">
                 <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
                 <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
@@ -78,7 +78,7 @@
               </div>
             </div>
           </div>
-          <div id="buttonHelp" class="form-text">Preencha todos os campos para liberar o botão!</div>
+          <div id="buttonHelp" class="form-text"><p>Preencha todos os campos para liberar o botão!</p></div>
           <div  class="button-group">
             <button *ngIf="empresaData" class="btn btn-voltar" [routerLink]="['/empresa']">Voltar</button>
             <button   type="submit" class="btn btn-lg" [disabled]="!empresaForm.valid"> {{btnText}} </button>

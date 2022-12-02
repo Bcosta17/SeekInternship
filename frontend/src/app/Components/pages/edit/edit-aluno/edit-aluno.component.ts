@@ -29,18 +29,9 @@ export class EditAlunoComponent implements OnInit {
   editHandler(alunoData: Aluno){
     console.log(alunoData)
     const id = this.aluno._id
-    const formData = new FormData();
-
-    formData.append('nome',alunoData.nome);
-    formData.append('email',alunoData.email);
-    formData.append('cpf',alunoData.cpf);
-    formData.append('telefone',alunoData.telefone);
-    formData.append('curriculo',alunoData.curriculo);
-    formData.append('curso',alunoData.curso);
-    formData.append('senha',alunoData.senha);
-    formData.append('confirmeSenha',alunoData.confirmeSenha);
+    
    
-    this.alunoService.editarAluno(id!, formData).subscribe({
+    this.alunoService.editarAluno(id!, alunoData).subscribe({
       next(){},
       error(err:any){
         console.log(err);

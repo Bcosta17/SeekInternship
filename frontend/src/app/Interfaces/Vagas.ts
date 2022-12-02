@@ -6,7 +6,7 @@ export interface Vaga{
     nome: string;
     descricao: string;
     requisitos: string;
-    curso: string;
+    curso: [string];
     ativa: boolean;
     turno: string;
     alunos: [Aluno];

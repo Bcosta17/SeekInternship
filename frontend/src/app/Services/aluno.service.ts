@@ -16,9 +16,9 @@ export class AlunoService {
 
   constructor(private http: HttpClient) {}
 
-  createAluno(formData: FormData): Observable<FormData> {
+  createAluno(aluno: Aluno): Observable<Aluno> {
     const url = this.apiUrl + '/registro';
-    return this.http.post<FormData>(url, formData).pipe(
+    return this.http.post<Aluno>(url, aluno).pipe(
       catchError((err) => {
         if (err.error.message) return throwError(() => err.error.message);
 
@@ -45,9 +45,9 @@ export class AlunoService {
     );
   }
 
-  editarAluno(id:string, formData: FormData): Observable<FormData>{
+  editarAluno(id:string,aluno:Aluno): Observable<Aluno>{
     const url = `${this.apiUrl}/${id}`;
-    return this.http.put<FormData>(url, formData).pipe(
+    return this.http.put<Aluno>(url, aluno).pipe(
       catchError((err) => {
         if (err.error.message) return throwError(() => err.error.message);
 
@@ -60,8 +60,8 @@ export class AlunoService {
   }
 
   verificaEmail(email: string) {
-    return this.http.get(this.apiUrl).pipe(
-      map((dados: any) => dados.alunos),
+    return this.http.get<Response<Aluno[]>>(this.apiUrl).pipe(
+      map((dados: any) => dados.data),
       // tap(console.log),
       map((dados: { email: string }[]) =>
         dados.filter((d) => d.email === email)
@@ -73,8 +73,8 @@ export class AlunoService {
   }
 
   verificaCpf(cpf: string) {
-    return this.http.get(this.apiUrl).pipe(
-      map((dados: any) => dados.alunos),
+    return this.http.get<Response<Aluno[]>>(this.apiUrl).pipe(
+      map((dados: any) => dados.data),
       //  tap(console.log),
       map((dados: { cpf: string }[]) => dados.filter((d) => d.cpf === cpf)),
       //  tap(console.log),
@@ -82,5 +82,11 @@ export class AlunoService {
       //  tap(console.log),
     );
   }
+ 
+  comparaAlunoVaga() {
+    return this.http.get<Response<Aluno[]>>(this.apiUrl)
+  }
+ 
+  
 }
 

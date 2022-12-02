@@ -9,7 +9,7 @@
         <table class="table table-vagas table-bordered">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col" class="col-hidden">#</th>
               <th scope="col">Nome</th>
               <th scope="col">Data</th>
               <th scope="col">Candidatos</th>
@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let vaga of vagas; index as i">
-              <th scope="row">{{ i + 1 }}</th>
+              <th scope="row" class="col-hidden">{{ i + 1 }}</th>
               <td scope="row">{{ vaga.nome }}</td>
               <td scope="row">{{ vaga.createdAt}}</td>
               <td scope="row" class="acoes">
@@ -28,7 +28,7 @@
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                   aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                  <div class="modal-dialog modal-content1 modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Candidatos</h5>
@@ -38,21 +38,28 @@
                         <table class="table table-bordered">
                           <thead>
                             <tr>                     
-                              <th scope="col">#</th>
+                              <th scope="col" class="col-hidden">#</th>
                               <th scope="col" class="nome">Nome</th>
                               <th scope="col">Email</th>
                               <th scope="col">Telefone</th>
-                              <th scope="col">Curriculo</th>
+                              <th scope="col">Curso</th>
+                              <th scope="col">Turno</th>
+                              <th scope="col">periodo</th>
+                             
+                              
                             </tr>
                           </thead>
                           <tbody>
                             
                             <tr *ngFor="let aluno of alunos; index as i">  
-                              <th scope="row">{{ i + 1 }}</th>
+                              <th scope="row" class="col-hidden">{{ i + 1 }}</th>
                               <th scope="row" >{{ aluno.nome }}</th>
                               <th scope="row">{{ aluno.email }}</th>
                               <th scope="row">{{ aluno.telefone | mask:'(00) 00000-0000' }}</th>
-                              <th scope="row">Curriculo</th>
+                              <th scope="row">{{ aluno.curso }}</th>
+                              <th scope="row">{{ aluno.turno }}</th>
+                              <th scope="row">{{ aluno.periodo }}º</th>
+                            
                             </tr>
                           </tbody>
                         </table>
@@ -68,6 +75,9 @@
               </td>
               <td>
                 <div class="button-group">
+                  <button class="btn btn-xs btn-primary" routerLink="/vaga/{{vaga._id}}">
+                    <fa-icon [icon]="faEye"></fa-icon> Visualizar
+                  </button>
                   <button class="btn btn-xs btn-info" routerLink="editar/vaga/{{vaga._id}}">
                     <fa-icon [icon]="faEdit"></fa-icon> Editar
                   </button>

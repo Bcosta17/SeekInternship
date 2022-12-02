@@ -3,8 +3,12 @@
         <div class="card-body">
             <h1>Registro</h1>
             <div class="buttons">
-                <button type="button" class="btn btn-lg btn-block" [routerLink]="['/registro_aluno']">Aluno</button>
-                <button class="btn btn-lg" [routerLink]="['/registro_empresa']">Empresa</button>
+                 <div class="row">
+                    <a  [routerLink]="['/registro_aluno']"> <fa-icon [icon]="faUser" class="icon1"></fa-icon>Aluno</a>
+                 </div>
+                 <div class="row">
+                      <a [routerLink]="['/registro_empresa']">  <fa-icon [icon]="faBuilding"> </fa-icon>Empresa </a>
+                 </div>
             </div>
         </div>
     </div>

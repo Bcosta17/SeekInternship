@@ -24,23 +24,59 @@ export class VagasService {
   }
   getVaga(id: string){
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<Response<Vaga>>(url)
+    return this.http.get<Response<Vaga>>(url).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
   }
   getVagasEmpresa(){
     const url = this.apiUrl + '/minhasvagas'
-    return this.http.get<Response<Vaga[]>>(url)
+    return this.http.get<Response<Vaga[]>>(url).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
     
   }
   
   getVagasAluno(){
     const url = this.apiUrl + '/minhascandidaturas'
-    return this.http.get<Response<Vaga[]>>(url)
+    return this.http.get<Response<Vaga[]>>(url).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
   }
 
   createVaga(vaga: Vaga): Observable<Vaga> {
     const url = this.apiUrl + '/cadastro';
     // this.messagem.add('vaga criada com sucesso');
-    return this.http.post<Vaga>(url,vaga);
+    return this.http.post<Vaga>(url,vaga).pipe(
+      catchError((err) => {
+        if (err.error.message) return throwError(() => err.error.message);
+
+        return throwError(
+          () =>
+            'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
+        );
+      })
+    );
   }
   
   cadidatarVaga(id: string):Observable<any>{

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { Empresa } from 'src/app/Interfaces/Empresa';
 import { EmpresaService } from 'src/app/Services/empresa.service';
 
@@ -10,7 +11,7 @@ import { EmpresaService } from 'src/app/Services/empresa.service';
 })
 export class NewEmpresaComponent implements OnInit {
   btnText = 'Cadastrar';
-  
+  faBuilding = faBuilding
   
   constructor(
     private empresaService: EmpresaService,

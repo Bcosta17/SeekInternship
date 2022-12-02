@@ -99,7 +99,7 @@ export class EmpresaComponent implements OnInit {
 
   candidatos(id:number){
     this.alunos = this.vagas[id].alunos;
-    
+    console.log(this.alunos[1])
     this.emailCandidatos = this.vagas[id].alunos.map(aluno => aluno.email);
     this.nomeCandidatos = this.vagas[id].alunos.map(aluno => aluno.nome);
     

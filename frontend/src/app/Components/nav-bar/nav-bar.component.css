@@ -1,13 +1,18 @@
 
 *{
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: #fff;
-  
+ 
+
 }
 
 #menu{
   padding: .9rem 2rem 1rem 5rem;
 
+}
+
+a:hover,a:active{
+  color: #fff;
 }
 
 .navbar ul:nth-child(1) {
@@ -25,6 +30,7 @@
 
 .navbar{
   background-color: var(--primary-color);
+
 }
 #sair{
   color: black;

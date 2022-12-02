@@ -36,6 +36,7 @@ import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-alun
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,7 @@ import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-alun
     EditVagaComponent,
     NotificacoesComponent,
     EditEmpresaComponent,
-    EditAlunoComponent,
+    EditAlunoComponent
   ],
   imports: [
     BrowserModule,

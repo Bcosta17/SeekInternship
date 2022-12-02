@@ -8,7 +8,8 @@
                 <input type="text" class="form-control" placeholder="Digite o nome da vaga" formControlName="nome" required >
                 <div *ngIf="!nome.pristine && nome.errors && nome.touched" class="alert alert-danger" role="alert">
                     <p *ngIf="nome.errors?.['required']">O nome é obrigatório!</p>
-                    <p *ngIf="nome.errors?.['minlength']">Deve ter no mínimo 3 caracters!</p>
+                    <p *ngIf="nome.errors?.['minlength']">Deve ter no mínimo 15 caracters!</p>
+                    <p *ngIf="nome.errors?.['maxlength']">Deve ter no maxímo 65 caracters!</p>
                 </div>
             </div>
     
@@ -22,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="curso">Curso</label>
+                    <label for="curso">Curso(s)</label>
                     <ng-multiselect-dropdown
                         formControlName="curso"
                         placeholder="Selecione até 3 cursos"
@@ -34,26 +35,14 @@
                     >
                     </ng-multiselect-dropdown>
                     <div *ngIf="!curso.pristine && curso.errors && curso.touched" class="alert alert-danger" role="alert">
-                        <p *ngIf="curso.errors?.['required']">A curso é obrigatório!</p>
+                        <p *ngIf="curso.errors?.['required']">O curso é obrigatório!</p>
                         <p *ngIf="curso.errors?.['minlength']">Deve ter no mínimo 5 caracters!</p>
                     </div>
                 </div>
-                
-                <!-- <div class="form-group col-md-4">
-                    <label for="area">Area</label>
-                    <input class="form-control" list="area" name="area" placeholder="Digite ou selecione a area" formControlName="area">
-                    <datalist id="area">
-                    <option *ngFor="let item of areas" value="{{item}}">
-                    </datalist>
-                    <div *ngIf="!area.pristine && area.errors && area.touched" class="alert alert-danger" role="alert">
-                        <p *ngIf="area.errors?.['required']">A area é obrigatório!</p>
-                        <p *ngIf="area.errors?.['minlength']">Deve ter no mínimo 5 caracters!</p>
-                    </div>
-                </div> -->
                 <div class="form-group col-md-6">
                     <label for="turno">Turno</label>
                     <select class="form-select"  name="turno" formControlName="turno">
-                      <option [ngValue]="null" disabled>Selecione ao turno</option>
+                      <option [ngValue]="null" disabled>Selecione o turno</option>
                       <option>{{vagaData?.turno}}</option>
                       
                       <option *ngFor="let item of turnos">{{item}}</option>

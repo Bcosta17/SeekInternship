@@ -11,22 +11,10 @@ import getUserByToken from "../helpers/get-user-by-token.js";
 
 export default class AlunoController {
     static async registro(req, res) {
-        const { nome, email, telefone, cpf, curso, senha, confirmeSenha } = req.body;
-        let curriculo= ''
         
-        if(req.file){
-           if(req.file.mimetype !== 'application/pdf'){
-            res.status(422).json({ message: "Envie apenas arquivos pdf" });
-            return;
-           }else if(req.file.size > 5000000){
-            res.status(422).json({ message: "O tamanho do arquivo tem q ser menor q 5mb" });
-            return;
-           }
-           else{
-            curriculo = req.file.filename
-           }
-        }
+        const { nome, email, telefone, cpf, curso, periodo,turno, senha, confirmeSenha } = req.body;
 
+        console.log(req.body)
         // validations
         if (!nome) {
             res.status(422).json({ message: "O campo nome é obrigatório!" });
@@ -44,6 +32,17 @@ export default class AlunoController {
             res.status(422).json({ message: "O campo curso é obrigatório!" });
             return;
         }
+
+        if (!periodo) {
+            res.status(422).json({ message: "O campo período é obrigatório!" });
+            return;
+        }
+
+        if (!turno) {
+            res.status(422).json({ message: "O campo turno é obrigatório!" });
+            return;
+        }
+       
         
 
         if (!cpf) {
@@ -96,7 +95,9 @@ export default class AlunoController {
             telefone,
             curso,
             cpf,
-            curriculo,
+            periodo,
+            turno,
+            informacao,
             role: 0,
             senha: senhaHash,
         });
@@ -117,7 +118,7 @@ export default class AlunoController {
     static async getAll(req, res) {
         const alunos = await Aluno.find().sort('-createdAt').select('-senha');
 
-        res.status(200).send({ alunos: alunos });
+        res.status(200).json({data: alunos});
     }
 
     static async getAlunoById(req, res) {
@@ -148,21 +149,8 @@ export default class AlunoController {
         const token = getToken(req);
         const aluno = await getUserByToken(token);
 
-        const { nome, email, telefone, cpf, senha, confirmeSenha } = req.body;
-        let curriculo= ''
+        const { nome, telefone, curso, periodo,turno, senha, confirmeSenha } = req.body;
         
-        if(req.file){
-            if(req.file.mimetype !== 'application/pdf'){
-             res.status(422).json({ message: "Envie apenas arquivos pdf" });
-             return;
-            }else if(req.file.size > 5000000){
-             res.status(422).json({ message: "O tamanho do arquivo tem q ser menor q 5mb" });
-             return;
-            }
-            else{
-             curriculo = req.file.filename
-            }
-         }
         // validações
         if (!nome) {
             res.status(422).json({ message: 'O nome é obrigatório!' });
@@ -170,37 +158,32 @@ export default class AlunoController {
         }
         aluno.nome = nome;
 
-        if (!email) {
-            res.status(422).json({ message: 'O e-mail é obrigatório!' });
-            return;
-        }
-
-        // checa se email já foi ultilizado.
-        const emailExiste = await Aluno.findOne({ email: email });
-
-        if (aluno.email !== email && emailExiste) {
-            res.status(422).json({ message: "O e-mail já foi usado!" });
-            return;
-        }
-        aluno.email = aluno.email;
-
         if (!telefone) {
             res.status(422).json({ message: "O campo telefone é obrigatório!" });
             return;
         }
         aluno.telefone = telefone;
 
-        if (!curriculo) {
-            res.status(422).json({ message: "O campo curriculo é obrigatório!" });
+        if (!curso) {
+            res.status(422).json({ message: "O campo curso é obrigatório!" });
             return;
         }
-        aluno.curriculo = curriculo;
+        aluno.telefone = telefone;
 
-        if (!cpf) {
-            res.status(422).json({ message: "O campo CPF é obrigatório!" });
+        if (!periodo) {
+            res.status(422).json({ message: "O campo período é obrigatório!" });
             return;
         }
-        aluno.cpf = aluno.cpf;
+        aluno.periodo = periodo;
+        
+        if (!turno) {
+            res.status(422).json({ message: "O campo turno é obrigatório!" });
+            return;
+        }
+        aluno.turno = turno;
+        
+
+     
 
         // checa se as senhas são iguais;
         if( senha == ''){
@@ -238,5 +221,95 @@ export default class AlunoController {
 
  
     }
+
+    static async getVagasPorAluno(req, res) {
+
+        // 
+        const token = getToken(req);
+        const aluno = await getUserByToken(token);
+
+        if (aluno.role !== 0) {
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+        const vagas = await Vaga.find({ 'aluno._id': aluno._id })
+            .sort('-createdAt').select('-senha')
+            .populate({ path: 'empresa', select: '-senha' });
+        
+        res.status(200).json({ data: vagas });
+
+    }
+
+    static async candidatarVaga(req, res) {
+        const id = req.params.id;
+
+        if (!ObjectId.isValidObjectId(id)) {
+            res.status(422).json({ message: 'Id é invalido' });
+            return;
+        }
+
+        const vaga = await Vaga.findOne({ _id: id });
+        const alunos = vaga.alunos;
+
+        if (!vaga) {
+            res.status(404).json({ message: 'Vaga não encontrada' });
+            return;
+        }
+
+        const token = getToken(req);
+        const user = await getUserByToken(token);
+
+        if (user.role !== 0) {
+            return res.status(401).json({ message: 'acesso negado!' });
+        }
+
+        for (const aluno of alunos) {
+            if (aluno._id.equals(user._id)) {
+                res.status(422).json({ message: 'Você já se candidatou a está vaga' })
+                return;
+            }
+        }
+        alunos.push(user._id);
+        await vaga.save();
+
+        res.status(200).json({ message: 'Voce se candidatou com sucesso, agora aguarde o retorno da empresa!' });
+        return;
+
+    }
+
+      // static async removerCandidatar(req, res) {
+    //     const id = req.params.id;
+
+    //     if (!ObjectId.isValidObjectId(id)) {
+    //         res.status(422).json({ message: 'Id é invalido' });
+    //         return;
+    //     }
+
+    //     const vaga = await Vaga.findOne({ _id: id });
+    //     const alunos = vaga.alunos;
+
+    //     if (!vaga) {
+    //         res.status(404).json({ message: 'Vaga não encontrada' });
+    //         return;
+    //     }
+
+    //     const token = getToken(req);
+    //     const user = await getUserByToken(token);
+
+    //     if (user.role !== 0) {
+    //         return res.status(401).json({ message: 'acesso negado!' });
+    //     }
+
+    
+    //     alunos.remove(user._id);
+    //     await Vaga.findOneAndUpdate(
+    //         { _id: vaga._id },
+    //         { $set: vaga },
+    //         { new: true },
+    //     );
+       
+    //     res.status(200).json({ message: 'Vaga cancelada com sucesso!' });
+    //     return;
+
+    // }
 
 }
