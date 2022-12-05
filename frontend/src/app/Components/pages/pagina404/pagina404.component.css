@@ -1,0 +1,71 @@
+
+h1,h2{
+    font-size: 4rem;
+}
+.error-template {
+  padding: 4rem 1.5rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+.error-actions {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.error-actions .btn {
+  background: var(--primary-color);
+  margin-right: 1rem;
+  font-size: 2rem;
+ 
+}
+
+.btn:hover{
+    color: #fff;
+}
+  
+
+
+@media (max-width: 880px) {
+
+    h1,h2{
+        font-size: 4rem;
+    }
+
+    .error-template {
+      
+        font-size: 2rem;
+    }
+  
+} 
+
+@media (max-width: 500px) {
+
+    h1,h2{
+        font-size: 3rem;
+    }
+
+    .error-template {
+      
+        font-size: 1.6rem;
+    }
+    
+    .error-actions .btn {
+        margin-right: 1rem;
+        font-size: 1.8rem;
+    }
+} 
+
+@media (max-width: 500px) {
+
+    h1,h2{
+        font-size: 2.2rem;
+    }
+
+    .error-template {
+      
+        font-size: 1.4rem;
+    }
+    
+    .error-actions .btn {
+        font-size: 1.4rem;
+    }
+} 

@@ -1,0 +1,75 @@
+.card{
+    width: 40vw;
+}
+label,input{
+ font-size: 1.8rem;
+ margin: .5rem 0;
+ 
+}
+
+p{
+    font-size: 1.8rem;
+}
+
+input{
+    padding: .5rem;
+}
+
+.button{
+    text-align: center;
+    margin: 2rem;
+}
+.btn{
+    background: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+.btn:hover{
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+@media (max-width: 1200px) {
+    p{
+        font-size: 1.4rem;
+    }
+} 
+@media (max-width: 980px) {
+    .card{
+        width: 50vw;
+      
+    }
+} 
+
+@media (max-width: 880px) {
+    .card{
+     width: 50vw;
+     align-items: left;
+    
+    }
+    label,a,p,.btn,input{
+     font-size: 1.6rem;
+    }
+} 
+
+@media (max-width: 780px) {
+    .card{
+     width: 70vw;
+    }
+} 
+
+@media (max-width: 500px) {
+    .card{
+     width: 90vw;
+    }
+} 
+
+@media (max-width: 400px) {
+    label,a,p,.btn,input{
+        font-size: 1.3rem;
+    }
+
+    .btn{
+        padding: .7rem;
+    }
+} 

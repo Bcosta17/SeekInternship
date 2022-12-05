@@ -9,6 +9,7 @@ import createUserToken from "../helpers/create-user-token.js";
 import getToken from "../helpers/get-token.js";
 import getUserByToken from "../helpers/get-user-by-token.js";
 import transporter from '../helpers/send-email-config.js';
+import Aluno from '../models/Aluno.js';
 
 export default class EmpresaController {
     static async registro(req, res) {
@@ -57,7 +58,7 @@ export default class EmpresaController {
         }
 
         // checa se email já está cadastrado
-        const emailExiste = await Empresa.findOne({ email: email });
+        const emailExiste = await Empresa.findOne({ email: email }) || await Aluno.findOne({ email: email });
 
         if (emailExiste) {
             res.status(422).json({ message: "Por favor, utilize outro e-mail!" });
@@ -100,9 +101,10 @@ export default class EmpresaController {
     }
 
     static async getAll(req, res) {
-        const empresas = await Empresa.find().sort('-createdAt').select('-senha');// (-) pegar ordem crescente
-
-        res.status(200).json({ data: empresas });
+        const alunos = await Aluno.find().sort('-createdAt').select('-senha');
+        const empresa = await Empresa.find().sort('-createdAt').select('-senha');
+        const getall = alunos.concat(empresa)
+        res.status(200).json({data: getall});
     }
     
     static async getEmpresaById(req, res) {
@@ -237,10 +239,15 @@ export default class EmpresaController {
         try {
            
             transporter.sendMail({
-                text: mensagem,
+               
                 subject: assunto,
                 from: 'SeekInternship <seekinternship@gmail.com>',
                 to: destino,
+                html: `<p style="font-size: 20px;">${mensagem} </p>`
+
+                
+                
+
             })
 
             res.status(200).json({ message: 'Email enviado com sucesso!' });

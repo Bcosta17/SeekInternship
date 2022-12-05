@@ -32,6 +32,9 @@ import { EditVagaComponent } from './Components/pages/edit/edit-vaga/edit-vaga.c
 import { NotificacoesComponent } from './Components/pages/notificacoes/notificacoes.component';
 import { EditEmpresaComponent } from './Components/pages/edit/edit-empresa/edit-empresa.component';
 import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-aluno.component';
+import { Pagina404Component } from './Components/pages/pagina404/pagina404.component';
+import { RecuperacaoSenhaComponent } from './Components/pages/recuperacao-senha/recuperacao-senha.component';
+import { MudarSenhaComponent } from './Components/pages/mudar-senha/mudar-senha.component';
 
 
 
@@ -58,7 +61,10 @@ import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-alun
     EditVagaComponent,
     NotificacoesComponent,
     EditEmpresaComponent,
-    EditAlunoComponent
+    EditAlunoComponent,
+    Pagina404Component,
+    RecuperacaoSenhaComponent,
+    MudarSenhaComponent
   ],
   imports: [
     BrowserModule,

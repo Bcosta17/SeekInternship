@@ -54,6 +54,8 @@ export class VagaFormComponent implements OnInit {
       searchPlaceholderText:'Pesquise por um curso',
       noDataAvailablePlaceholderText:'Curso não encontrado'
     };
+
+    this.vagaForm.get('selectedItens')?.setValue(this.vagaData?.curso)
   }
   
   onItemSelect(item: any) {

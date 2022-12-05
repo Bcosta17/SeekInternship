@@ -1,0 +1,28 @@
+<main>
+    <div class="card">
+        <form [formGroup]="mudarSenhaForm" (ngSubmit)="submit()" >
+            <label for="senha">Nova Senha</label>
+            <input type="password" class="form-control" placeholder="Digite sua senha" formControlName="senha">
+            <div *ngIf="!senha.pristine && senha.errors" class="validation-error" role="alert">
+                <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
+                <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
+                <p *ngIf="senha.errors?.['maxlength']">A senha deve ter no máximo 20 caracters!</p>
+            </div>
+            <label for="confirmeSenha">Confirme sua senha</label>
+            <input type="password" class="form-control" placeholder="Digite novamente sua senha" formControlName="confirmeSenha">
+            <div *ngIf="!confirmeSenha.pristine && confirmeSenha.errors " class="validation-error" role="alert">
+                <p *ngIf="confirmeSenha.errors?.['required']">A Confirmação de senha é obrigatória!</p>
+                <p *ngIf="confirmeSenha.errors?.['senhasNaoCombinam']">As senhas não coincidem!</p>
+            </div>
+           
+            <div class="alert alert-danger" role="alert" *ngIf="msgError">
+                <p>{{msgError}}</p>
+            </div>
+            
+            <div class="button">
+            <p>Preencha todos os campos para liberar o botão!</p>
+            <button type="submit" class="btn" [disabled]="!mudarSenhaForm.valid">Alterar Senha</button>
+            </div>
+        </form>
+    </div>
+</main>

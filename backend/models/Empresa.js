@@ -29,6 +29,14 @@ const Empresa = mongoose.model(
             type: String,
             required: true,
         },
+        tokenSenha:{
+            type:String,
+            select:false
+        },
+        tokenSenhaExpires:{
+            type: Date,
+            select:false
+        },
         role:{
             type: Number,
             required: true,

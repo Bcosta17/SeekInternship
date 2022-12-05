@@ -23,6 +23,30 @@
     </div>
 
     <div class="row">
+      
+      <div class="form-group col-md-6">
+        <label for="cpf">CPF</label>
+        <input  type="text" class="form-control" placeholder="Digite seu CPF" formControlName="cpf" mask="000.000.000-00" required>
+        <div *ngIf="!cpf.pristine && cpf.errors && cpf.touched" class="validation-error" role="alert">
+          <p *ngIf="cpf.errors?.['required']">O CPF é obrigatório!</p>
+          <p *ngIf="cpf.errors?.['cpfInvalido']">O CPF não é válido!</p>
+          <p *ngIf="cpf.errors?.['pattern']">Somente números!</p>
+          <p *ngIf="cpf.errors?.['cpfExiste']">O CPF já foi cadastrado!</p>
+        </div>
+      </div>
+      
+      <div class="form-group col-md-6">
+        <label for="telefone">Telefone para contato</label>
+        <input type="tel" class="form-control" placeholder="Digite seu telefone" formControlName="telefone" mask="(00) 00000-0000">
+        <div *ngIf="!telefone.pristine && telefone.errors && telefone.touched" class="validation-error" role="alert">
+          <p *ngIf="telefone.errors?.['required']">O telefone é obrigatório!</p>
+          <p *ngIf="telefone.errors?.['pattern']">Somente números!</p>
+          <p *ngIf="telefone.errors?.['minlength'] || telefone.errors?.['maxlength']">O telefone precisa ter 11 digitos!
+          </p>
+        </div>
+      </div>
+     </div>
+    <div class="row">
          
     <div class="form-group col-md-4">
       <label for="curso">Curso</label>
@@ -58,44 +82,17 @@
 
     </div>
 
-   <div class="row">
-      
-    <div class="form-group col-md-6">
-      <label for="cpf">CPF</label>
-      <input  type="text" class="form-control" placeholder="Digite seu CPF" formControlName="cpf" mask="000.000.000-00" required>
-      <div *ngIf="!cpf.pristine && cpf.errors && cpf.touched" class="validation-error" role="alert">
-        <p *ngIf="cpf.errors?.['required']">O CPF é obrigatório!</p>
-        <p *ngIf="cpf.errors?.['cpfInvalido']">O CPF não é válido!</p>
-        <p *ngIf="cpf.errors?.['pattern']">Somente números!</p>
-        <p *ngIf="cpf.errors?.['cpfExiste']">O CPF já foi cadastrado!</p>
-      </div>
-    </div>
-    
-    <div class="form-group col-md-6">
-      <label for="telefone">Telefone para contato</label>
-      <input type="tel" class="form-control" placeholder="Digite seu telefone" formControlName="telefone" mask="(00) 00000-0000">
-      <div *ngIf="!telefone.pristine && telefone.errors && telefone.touched" class="validation-error" role="alert">
-        <p *ngIf="telefone.errors?.['required']">O telefone é obrigatório!</p>
-        <p *ngIf="telefone.errors?.['pattern']">Somente números!</p>
-        <p *ngIf="telefone.errors?.['minlength'] || telefone.errors?.['maxlength']">O telefone precisa ter 11 digitos!
-        </p>
-      </div>
-    </div>
-   </div>
-
-
    <div class="row row-senha">
       <div class="form-group col-md-6">
         <label for="senha">Senha</label>
         <input type="password" class="form-control" placeholder="Digite sua senha" formControlName="senha">
-        <div id="senhaHelp" class="form-text d-flex " *ngIf="alunoData"><p>Só preencha o campo se deseja altera a senha</p></div>
+        <div id="senhaHelp" class="form-text d-flex " *ngIf="alunoData"><p>Se deseja alterar a senha preencha os campos com a nova senha</p></div>
         <div id="senhaHelp" class="form-text d-flex "><p>A senha deve ter de 6-20 caracters</p></div>
         <div *ngIf="!senha.pristine && senha.errors" class="validation-error" role="alert">
           <p *ngIf="senha.errors?.['required']">A senha é obrigatória!</p>
           <p *ngIf="senha.errors?.['minlength']">A senha deve ter no mínimo 6 caracters!</p>
           <p *ngIf="senha.errors?.['maxlength']">A senha deve ter no máximo 20 caracters!</p>
-          <p *ngIf="confirmeSenha.errors?.['senhasNaoCombinam']">As senhas não coincidem!</p>
-        </div>
+          </div>
       </div>
      
       <div class="form-group col-md-6">

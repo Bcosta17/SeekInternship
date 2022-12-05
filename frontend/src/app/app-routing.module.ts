@@ -16,6 +16,9 @@ import { EditVagaComponent } from './Components/pages/edit/edit-vaga/edit-vaga.c
 import { NotificacoesComponent } from './Components/pages/notificacoes/notificacoes.component';
 import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-aluno.component';
 import { EditEmpresaComponent } from './Components/pages/edit/edit-empresa/edit-empresa.component';
+import { Pagina404Component } from './Components/pages/pagina404/pagina404.component';
+import { RecuperacaoSenhaComponent } from './Components/pages/recuperacao-senha/recuperacao-senha.component';
+import { MudarSenhaComponent } from './Components/pages/mudar-senha/mudar-senha.component';
 
 
 
@@ -81,6 +84,18 @@ const routes: Routes = [
     path:'empresa/editar/:id',
     canActivate: [AutentificacaoGuard],
     component: EditEmpresaComponent
+  },
+  {
+    path:'login/recupera_senha',
+    component: RecuperacaoSenhaComponent
+  },
+  {
+    path:'login/mudar_senha/:id',
+    component: MudarSenhaComponent
+  },
+  {
+    path:'**',
+    component: Pagina404Component
   }
 
 ];

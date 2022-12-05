@@ -27,7 +27,7 @@ export class AlunoService {
             'No momento não estamos conseguindo validar este dados, tente novamente mais tarde!'
         );
       })
-    );;
+    );
   }
 
   getAluno(id: string){

@@ -19,6 +19,7 @@ export class AlunoFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Aluno>();
   @Input() btnText!: string;
   @Input() alunoData: Aluno | null = null;
+ 
 
   alunoForm!: FormGroup;
   cursos!:string[];

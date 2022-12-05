@@ -37,9 +37,21 @@ main {
   box-shadow: 0.2rem 0.4rem 0.4rem var(--primary-color);
 }
 
-.form-control, .table,.form-select{
+.form-control, .table,.form-select,.multiselect-dropdown {
   border: 0.1rem solid var(--primary-color);
 }
+
+.multiselect-dropdown{
+ 
+  border-radius: 6px;
+}
+
+.multiselect-dropdown .dropdown-btn {
+  
+  font-size: 2rem;
+ 
+}
+
 
 
 /* input:invalid {
@@ -60,10 +72,13 @@ main {
   .card{
     width: 90vw;
     padding: 1rem;
-    align-items: center;
     text-align: left;
   }
+  
+.multiselect-dropdown .dropdown-btn {
+  font-size: 1.5rem;
+}
 
- } 
+} 
 
 

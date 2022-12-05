@@ -1,0 +1,24 @@
+<main>
+    <div class="card">
+        <h1>Recuperação de Senha</h1>
+        <p class="text-p">Você receberá um link para alterar sua senha no seu E-mail!</p>
+        <form [formGroup]="forgotPasswordForm" (ngSubmit)="submit()" >
+            <label for="Email">E-mail</label>
+            <input type="email" class="form-control d-flex" formControlName="email" placeholder="Informe o email cadastrado!">
+            <div *ngIf="!email.pristine && email.errors && email.touched" class="validation-error">
+                <p *ngIf="email.errors?.['required']">O email é obrigatório!</p>
+                <p *ngIf="email.errors?.['email']">Digite um e-mail válido</p>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="msgError">
+                <p>{{msgError}}</p>
+            </div>
+            <div class="alert alert-success" role="alert" *ngIf="msgSuccess">
+                <p>{{msgSuccess}}</p>
+            </div>
+            <div class="button">
+                <button class="btn">Enviar</button>
+            </div>
+
+        </form>
+    </div>
+</main>

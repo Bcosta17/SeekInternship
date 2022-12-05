@@ -48,21 +48,29 @@ label {
     background-color:#0d6efd;
 }
 
+@media (max-width: 950px) {
+
+
+  input, label, a {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 1.3rem;
+  }
+
+
+  .btn{
+    font-size: 2rem;
+  }
+
+} 
 
 @media (max-width: 900px) {
 
-  a,p {
-    font-size: 1.5rem;
-  }
-  
-  input {
+  input, label, a,p {
     font-size: 1.5rem;
   }
 
-  label {
-    font-size: 1.5rem;
-    
-  }
 
   .btn{
     font-size: 2rem;

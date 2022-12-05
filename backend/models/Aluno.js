@@ -16,6 +16,7 @@ const Aluno = mongoose.model(
         senha: {
             type: String,
             required: true,
+           
         },
         curso:{
             type: String,
@@ -36,6 +37,14 @@ const Aluno = mongoose.model(
         cpf:{
             type: String,
             required: true,
+        },
+        tokenSenha:{
+            type:String,
+            select:false
+        },
+        tokenSenhaExpires:{
+            type: Date,
+            select:false
         },
         role:{
             type: Number,

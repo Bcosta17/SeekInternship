@@ -32,7 +32,7 @@ export default class LoginController{
         // checa se a senha está correta
         const checaSenha = await bcrypt.compare(senha, user.senha);
     
-
+ 
         if (!checaSenha) {
             res.status(422).json({ message: "Senha invalida!" });
             return;

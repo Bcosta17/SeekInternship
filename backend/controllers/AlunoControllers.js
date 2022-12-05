@@ -8,6 +8,7 @@ import validacpf from '../helpers/verifica-cpf.js';
 import createUserToken from "../helpers/create-user-token.js";
 import getToken from "../helpers/get-token.js";
 import getUserByToken from "../helpers/get-user-by-token.js";
+import Empresa from '../models/Empresa.js';
 
 export default class AlunoController {
     static async registro(req, res) {
@@ -70,7 +71,7 @@ export default class AlunoController {
         }
 
         // checa se email já está cadastrado
-        const emailExiste = await Aluno.findOne({ email: email });
+        const emailExiste = await Aluno.findOne({ email: email }) || await Empresa.findOne({ email: email });
 
         if (emailExiste) {
             res.status(422).json({ message: "Por favor, utilize outro e-mail!" });
@@ -97,7 +98,6 @@ export default class AlunoController {
             cpf,
             periodo,
             turno,
-            informacao,
             role: 0,
             senha: senhaHash,
         });
@@ -117,8 +117,9 @@ export default class AlunoController {
 
     static async getAll(req, res) {
         const alunos = await Aluno.find().sort('-createdAt').select('-senha');
-
-        res.status(200).json({data: alunos});
+        const empresa = await Empresa.find().sort('-createdAt').select('-senha');
+        const getall = alunos.concat(empresa)
+        res.status(200).json({data: getall});
     }
 
     static async getAlunoById(req, res) {
