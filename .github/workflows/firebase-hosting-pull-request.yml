@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SEEKINTERNSHIP_DBA0E }}'
-          projectId: seekinternship-dba0e
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SEEKINTERSHIP_V2 }}'
+          projectId: seekintership-v2
