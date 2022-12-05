@@ -79,7 +79,7 @@ textarea {
 .sendemail .modal-body,
 .sendemail input,
 .sendemail label,
-.sendemail textarea {
+.sendemail textarea,p {
   font-size: 1.8rem;
 }
 

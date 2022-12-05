@@ -5,6 +5,12 @@
  
   
 }
+.alert{
+  margin-top: 2rem;
+}
+p {
+  font-size: 2rem;
+}
 
 input,
 textarea{
@@ -121,6 +127,10 @@ input[type="number"] {
     padding: 1rem;
     align-items: center;
     text-align: left;
+  }
+
+  p {
+    font-size: 1.5rem;
   }
   
   .card-body{

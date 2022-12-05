@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+app.use(cors({credentials: true, origin: 'https://seekinternship-dba0e.web.app'}));
 
 // Routes
 app.use('/alunos', AlunoRoutes);

@@ -22,6 +22,9 @@ export class EmpresaComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Email>();
   @ViewChild('modeldelete') modeldelete: any; 
   
+
+  public msgSuccess!: String; 
+
   dropdownList:any = [];
   selectedItems:any = [];
   dropdownSettings:IDropdownSettings= {};
@@ -138,7 +141,7 @@ export class EmpresaComponent implements OnInit {
 
   submit(){
     this.empresaService.enviarEmail(this.emailForm.value).subscribe({
-      next(){},
+      next: (res)=> (this.msgSuccess = "Email enviado!"),
       error(err: any) {
       console.log(err); 
     }

@@ -18,6 +18,7 @@ import { JsonDadosService } from 'src/app/Services/json-dados.service';
 export class AlunoFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Aluno>();
   @Input() btnText!: string;
+  @Input() msgSuccess!: string;
   @Input() alunoData: Aluno | null = null;
  
 

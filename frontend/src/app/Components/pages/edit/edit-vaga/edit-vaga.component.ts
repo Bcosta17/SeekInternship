@@ -11,6 +11,7 @@ import { VagasService } from 'src/app/Services/vagas.service';
 export class EditVagaComponent implements OnInit {
   vaga!: Vaga;
   btnText: string = 'Editar';
+  msgSuccess!: string;
 
   constructor(
     private  vagasService: VagasService,
@@ -30,8 +31,10 @@ export class EditVagaComponent implements OnInit {
 
   editHandler(vagaData: Vaga){
     const id = this.vaga._id;
-    this.vagasService.editarVaga(id!, vagaData).subscribe();
-    this.router.navigate(['/empresa'])
+    this.vagasService.editarVaga(id!, vagaData).subscribe({
+      next: (res)=> (this.msgSuccess = "Dados alterado com sucesso"),
+    });
+    
 
     
   }

@@ -11,6 +11,7 @@ import { EmpresaService } from 'src/app/Services/empresa.service';
 export class EditEmpresaComponent implements OnInit {
   empresa!: Empresa;
   btnText: string = 'Editar';
+  msgSuccess!: string;
 
   constructor(
     private empresaService: EmpresaService,
@@ -29,8 +30,10 @@ export class EditEmpresaComponent implements OnInit {
 
   editHandler(empresaData: Empresa){
     const id = this.empresa._id;
-    this.empresaService.editarEmpresa(id!, empresaData).subscribe();
-    this.router.navigate(['/empresa']);
+    this.empresaService.editarEmpresa(id!, empresaData).subscribe({
+      next: (res)=> (this.msgSuccess = "Dados alterado com sucesso"),
+    });
+    
   }
 
 }

@@ -16,6 +16,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class VagaFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Vaga>();
   @Input() btnText!: string;
+  @Input() msgSuccess!: string;
   @Input() vagaData: Vaga | null = null;
   
   

@@ -154,9 +154,13 @@
       </div>
     </form>
   </div>
+  <div class="alert alert-success" role="alert" *ngIf="msgSuccess">
+    <p>{{msgSuccess}}</p>
+   </div>
   <div class="modal-footer">
     <div id="buttonHelp" class="form-text">Preencha todos os campos para liberar o botão!</div>
-    <button type="submit" class="btn btn-primary" (click)="d(submit())" [disabled]="!emailForm.valid">Enviar</button>
+    <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="!emailForm.valid">Enviar</button>
+
   </div>
  </div>
 </ng-template>

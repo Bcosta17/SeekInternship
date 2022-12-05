@@ -11,7 +11,7 @@ import { AlunoService } from 'src/app/Services/aluno.service';
 export class EditAlunoComponent implements OnInit {
   aluno!: Aluno
   btnText: string = 'Editar';
-
+  msgSuccess!: string;
   constructor(
     private alunoService: AlunoService,
     private route: ActivatedRoute,
@@ -27,18 +27,18 @@ export class EditAlunoComponent implements OnInit {
   }
 
   editHandler(alunoData: Aluno){
-    console.log(alunoData)
+   
     const id = this.aluno._id
     
    
     this.alunoService.editarAluno(id!, alunoData).subscribe({
-      next(){},
+      next: (res)=> (this.msgSuccess = "Dados alterado com sucesso"),
       error(err:any){
         console.log(err);
       },
     });
 
-    this.router.navigate(['/'])
+    
   }
 
 

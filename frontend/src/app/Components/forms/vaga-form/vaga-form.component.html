@@ -90,7 +90,8 @@
                     <p *ngIf="remunerado.errors?.['required']">É necessario informar o valor!</p>
                 </div>
             </div>          
-            <div class="col-lg-12">     
+            <div class="alert alert-success" role="alert" *ngIf="msgSuccess">
+                <p>{{msgSuccess}}</p>
             </div>
             <div id="buttonHelp" class="form-text"><p>Preencha todos os campos para liberar o botão!</p></div>
             <div  class="button-group">

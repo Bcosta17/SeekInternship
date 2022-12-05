@@ -78,6 +78,9 @@
               </div>
             </div>
           </div>
+          <div class="alert alert-success" role="alert" *ngIf="msgSuccess">
+            <p>{{msgSuccess}}</p>
+          </div>
           <div id="buttonHelp" class="form-text"><p>Preencha todos os campos para liberar o botão!</p></div>
           <div  class="button-group">
             <button *ngIf="empresaData" class="btn btn-voltar" [routerLink]="['/empresa']">Voltar</button>

@@ -150,7 +150,7 @@ export default class EmpresaController {
             return;
         }
 
-        empresa.nomeEmpresa = nomeRepresentante
+        empresa.nomeRepresentante = nomeRepresentante
       
         empresa.email = empresa.email
         empresa.cnpj = empresa.cnpj

@@ -16,6 +16,7 @@ import { Validacoes } from 'src/app/shared/validators/validators';
 export class EmpresaFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Empresa>();
   @Input() btnText!: string;
+  @Input() msgSuccess!: string;
   @Input() empresaData: Empresa | null = null;
 
   empresaForm!: FormGroup;
