@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/Services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  decode:any = [];
+  
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
   }
 
+  islogado():boolean{
+    if(!this.loginService.logado()){ 
+      return false;
+    }
+    this.decode = this.loginService.decode()
+   
+    return true;
+  }
 }

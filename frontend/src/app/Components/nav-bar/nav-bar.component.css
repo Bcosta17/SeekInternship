@@ -7,7 +7,7 @@
 }
 
 #menu{
-  padding: .9rem 2rem 1rem 5rem;
+  padding: .9rem 2rem 0 5rem;
 
 }
 
@@ -16,7 +16,6 @@ a:hover,a:active{
 }
 
 .navbar ul:nth-child(1) {
-  margin-left: 3rem;
   gap: 1rem;
 }
 

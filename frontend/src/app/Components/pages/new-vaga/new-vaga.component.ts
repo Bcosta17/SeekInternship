@@ -34,25 +34,25 @@ export class NewVagaComponent implements OnInit {
         console.log(err);
       },
     });
-    this.alunoService.comparaAlunoVaga().pipe(
-      map(dados => dados.data.forEach(element => {
-        vaga.curso.forEach(element2 => {
-         const destino  = [element.email]
-         const assunto  = "Temos uma vaga que talvez você tem interesse"
-         const mensagem = `A vaga ${vaga.nome} é compativo com seu curso!`
+    // this.alunoService.comparaAlunoVaga().pipe(
+    //   map(dados => dados.data.forEach(element => {
+    //     vaga.curso.forEach(element2 => {
+    //      const destino  = [element.email]
+    //      const assunto  = "Temos uma vaga que talvez você tem interesse"
+    //      const mensagem = `A vaga ${vaga.nome} é compativo com seu curso!`
           
-         this.emailForm = this.fb.group({
-          destino:[destino],
-          assunto:[assunto],
-          mensagem:[mensagem]
-         })
-         if(element.turno === vaga.turno && element2 == element.curso ){
-            this.empresaService.enviarEmail(this.emailForm.value).subscribe()
-          }
+    //      this.emailForm = this.fb.group({
+    //       destino:[destino],
+    //       assunto:[assunto],
+    //       mensagem:[mensagem]
+    //      })
+    //      if(element.turno === vaga.turno && element2 == element.curso ){
+    //         this.empresaService.enviarEmail(this.emailForm.value).subscribe()
+    //       }
          
-        });
-      }))
-    ).subscribe()
+    //     });
+    //   }))
+    // ).subscribe()
     
     this.router.navigate(['empresa']);
   }

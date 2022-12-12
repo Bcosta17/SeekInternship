@@ -13,9 +13,7 @@ import Empresa from '../models/Empresa.js';
 export default class AlunoController {
     static async registro(req, res) {
         
-        const { nome, email, telefone, cpf, curso, periodo,turno, senha, confirmeSenha } = req.body;
-
-        console.log(req.body)
+        const { nome, email, telefone, curso, periodo,turno, senha, confirmeSenha } = req.body;
         // validations
         if (!nome) {
             res.status(422).json({ message: "O campo nome é obrigatório!" });
@@ -46,15 +44,15 @@ export default class AlunoController {
        
         
 
-        if (!cpf) {
-            res.status(422).json({ message: "O campo CPF é obrigatório!" });
-            return;
-        }
+        // if (!cpf) {
+        //     res.status(422).json({ message: "O campo CPF é obrigatório!" });
+        //     return;
+        // }
 
-        if (!validacpf(cpf)) {
-            res.status(422).json({ message: "O CPF não é valido!" });
-            return;
-        }
+        // if (!validacpf(cpf)) {
+        //     res.status(422).json({ message: "O CPF não é valido!" });
+        //     return;
+        // }
 
         if (!senha) {
             res.status(422).json({ message: "O campo senha é obrigatório!" });
@@ -78,12 +76,12 @@ export default class AlunoController {
             return;
         }
         // checa se CPF já está cadastrado
-        const cpfExiste = await Aluno.findOne({ cpf: cpf });
+        // const cpfExiste = await Aluno.findOne({ cpf: cpf });
 
-        if (cpfExiste) {
-            res.status(422).json({ message: "Por favor, utilize outro CPF!" });
-            return;
-        }
+        // if (cpfExiste) {
+        //     res.status(422).json({ message: "Por favor, utilize outro CPF!" });
+        //     return;
+        // }
 
         //criptografa a senha 
         const salt = await bcrypt.genSalt(12);
@@ -95,7 +93,7 @@ export default class AlunoController {
             email:email.toString().toLowerCase(),
             telefone,
             curso,
-            cpf,
+            // cpf,
             periodo,
             turno,
             role: 0,

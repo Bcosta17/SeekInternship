@@ -45,9 +45,9 @@ export class AlunoFormComponent implements OnInit {
     this.setDefaults();
     this.dados.getCursos().subscribe( dados => this.cursos=dados);
     if(this.alunoData){
-      this.alunoForm.get('cpf')!.disable();
       this.alunoForm.get('email')!.disable();
     }
+    this.alunoForm.get('cpf')?.disable();
    
   }
 
@@ -61,7 +61,7 @@ export class AlunoFormComponent implements OnInit {
         Validators.minLength(3),
         ])
       ],
-      cpf: [this.alunoData ? this.alunoData.cpf : '', Validators.compose([Validators.required, Validacoes.VerificaCpf,Validators.pattern('[0-9]*')]),this.cpfExiste.bind(this)],//
+      cpf: ['', ],//Validators.compose([ Validacoes.VerificaCpf,Validators.pattern('[0-9]*')]),this.cpfExiste.bind(this)
       email:[this.alunoData ? this.alunoData.email : '', Validators.compose([Validators.email]),this.emailExiste.bind(this)],
       curso: [this.alunoData ? this.alunoData.curso : '', Validators.compose([Validators.required,Validators.minLength(3)]) ],
       telefone: [

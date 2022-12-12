@@ -1,4 +1,10 @@
 
 <main>
-    <app-lista-vaga></app-lista-vaga>
+  <div>
+   <div class="vagas">
+      <h1>Encontre uma vaga de estágio </h1>
+      <h2 *ngIf="!islogado()">Se você é de uma empresa registre-se e cadastre uma vaga</h2>  
+   </div>
+   <app-lista-vaga></app-lista-vaga>
+  </div>
 </main>

@@ -1,5 +1,7 @@
 import  express  from 'express';
 import cors from 'cors';
+import http from 'http'
+
 
 // Routes
 import AlunoRoutes from './routes/AlunoRoutes.js';
@@ -13,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use(cors({credentials: true, origin: 'https://seekinternship-dba0e.web.app'}));
+app.use(cors({credentials: true, origin: 'https://seekinternship-4f46.web.app'}));
 
 // Routes
 app.use('/alunos', AlunoRoutes);
@@ -23,4 +25,9 @@ app.use('/login', LoginRoutes);
 app.use('/recoveryPassword',PasswordRecoveryRoutes);
 
 
-app.listen(5000);
+const httpServer = http.createServer(app);
+
+httpServer.listen(5000, () => {
+	console.log('Servidor HTTP rodando na porta 5000');
+});
+

@@ -3,7 +3,7 @@ export interface Aluno{
     nome: string;
     email: string;
     telefone: string;
-    cpf: string;
+    cpf?: string;
     curso:string;
     periodo:string;
     turno:string

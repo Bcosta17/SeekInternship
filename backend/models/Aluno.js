@@ -36,7 +36,7 @@ const Aluno = mongoose.model(
         },
         cpf:{
             type: String,
-            required: true,
+            // required: true,
         },
         tokenSenha:{
             type:String,
