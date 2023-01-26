@@ -1,5 +1,4 @@
 import mongoose from '../db/conn.js';
-
 const { Schema } = mongoose;
 
 const Aluno = mongoose.model(
@@ -52,8 +51,5 @@ const Aluno = mongoose.model(
         },
       },
       {timestamps: [{ createdAt: new Date(new Date()) }, { updatedAt: new Date(new Date()) }]},
-    ),
-)
-
-
+    ),)
 export default Aluno;

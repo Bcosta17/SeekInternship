@@ -4,8 +4,6 @@ import Vaga from '../models/Vaga.js';
 import getToken from '../helpers/get-token.js';
 import getUserByToken from '../helpers/get-user-by-token.js';
 import ObjectId from 'mongoose';
-
-
 export default class VagaController {
     static async create(req, res) {
 

@@ -62,13 +62,10 @@ export class AlunoService {
   verificaEmail(email: string) {
     return this.http.get<Response<Aluno[]>>(this.apiUrl).pipe(
       map((dados: any) => dados.data),
-      // tap(console.log),
       map((dados: { email: string }[]) =>
         dados.filter((d) => d.email === email)
       ),
-      // tap(console.log),
       map((dados: any[]) => dados.length > 0)
-      // tap(console.log),
     );
   }
 

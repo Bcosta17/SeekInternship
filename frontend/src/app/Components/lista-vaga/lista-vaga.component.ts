@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faCalendar, faDollar, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { Vaga } from 'src/app/Interfaces/Vagas';
 import { VagasService } from 'src/app/Services/vagas.service';
-
 @Component({
   selector: 'app-lista-vaga',
   templateUrl: './lista-vaga.component.html',
@@ -14,7 +13,6 @@ export class ListaVagaComponent implements OnInit {
 
   faCalendar = faCalendar;
 
-
   constructor(private vagasService : VagasService) { }
   
   ngOnInit() {
@@ -25,10 +23,7 @@ export class ListaVagaComponent implements OnInit {
         'pt-BR'
       );
     });
-    
     this.vagas = data;
    });
-   
   }
-
 }

@@ -1,47 +1,82 @@
 
-*{
+
+
+.navbar-dark .navbar-toggler-icon{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   font-size: 2rem;
-  color: #fff;
- 
-
 }
-
-#menu{
-  padding: .9rem 2rem 0 5rem;
-
-}
-
-a:hover,a:active{
-  color: #fff;
-}
-
-.navbar ul:nth-child(1) {
-  gap: 1rem;
-}
-
-.icon{
-  border: 2px solid #fff ;
-  padding: .6rem;
-  border-radius: 50%;
-  font-size: 2rem;
-  margin-right: .4rem;
+.navbar-dark .navbar-toggler{
+  border: 2px solid white;
+  box-shadow: none;
 }
 
 .navbar{
   background-color: var(--primary-color);
-
 }
-#sair{
-  color: black;
+
+.icon{
+  padding: .6rem;
+  border-radius: 50%;
+  font-size: 2.4rem;
+  margin-right: .4rem;
+}
+
+.container{
+  display: block;
+  margin: 0;
+}
+
+.container-1{
+  display: flex;
+}
+
+.container-3 .a-nav, .p-nav{
+  font-size: 1.5rem;
+  color: #fff !important;
+}
+
+.container-1 .icon{
+  border: 2px solid #fff ;
+  color: #fff;
 }
 
 #dropdownBasic1{
+  margin-top: 10px;
+  margin-left: 2px;
   cursor: pointer;
+  font-size: 2rem;
+}
+#sair{
+  font-size: 1.5rem;
+}
+
+.offcanvas p,a{
+  color: #000;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.offcanvas .icon{
+  border: 2px solid #000 ;
+  color: #000;
+  margin-right: 1rem;
+}
+
+.offcanvas .nav-link{
+  margin-top: 1rem;
 }
 
 
-@media (min-width: 991px) {
-  .item-collapse{
-    display:none;
-  }
+@media (min-width: 800px) {
+ .perfil{
+    display: none;
+  }  
 } 
+@media (max-width: 800px) {
+ .container-fluid .container-1{
+    display: none;
+  }  
+} 
+
+
+

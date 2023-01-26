@@ -115,16 +115,14 @@ export default class AlunoController {
 
     static async getAll(req, res) {
         const alunos = await Aluno.find().sort('-createdAt').select('-senha');
-        const empresa = await Empresa.find().sort('-createdAt').select('-senha');
-        const getall = alunos.concat(empresa)
-        res.status(200).json({data: getall});
+      
+        res.status(200).json({data: alunos});
     }
 
     static async getAlunoById(req, res) {
         const id = req.params.id
 
-        // verificar se id exite e não quebra o programa mesmo que o id não seja hex ou tenha 24 caracteris
-
+       
         if (!id.match(/^[0-9a-fA-F]{24}$/)) {
             res.status(422).json({ "message": "Aluno não encontrado!" });
             return;

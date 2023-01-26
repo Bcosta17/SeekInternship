@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Vaga } from '../Interfaces/Vagas';
 import { Response } from '../Interfaces/Response';
-import { NotificacoesService } from './notificacoes.service';
-
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +14,7 @@ export class VagasService {
 
   constructor(
     private http: HttpClient,
-    private messagem: NotificacoesService,
-    ) { }
+  ) { }
 
   getVagas(){
     return this.http.get<Response<Vaga[]>>(this.apiUrl);

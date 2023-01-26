@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule} from 'ngx-mask'
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -35,10 +34,6 @@ import { EditAlunoComponent } from './Components/pages/edit/edit-aluno/edit-alun
 import { Pagina404Component } from './Components/pages/pagina404/pagina404.component';
 import { RecuperacaoSenhaComponent } from './Components/pages/recuperacao-senha/recuperacao-senha.component';
 import { MudarSenhaComponent } from './Components/pages/mudar-senha/mudar-senha.component';
-
-
-
-
 
 @NgModule({
   declarations: [
